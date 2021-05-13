@@ -1,29 +1,36 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Store from '../store/index';
+import Index from '../views/Index.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+    name: 'Index',
+    component: Index,
+    meta: {
+        title: 'Discover & share game projects',
+    }
+}];
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+    const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+    if(nearestWithTitle) {
+        document.title = nearestWithTitle.meta.title + " ~ MyGarage.games";
+    } else if(previousNearestWithMeta) {
+        document.title = previousNearestWithMeta.meta.title + " ~ MyGarage.games";
+    }
+
+    Store.commit('authVerify');
+
+    next();
+});
+
+export default router;

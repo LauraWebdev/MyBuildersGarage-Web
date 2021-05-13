@@ -1,32 +1,50 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="app">
+        <PageHeader />
+
+        <main>
+            <router-view/>
+        </main>
+
+        <PageFooter />
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+    import PageHeader from '@/components/PageHeader';
+    import PageFooter from '@/components/PageFooter';
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    export default {
+        name: 'App',
+        components: {
+            PageHeader,
+            PageFooter
+        }
     }
-  }
-}
+</script>
+
+<style lang="less">
+    html {
+        box-sizing: border-box;
+    }
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+    body {
+        margin: 0;
+    }
+    .app {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        color: #222;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
 </style>
