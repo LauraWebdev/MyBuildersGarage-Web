@@ -1,4 +1,4 @@
-# mybuildersgarage-web
+# mgg-web
 
 ## Project setup
 ```
