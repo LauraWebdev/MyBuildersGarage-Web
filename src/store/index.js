@@ -1,8 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import VuexPersistence from 'vuex-persist';
 
 Vue.use(Vuex);
+
+const vuexLocal = new VuexPersistence({
+    storage: window.localStorage
+});
 
 export default new Vuex.Store({
     state: {
@@ -36,6 +41,8 @@ export default new Vuex.Store({
             });
         },
         authVerify(context) {
+            console.log(`[Store] Verifying Auth`);
+            
             axios.post('http://localhost:1337/api/v1/auth/verify', {
                 "token": context.state.token
             }).then(response => {
@@ -64,5 +71,6 @@ export default new Vuex.Store({
 
             return state.userData.playlists;
         }
-    }
+    },
+    plugins: [vuexLocal.plugin]
 });
