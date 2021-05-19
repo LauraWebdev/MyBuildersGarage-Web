@@ -42,7 +42,7 @@ export default new Vuex.Store({
         },
         authVerify(context) {
             console.log(`[Store] Verifying Auth`);
-            
+
             axios.post('http://localhost:1337/api/v1/auth/verify', {
                 "token": context.state.token
             }).then(response => {
@@ -57,17 +57,17 @@ export default new Vuex.Store({
             return state.userToken;
         },
         getUserData(state) {
-            if(userData === null) { return {}; }
+            if(state.userData === null) { return {}; }
 
             return state.userData;
         },
         getUserRoles(state) {
-            if(userData === null) { return []; }
+            if(state.userData === null) { return []; }
 
             return state.userRoles;
         },
         getUserPlaylists(state) {
-            if(userData === null) { return []; }
+            if(state.userData === null) { return []; }
 
             return state.userData.playlists;
         }
