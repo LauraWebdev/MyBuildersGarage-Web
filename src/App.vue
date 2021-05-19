@@ -46,5 +46,14 @@
         color: #222;
         display: grid;
         grid-template-rows: auto 1fr auto;
+
+        & a {
+            color: inherit;
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 </style>
