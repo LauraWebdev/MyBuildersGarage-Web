@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <div v-if="$store.state.userToken !== null">
+        <div v-if="$store.state.userToken !== null && $store.state.userToken !== undefined">
             <b>UserData</b><br />
             UserToken: {{ $store.state.userToken }}<br />
             UserName: {{ $store.state.userData.username }}<br /><br />
