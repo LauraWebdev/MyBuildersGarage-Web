@@ -80,11 +80,11 @@ router.beforeEach((to, from, next) => {
     const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
     if(nearestWithTitle) {
         document.title = nearestWithTitle.meta.title + " ~ MyGarage.games";
-    } else if(previousNearestWithMeta) {
-        document.title = previousNearestWithMeta.meta.title + " ~ MyGarage.games";
+    } else {
+        document.title = "MyGarage.games";
     }
 
-    Store.commit('authVerify');
+    Store.dispatch('authVerify');
 
     next();
 });
