@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Store from '../store/index';
+import MGGApi from '../modules/api';
 import Index from '../views/Index.vue';
 import Search from '../views/Search.vue';
 import AllChannels from '../views/Channel/AllChannels.vue';
@@ -76,7 +77,7 @@ const router = new VueRouter({
     routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
     if(nearestWithTitle) {
         document.title = nearestWithTitle.meta.title + " ~ MyGarage.games";
@@ -84,9 +85,24 @@ router.beforeEach((to, from, next) => {
         document.title = "MyGarage.games";
     }
 
-    Store.dispatch('authVerify');
+    try {
+        console.log(`[Router] Verify with token -> ${Store.state.userToken}`);
 
-    next();
+        let mggApi = new MGGApi(true);
+        let verifyResponse = await mggApi.authVerify(Store.state.userToken);
+
+        Store.dispatch('refreshUser', verifyResponse);
+        
+        next();
+    } catch(error) {
+        Store.dispatch('refreshUser', {
+            userData: null,
+            roles: null,
+            token: null
+        });
+
+        next();
+    }
 });
 
 export default router;
