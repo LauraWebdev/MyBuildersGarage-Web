@@ -86,8 +86,6 @@ router.beforeEach(async (to, from, next) => {
     }
 
     try {
-        console.log(`[Router] Verify with token -> ${Store.state.userToken}`);
-
         let mggApi = new MGGApi(true);
         let verifyResponse = await mggApi.authVerify(Store.state.userToken);
 

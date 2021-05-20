@@ -6,10 +6,8 @@ class MGGApi {
     constructor(useStagingApi = false) {
         if(useStagingApi) {
             this.apiBase = "http://localhost:1337/api/v1/";
-            console.log(`[MGGApi] Api Base: Staging`);
         } else {
             this.apiBase = "https://mygarage.games/api/v1/";
-            console.log(`[MGGApi] Api Base: Production`);
         }
     }
 
