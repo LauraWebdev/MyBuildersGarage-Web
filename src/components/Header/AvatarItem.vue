@@ -1,6 +1,6 @@
 <template>
     <router-link :to="{name: 'UserDetail', params: {id: id}}" class="avatar-item">
-        <div class="avatar" :style="'background-image: url(' + avatarFileName + ');'"></div>
+        <div class="avatar" :style="`background-image: url('${avatarFileName}');`"></div>
     </router-link>
 </template>
 
@@ -15,14 +15,25 @@
     .avatar-item {
         display: flex;
         align-items: center;
+        padding: 7px 2px;
+        border: 3px solid transparent;
+        display: block;
+        margin-right: 5px;
         
         & .avatar {
-            background: rgba(0,0,0,0.1);
-            display: block;
+            background: rgba(255,0,0,0.1);
+            background-size: cover;
+            background-position: center;
             width: 36px;
             height: 36px;
-            margin: 10px;
             border-radius: 50px;
+        }
+
+        &:hover {
+            border-bottom-color: rgba(0,0,0,0.2);
+        }
+        &.router-link-exact-active {
+            border-bottom-color: #25B9FF;
         }
     }
 </style>
