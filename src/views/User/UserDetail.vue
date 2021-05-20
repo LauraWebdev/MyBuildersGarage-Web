@@ -1,6 +1,6 @@
 <template>
     <div class="page-userdetail">
-        User Detail
+        User Detail of {{ $route.params.id }}
     </div>
 </template>
 
