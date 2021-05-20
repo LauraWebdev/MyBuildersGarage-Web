@@ -10,6 +10,9 @@ import UserDetail from '../views/User/UserDetail.vue';
 import GameDetail from '../views/Game/GameDetail.vue';
 import PlaylistDetail from '../views/Playlist/PlaylistDetail.vue';
 import Legal from '../views/Legal.vue';
+import Login from '../views/Auth/Login.vue';
+import Register from '../views/Auth/Register.vue';
+import Logout from '../views/Auth/Logout.vue';
 
 Vue.use(VueRouter);
 
@@ -21,7 +24,7 @@ const routes = [{
         title: 'Discover & share game projects',
     }
 }, {
-    path: '/search/:query',
+    path: '/search/:query?',
     name: 'Search',
     component: Search,
     meta: {
@@ -68,6 +71,27 @@ const routes = [{
     component: Legal,
     meta: {
         title: 'Legal information',
+    }
+}, {
+    path: '/auth/login',
+    name: 'Login',
+    component: Login,
+    meta: {
+        title: 'Login',
+    }
+}, {
+    path: '/auth/register',
+    name: 'Register',
+    component: Register,
+    meta: {
+        title: 'Create a new acount',
+    }
+}, {
+    path: '/auth/logout',
+    name: 'Logout',
+    component: Logout,
+    meta: {
+        title: 'Logout',
     }
 }];
 
