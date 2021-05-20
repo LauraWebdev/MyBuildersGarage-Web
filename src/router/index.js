@@ -4,9 +4,10 @@ import Store from '../store/index';
 import MGGApi from '../modules/api';
 import Index from '../views/Index.vue';
 import Search from '../views/Search.vue';
-import AllChannels from '../views/Channel/AllChannels.vue';
+import ChannelOverview from '../views/Channel/ChannelOverview.vue';
 import ChannelDetail from '../views/Channel/ChannelDetail.vue';
 import UserDetail from '../views/User/UserDetail.vue';
+import GameAdd from '../views/Game/GameAdd.vue';
 import GameDetail from '../views/Game/GameDetail.vue';
 import PlaylistDetail from '../views/Playlist/PlaylistDetail.vue';
 import Legal from '../views/Legal.vue';
@@ -31,9 +32,9 @@ const routes = [{
         title: 'Search results',
     }
 }, {
-    path: '/channel/all',
-    name: 'AllChannels',
-    component: AllChannels,
+    path: '/channel/overview',
+    name: 'ChannelOverview',
+    component: ChannelOverview,
     meta: {
         title: 'Channels',
     }
@@ -50,6 +51,13 @@ const routes = [{
     component: UserDetail,
     meta: {
         title: 'User profile',
+    }
+}, {
+    path: '/game/add',
+    name: 'GameAdd',
+    component: GameAdd,
+    meta: {
+        title: 'Add a new Game',
     }
 }, {
     path: '/game/:id',

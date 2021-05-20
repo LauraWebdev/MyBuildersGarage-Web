@@ -47,6 +47,25 @@ class MGGApi {
             }
         }
     }
+
+    async authRegister(username, password, email) {
+        try {
+            const response = await axios.post(this.apiBase + 'users', {
+                "username": username,
+                "password": password,
+                "email": email
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "USERNAME_EMAIL_CONFLICT":
+                    throw new UsernameEmailConflictException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
 }
 
 class UserNotFoundException extends Error {
@@ -60,6 +79,13 @@ class AuthenticationWrongException extends Error {
     constructor(message) {
         super(message);
         this.name = "AuthenticationWrongException";
+    }
+}
+
+class UsernameEmailConflictException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "UsernameEmailConflictException";
     }
 }
 

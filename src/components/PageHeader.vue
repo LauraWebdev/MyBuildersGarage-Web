@@ -6,30 +6,32 @@
 
         <nav>
             <router-link :to="{name: 'Index'}" class="item">Discover</router-link>
+            <router-link :to="{name: 'ChannelOverview'}" class="item">Channels</router-link>
             <router-link :to="{name: 'Search'}" class="item">Find</router-link>
         </nav>
 
         <div class="actions" v-if="$store.state.userToken !== null && $store.state.userToken !== undefined">
             <AvatarItem v-bind="$store.state.userData"></AvatarItem>
+            <IconItem v-bind:route="{name: 'GameAdd'}" v-bind:icon="'plus'"></IconItem>
             <IconItem v-bind:route="{name: 'PlaylistDetail', params: {id: 1}}" v-bind:icon="'heart-outline'"></IconItem>
             <IconItem v-bind:route="{name: 'Logout'}" v-bind:icon="'close'"></IconItem>
         </div>
         <div class="actions actions-unauthorized" v-if="$store.state.userToken === null || $store.state.userToken === undefined">
-            <Button to="/auth/register" filled>Join now!</Button>
-            <Button to="/auth/login" class="button">Login</Button>
+            <LinkButton to="/auth/register" filled>Join now!</LinkButton>
+            <LinkButton to="/auth/login" class="button">Login</LinkButton>
         </div>
     </header>
 </template>
 
 <script>
-    import Button from '@/components/General/Button';
+    import LinkButton from '@/components/General/LinkButton';
     import AvatarItem from '@/components/Header/AvatarItem';
     import IconItem from '@/components/Header/IconItem';
 
     export default {
         name: 'PageHeader',
         components: {
-            Button,
+            LinkButton,
             AvatarItem,
             IconItem
         },
@@ -46,6 +48,8 @@
         grid-template-columns: auto 1fr auto;
         grid-gap: 25px;
         align-items: center;
+        position: relative;
+        z-index: 50;
 
         & .logo {
             height: 35px;
