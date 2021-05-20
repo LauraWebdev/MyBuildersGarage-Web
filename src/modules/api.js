@@ -66,6 +66,19 @@ class MGGApi {
             }
         }
     }
+
+    async getAllGames() {
+        try {
+            const response = await axios.get(this.apiBase + 'games');
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
 }
 
 class UserNotFoundException extends Error {
