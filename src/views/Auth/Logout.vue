@@ -16,7 +16,7 @@
         components: {
         },
         mounted: function() {
-            // this.logout();
+            this.logout();
         },
         methods: {
             logout() {
@@ -32,7 +32,7 @@
 
 <style lang="less" scoped>
     .page-logout {
-        background: url('../../assets/img/patternLight.png') center #ffd332;
+        background: url('../../assets/img/patternLight.png') center #ddd;
 
         & .logout-box {
             background: #fff;
