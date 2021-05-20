@@ -35,41 +35,43 @@ export default new Vuex.Store({
         },
         authLogout(context) {
             context.commit('SET_USER', {
-                token: null,
+                userToken: null,
                 userData: null,
-                roles: null
+                userRoles: null
             });
         },
         authVerify(context) {
-            console.log(`[Store] Verifying Auth`);
+            // TODO: This is broken. Verify / UserToken gets killed every few page transitions.
+            // TODO: Export into an API wrapper
 
-            axios.post('http://localhost:1337/api/v1/auth/verify', {
-                "token": context.state.token
-            }).then(response => {
-                console.log(response.data);
-            }).catch(error => {
-                console.error(error);
-            });
-        }
-    },
-    modules: {
-        getUserToken(state) {
-            return state.userToken;
-        },
-        getUserData(state) {
-            if(state.userData === null) { return {}; }
+            if(context.state.userToken !== null && context.state.userToken !== undefined) {
+                console.log(`[Store] Verifying Auth`);
 
-            return state.userData;
-        },
-        getUserRoles(state) {
-            if(state.userData === null) { return []; }
+                console.log(context.state.userToken);
 
-            return state.userRoles;
-        },
-        getUserPlaylists(state) {
-            if(state.userData === null) { return []; }
+                axios.post('http://localhost:1337/api/v1/auth/verify', {
+                    "token": context.state.userToken
+                }).then(response => {
+                    context.commit('SET_USER', {
+                        userToken: response.data.token,
+                        userData: response.data.userData,
+                        userRoles: response.data.roles
+                    });
 
-            return state.userData.playlists;
+                    console.log(response.data);
+                }).catch(error => {
+                    if(error.response.data.name === "AUTHENTICATION_WRONG") {
+                        // Token Invalid
+                        context.commit('SET_USER', {
+                            userToken: null,
+                            userData: null,
+                            userRoles: null
+                        });
+                    } else {
+                        console.error(error);
+                    }
+                });
+            }
         }
     },
     plugins: [vuexLocal.plugin]
