@@ -2,13 +2,18 @@
     <footer>
         <p>MyGarage.games is a free platform by the community and in no way affiliated with Nintendo.<br />Game Builder Garage is a trademark by Nintendo.</p>
 
-        <router-link :to="{name: 'Legal'}">Legal information</router-link>
+        <LinkButton :to="{name: 'Legal'}">Legal information</LinkButton>
     </footer>
 </template>
 
 <script>
+    import LinkButton from '@/components/General/LinkButton';
+
     export default {
         name: 'PageFooter',
+        components: {
+            LinkButton
+        }
     }
 </script>
 
