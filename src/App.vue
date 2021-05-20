@@ -2,9 +2,7 @@
     <div class="app">
         <PageHeader />
 
-        <main>
-            <router-view/>
-        </main>
+        <router-view/>
 
         <PageFooter />
     </div>
@@ -55,9 +53,68 @@
                 text-decoration: none;
             }
         }
-        & main {
+        & .page-wrapper {
+            width: 90vw;
+            max-width: 1140px;
             justify-self: center;
-            align-self: center;
+        }
+        & .page-centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        & .button {
+            display: inline-block;
+            background: transparent;
+            color: #1EA0DE;
+            text-decoration: none;
+            border: 2px solid #25baff44;
+            border-radius: 5px;
+            font-weight: bold;
+            padding: 7px 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 12px;
+            transition: 0.2s ease-in-out background;
+            font-family: 'Poppins', sans-serif;
+
+            &:hover {
+                background: #25baff44;
+                cursor: pointer;
+            }
+            &.button-filled {
+                background: #25B9FF;
+                border: 2px solid #1a8fc5;
+                color: #fff;
+
+                &:hover {
+                    background: #1a8fc5;
+                }
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+        & .input {
+            display: inline-block;
+            background: transparent;
+            color: #222;
+            text-decoration: none;
+            border: 2px solid rgba(0,0,0,0.4);
+            border-radius: 5px;
+            padding: 5px 10px;
+            transition: 0.2s ease-in-out background;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+
+            &:hover {
+                background: rgba(0,0,0,0.1);
+                cursor: pointer;
+            }
+            &:focus {
+                border-color: #000;
+                outline: none;
+            }
         }
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="page-gamedetail">
+    <div class="page-wrapper page-gamedetail">
         Game Detail
     </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="page-channeldetail">
+    <div class="page-wrapper page-channeldetail">
         Channel Detail
     </div>
 </template>

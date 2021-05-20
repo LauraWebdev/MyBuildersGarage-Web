@@ -1,6 +1,10 @@
 <template>
-    <div class="page-index">
-        Welcome Message <br /><br />Newest Games
+    <div class="page-wrapper page-index">
+        <div class="welcome">
+            
+        </div>
+        
+        <!-- Newest Games -->
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="page-userdetail">
+    <div class="page-wrapper page-userdetail">
         User Detail of {{ $route.params.id }}
     </div>
 </template>

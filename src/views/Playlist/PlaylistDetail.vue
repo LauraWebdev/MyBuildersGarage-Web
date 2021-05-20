@@ -1,5 +1,5 @@
 <template>
-    <div class="page-playlistdetail">
+    <div class="page-wrapper page-playlistdetail">
         Playlist Detail
     </div>
 </template>

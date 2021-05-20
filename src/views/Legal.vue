@@ -1,5 +1,5 @@
 <template>
-    <div class="page-legal">
+    <div class="page-wrapper page-legal">
         Legal Information
     </div>
 </template>
