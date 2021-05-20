@@ -10,7 +10,7 @@
         </nav>
 
         <div class="actions" v-if="$store.state.userToken !== null && $store.state.userToken !== undefined">
-            <router-link :to="{name: 'UserDetail', params: {id: $store.state.userData.id}}" class="avatar" :style="'background-image: url(' + $store.state.userData.avatarFileName + ');'"></router-link>
+            <AvatarItem v-bind="$store.state.userData"></AvatarItem>
         </div>
         <div class="actions" v-if="$store.state.userToken === null || $store.state.userToken === undefined">
             <Button to="/auth/register" filled>Join now!</Button>
@@ -21,11 +21,13 @@
 
 <script>
     import Button from '@/components/Button';
+    import AvatarItem from '@/components/Header/AvatarItem';
 
     export default {
         name: 'PageHeader',
         components: {
-            Button
+            Button,
+            AvatarItem
         },
 
     }
@@ -47,14 +49,6 @@
 
         & .actions {
             display: flex;
-            & .avatar {
-                background: rgba(0,0,0,0.1);
-                display: block;
-                width: 36px;
-                height: 36px;
-                margin: 10px;
-                border-radius: 50px;
-            }
         }
     }
 </style>
