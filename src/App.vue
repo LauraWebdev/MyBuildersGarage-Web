@@ -55,5 +55,9 @@
                 text-decoration: none;
             }
         }
+        & main {
+            justify-self: center;
+            align-self: center;
+        }
     }
 </style>
