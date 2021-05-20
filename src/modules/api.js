@@ -23,13 +23,10 @@ class MGGApi {
             switch(error.response.data.name) {
                 case "USER_NOT_FOUND":
                     throw new UserNotFoundException(error.response.data.text);
-                    break;
                 case "AUTHENTICATION_WRONG":
                     throw new AuthenticationWrongException(error.response.data.text);
-                    break;
                 default:
                     throw new Error(error.response.data.text);
-                    break;
             }
         }
     }
@@ -45,10 +42,8 @@ class MGGApi {
             switch(error.response.data.name) {
                 case "AUTHENTICATION_WRONG":
                     throw new AuthenticationWrongException(error.response.data.text);
-                    break;
                 default:
                     throw new Error(error.response.data.text);
-                    break;
             }
         }
     }
