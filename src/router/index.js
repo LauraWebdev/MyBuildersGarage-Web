@@ -117,6 +117,11 @@ router.beforeEach(async (to, from, next) => {
         document.title = "MyGarage.games";
     }
 
+    if(Store.state.userToken === undefined || Store.state.userToken === null) {
+        next();
+        return;
+    }
+
     try {
         let mggApi = new MGGApi(true);
         let verifyResponse = await mggApi.authVerify(Store.state.userToken);
