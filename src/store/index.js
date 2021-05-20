@@ -10,11 +10,15 @@ const vuexLocal = new VuexPersistence({
 
 export default new Vuex.Store({
     state: {
+        uiMode: "light",
         userToken: null,
         userData: null,
         userRoles: null
     },
     mutations: {
+        SET_MODE(state, uiMode) {
+            state.uiMode = uiMode;
+        },
         SET_USER(state, userResponse) {
             state.userToken = userResponse.token;
             state.userData = userResponse.userData;
@@ -25,6 +29,9 @@ export default new Vuex.Store({
         refreshUser(context, userResponse) {
             context.commit('SET_USER', userResponse);
         },
+        setMode(context, uiMode) {
+            context.commit('SET_MODE', uiMode);
+        }
     },
     plugins: [vuexLocal.plugin]
 });
