@@ -1,11 +1,11 @@
 <template>
-    <div class="page-allchannels">
+    <div class="page-wrapper page-channelOverview">
         All Channels
     </div>
 </template>
 
 <script>
     export default {
-        name: 'AllChannels',
+        name: 'ChannelOverview',
     }
 </script>
