@@ -79,6 +79,34 @@ class MGGApi {
             }
         }
     }
+
+    async getAllChannels() {
+        try {
+            const response = await axios.get(this.apiBase + 'gameChannels');
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async getChannelDetail(channelID) {
+        try {
+            const response = await axios.get(this.apiBase + 'gameChannels/' + channelID);
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "GAMECHANNEL_NOT_FOUND":
+                    throw new GameChannelNotFoundException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
 }
 
 class UserNotFoundException extends Error {
@@ -99,6 +127,13 @@ class UsernameEmailConflictException extends Error {
     constructor(message) {
         super(message);
         this.name = "UsernameEmailConflictException";
+    }
+}
+
+class GameChannelNotFoundException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "GameChannelNotFoundException";
     }
 }
 
