@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper page-index">
+    <div class="page page-wrapper page-index">
         <div class="welcome">
             <div class="box">
                 <div class="box-header">Welcome</div>
@@ -9,21 +9,23 @@
                 </div>
             </div>
         </div>
-        
-        <div class="game-list">
+
+        <GameList v-bind:title="'New Games'">
             <GameItem v-for="game in latestGames" v-bind:key="game.id" v-bind="game"></GameItem>
-        </div>
+        </GameList>
     </div>
 </template>
 
 <script>
     import MGGApi from '../modules/api';
 
+    import GameList from '@/components/Game/GameList';
     import GameItem from '@/components/Game/GameItem';
 
     export default {
         name: 'Index',
         components: {
+            GameList,
             GameItem,
         },
         data: function() {
@@ -55,7 +57,7 @@
     .page-index {
         padding: 50px 0px;
         display: grid;
-        grid-gap: 25px;
+        grid-gap: 50px;
         align-content: flex-start;
 
         & .welcome {
@@ -92,12 +94,6 @@
                     line-height: 1.5em;
                 }
             }
-        }
-
-        & .game-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 25px;
         }
     }
 </style>
