@@ -53,6 +53,22 @@
                 text-decoration: none;
             }
         }
+        & .page-header {
+            background: rgba(0,0,0,0.07);
+            display: flex;
+            padding: 25px 0px;
+
+            & h1 {
+                margin: 0;
+                font-weight: bold;
+                font-size: 32px;
+            }
+            & p {
+                margin: 0;
+                line-height: 1.5em;
+                font-size: 18px;
+            }
+        }
         & .page-wrapper {
             width: 90vw;
             max-width: 1140px;
