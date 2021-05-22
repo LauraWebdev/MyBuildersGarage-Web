@@ -54,7 +54,7 @@
             }
         }
         & .page-header {
-            background: rgba(0,0,0,0.07);
+            background: url('assets/img/patternLight.png') center rgba(0,0,0,0.07);
             display: flex;
             padding: 25px 0px;
 
