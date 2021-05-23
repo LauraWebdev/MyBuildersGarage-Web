@@ -62,7 +62,6 @@
                         <select class="input-select" multiple v-model="step1Channels">
                             <option v-for="channel in step1AllChannels" v-bind:key="channel.id" :value="channel.id">{{ channel.title }}</option>
                         </select>
-                        <!-- TODO: Show all Channels and make them selectable -->
                     </div>
                 </div>
                 <div class="step" v-if="currentStep == 3">
@@ -73,7 +72,7 @@
                     </div>
                     <div class="step-input">
                         <label>Do you have a YouTube trailer? Add the URL in here!</label>
-                        <input type="text" class="input" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+                        <input type="text" class="input" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" v-model="step2VideoURL" />
                     </div>
                 </div>
                 <div class="step" v-if="currentStep == 4">
