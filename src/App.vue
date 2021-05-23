@@ -135,5 +135,37 @@
                 opacity: 0.6;
             }
         }
+        & .input-select {
+            display: inline-block;
+            background: transparent;
+            color: #222;
+            text-decoration: none;
+            border: 2px solid rgba(0,0,0,0.4);
+            border-radius: 5px;
+            padding: 0;
+            transition: 0.2s ease-in-out background;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+
+            & option {
+                padding: 5px 10px;
+            }
+
+            &[multiple] {
+                height: 200px;
+            }
+
+            & option:hover {
+                background: rgba(0,0,0,0.07);
+                cursor: pointer;
+            }
+            &:focus {
+                border-color: #000;
+                outline: none;
+            }
+            &::placeholder {
+                opacity: 0.6;
+            }
+        }
     }
 </style>
