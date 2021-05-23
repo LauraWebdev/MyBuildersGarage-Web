@@ -2,13 +2,13 @@
     <router-link :to="{ name: 'GameDetail', params: { id: id }}" class="game-item">
         <div class="cover" :style="`background-image: url('${ coverFileName }')`">
             <div class="cover-actions" v-if="$store.state.userToken">
-                <div class="action" v-on:click="addToPlaylist()"><span class="mdi mdi-heart-outline"></span></div>
+                <div class="action" v-on:click="addToPlaylist"><span class="mdi mdi-heart-outline"></span></div>
             </div>
         </div>
         <div class="title">{{ title }}</div>
         <div class="user">
             <div class="avatar" :style="`background-image: url('${ user.avatarFileName }')`"></div>
-            <div class="username">{{ user.username }}}</div>
+            <div class="username">{{ user.username }}</div>
         </div>
     </router-link>
 </template>
@@ -21,7 +21,14 @@
             'title',
             'coverFileName',
             'user'
-        ]
+        ],
+        methods: {
+            addToPlaylist: function(event) {
+                event.preventDefault();
+
+                console.log("AddToPlaylist");
+            }
+        }
     }
 </script>
 
