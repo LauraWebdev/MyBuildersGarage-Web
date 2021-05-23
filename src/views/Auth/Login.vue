@@ -34,7 +34,7 @@
             this.$data.apiRef = new MGGApi(true);
         },
         methods: {
-            async login() {
+            login: async function() {
                 this.$data.errorMessage = "";
 
                 if(this.$data.userName == "" || this.$data.userPass == "") {

@@ -19,7 +19,7 @@
             this.logout();
         },
         methods: {
-            logout() {
+            logout: function() {
                 this.$store.dispatch('refreshUser', {
                     userData: null,
                     userRoles: null,

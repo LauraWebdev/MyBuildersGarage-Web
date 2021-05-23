@@ -38,7 +38,7 @@
             this.$data.apiRef = new MGGApi(true);
         },
         methods: {
-            async register() {
+            register: async function() {
                 this.$data.errorMessage = "";
 
                 if(this.$data.userName == "" || this.$data.userPass == "" || this.$data.userPass2 == "" || this.$data.userMail == "") {
