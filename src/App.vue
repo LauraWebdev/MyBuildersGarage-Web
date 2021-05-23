@@ -124,12 +124,15 @@
             font-family: 'Poppins', sans-serif;
 
             &:hover {
-                background: rgba(0,0,0,0.1);
+                background: rgba(0,0,0,0.07);
                 cursor: pointer;
             }
             &:focus {
                 border-color: #000;
                 outline: none;
+            }
+            &::placeholder {
+                opacity: 0.6;
             }
         }
     }
