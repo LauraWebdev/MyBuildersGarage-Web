@@ -196,6 +196,29 @@ class MGGApi {
         }
     }
 
+    async deleteGameCover(gameID, jwtToken) {
+        try {
+            const response = await axios.delete(this.apiBase + 'games/' + gameID + '/cover', {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "GAME_NOT_FOUND":
+                    throw new GameNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
     async deleteGame(gameID, jwtToken) {
         try {
             const response = await axios.delete(this.apiBase + 'games/' + gameID, {
@@ -209,6 +232,62 @@ class MGGApi {
             switch(error.response.data.name) {
                 case "GAME_NOT_FOUND":
                     throw new GameNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async uploadGameScreenshots(gameID, files, jwtToken) {
+        try {
+            let formData = new FormData();
+            files.forEach(file => {
+                formData.append('screenshots', file);
+            });
+
+            const response = await axios.post(this.apiBase + 'gameScreenshots/' + gameID, formData, {
+                headers: {
+                    "x-access-token": jwtToken,
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "GAME_NOT_FOUND":
+                    throw new GameNotFoundException(error.response.data.text);
+                case "GAMESCREENSHOT_COVER_WRONGFORMAT":
+                    throw new FileWrongFormatException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async deleteGameScreenshot(screenshotID, jwtToken) {
+        try {
+            const response = await axios.delete(this.apiBase + 'gameScreenshots/' + screenshotID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "GAME_NOT_FOUND":
+                    throw new GameNotFoundException(error.response.data.text);
+                case "GAMESCREENSHOT_NOT_FOUND":
+                    throw new GameScreenshotNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
                     throw new AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
@@ -259,6 +338,13 @@ class GameNotFoundException extends Error {
     constructor(message) {
         super(message);
         this.name = "GameNotFoundException";
+    }
+}
+
+class GameScreenshotNotFoundException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "GameScreenshotNotFoundException";
     }
 }
 
