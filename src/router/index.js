@@ -9,6 +9,7 @@ import ChannelDetail from '../views/Channel/ChannelDetail.vue';
 import UserDetail from '../views/User/UserDetail.vue';
 import GameAdd from '../views/Game/GameAdd.vue';
 import GameDetail from '../views/Game/GameDetail.vue';
+import GameDelete from '../views/Game/GameDelete.vue';
 import PlaylistDetail from '../views/Playlist/PlaylistDetail.vue';
 import Legal from '../views/Legal.vue';
 import Login from '../views/Auth/Login.vue';
@@ -58,6 +59,13 @@ const routes = [{
     component: GameAdd,
     meta: {
         title: 'Add a new Game',
+    }
+}, {
+    path: '/game/:id/delete',
+    name: 'GameDelete',
+    component: GameDelete,
+    meta: {
+        title: 'Removing a game',
     }
 }, {
     path: '/game/:id',

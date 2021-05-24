@@ -195,6 +195,29 @@ class MGGApi {
             }
         }
     }
+
+    async deleteGame(gameID, jwtToken) {
+        try {
+            const response = await axios.delete(this.apiBase + 'games/' + gameID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "GAME_NOT_FOUND":
+                    throw new GameNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
 }
 
 class AuthenticationNeededException extends Error {
