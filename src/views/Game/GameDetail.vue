@@ -37,7 +37,28 @@
                         </div>
                     </div>
                     <div class="game-screenshots">
-                        SCREENSHOTS
+                        <div class="screenshot"
+                            :class="activeScreenshot == 0 ? 'active' : ''"
+                            :style="`background-image: url('${gameDetail.coverFileName}');`"></div>
+                        <div class="screenshot"
+                            v-for="(screenshot, index) in gameDetail.screenshots"
+                            v-bind:key="screenshot.id"
+                            :class="activeScreenshot == index + 1 ? 'active' : ''"
+                            :style="`background-image: url('${screenshot.fileName}');`"></div>
+
+                        <div class="position-shade">
+                            <div class="dot"
+                                :class="activeScreenshot == 0 ? 'active' : ''"
+                                v-on:click="changeActiveScreenshot(0)"></div>
+                            <div class="dot"
+                                v-for="(screenshot, index) in gameDetail.screenshots"
+                                v-bind:key="screenshot.id"
+                                :class="activeScreenshot == screenshot.id ? 'active' : ''"
+                                v-on:click="changeActiveScreenshot(index + 1)"></div>
+                        </div>
+
+                        <div class="navigate-previous" v-on:click="previousScreenshot()"><span class="mdi mdi-arrow-left"></span></div>
+                        <div class="navigate-next" v-on:click="nextScreenshot()"><span class="mdi mdi-arrow-right"></span></div>
                     </div>
                 </div>
             </div>
@@ -73,6 +94,7 @@
                 gameDetail: null,
                 createdFormatted: "",
                 updatedFormatted: "",
+                activeScreenshot: 0,
             }
         },
         components: {
@@ -110,6 +132,23 @@
             },
             addToPlaylist: function() {
 
+            },
+            changeActiveScreenshot: function(screenshotIndex) {
+                this.$data.activeScreenshot = screenshotIndex;
+            },
+            previousScreenshot: function() {
+                if(this.$data.activeScreenshot > 0) {
+                    this.$data.activeScreenshot--;
+                } else {
+                    this.$data.activeScreenshot = this.$data.gameDetail.screenshots.length;
+                }
+            },
+            nextScreenshot: function() {
+                if(this.$data.activeScreenshot < this.$data.gameDetail.screenshots.length) {
+                    this.$data.activeScreenshot++;
+                } else {
+                    this.$data.activeScreenshot = 0;
+                }
             }
         }
     }
@@ -319,6 +358,80 @@
                     cursor: pointer;
                 }
             }
+        }
+    }
+    & .game-screenshots {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+
+        & .screenshot {
+            display: none;
+            padding-top: 56.25%;
+            background-position: center;
+            background-size: cover;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        & .position-shade {
+            position: absolute;
+            background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.6));
+            bottom: 0px;
+            padding: 20px;
+            left: 0px;
+            right: 0px;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & .dot {
+                border: 2px solid #fff;
+                border-radius: 100%;
+                width: 14px;
+                height: 14px;
+                margin: 0px 5px;
+                
+                &.active {
+                    background: #fff;
+                }
+                &:not(.active):hover {
+                    background: rgba(255,255,255,0.4);
+                    cursor: pointer;
+                }
+            }
+        }
+
+        & .navigate-previous, & .navigate-next {
+            background: linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0));
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            padding: 25px;
+            right: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: #fff;
+            font-size: 32px;
+            opacity: 0;
+            transition: 0.2s ease-in-out opacity;
+
+            &:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+
+        & .navigate-next {
+            background: linear-gradient(-90deg, rgba(0,0,0,0.6), rgba(0,0,0,0));
+            left: 50%;
+            right: 0;
+            justify-content: flex-end;
         }
     }
 </style>
