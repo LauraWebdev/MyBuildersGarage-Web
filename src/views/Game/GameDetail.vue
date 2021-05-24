@@ -35,6 +35,11 @@
                         <div class="channels" v-if="gameDetail.channels.length > 0">
                             <router-link :to="{ name: 'ChannelDetail', params: { id: channel.id } }" class="item" v-for="channel in gameDetail.channels" v-bind:key="channel.id">{{ channel.title }}</router-link>
                         </div>
+
+                        <div class="actions" v-if="gameDetail.user.id == $store.state.userData.id || $store.state.userRoles.includes('moderator', 'admin')">
+                            <LinkButton :to="{ name: 'GameEdit', params: { id: gameDetail.id } }" filled>Edit</LinkButton>
+                            <LinkButton :to="{ name: 'GameDelete', params: { id: gameDetail.id } }">Delete</LinkButton>
+                        </div>
                     </div>
                     <div class="game-screenshots">
                         <div class="screenshot"
@@ -53,7 +58,7 @@
                             <div class="dot"
                                 v-for="(screenshot, index) in gameDetail.screenshots"
                                 v-bind:key="screenshot.id"
-                                :class="activeScreenshot == screenshot.id ? 'active' : ''"
+                                :class="activeScreenshot == index + 1 ? 'active' : ''"
                                 v-on:click="changeActiveScreenshot(index + 1)"></div>
                         </div>
 
@@ -83,6 +88,7 @@
     import MGGApi from '../../modules/api';
 
     import LoadingCircle from '@/components/General/LoadingCircle';
+    import LinkButton from '@/components/General/LinkButton';
 
     export default {
         name: 'GameDetail',
@@ -99,6 +105,7 @@
         },
         components: {
             LoadingCircle,
+            LinkButton
         },
         created: function() {
             this.$data.apiRef = new MGGApi(true);
@@ -342,6 +349,7 @@
         & .channels {
             display: flex;
             flex-wrap: wrap;
+            margin-bottom: 20px;
 
             & .item {
                 padding: 4px 12px;
@@ -358,6 +366,15 @@
                     color: #fff;
                     cursor: pointer;
                 }
+            }
+        }
+        & .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 15px;
+
+            & .button {
+                text-align: center;
             }
         }
     }
