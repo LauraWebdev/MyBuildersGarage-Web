@@ -124,7 +124,6 @@
                 }
             },
             openTrailer: function() {
-                // TODO: Show Overlay with YouTube Embed
                 this.$data.trailerOverlayOpen = true;
             },
             closeTrailer: function() {
@@ -342,6 +341,7 @@
         }
         & .channels {
             display: flex;
+            flex-wrap: wrap;
 
             & .item {
                 padding: 4px 12px;
@@ -349,6 +349,7 @@
                 color: #1EA0DE;
                 border-radius: 100px;
                 margin-right: 5px;
+                margin-bottom: 5px;
                 transition: 0.2s ease-in-out all;
                 text-decoration: none;
 
