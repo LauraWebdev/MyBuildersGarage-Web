@@ -111,6 +111,9 @@
                 outline: none;
             }
         }
+        select.input {
+            cursor: pointer;
+        }
         & .input {
             display: inline-block;
             background: transparent;
@@ -125,7 +128,6 @@
 
             &:hover {
                 background: rgba(0,0,0,0.07);
-                cursor: pointer;
             }
             &:focus {
                 border-color: #000;
