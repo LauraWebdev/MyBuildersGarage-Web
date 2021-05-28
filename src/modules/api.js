@@ -316,6 +316,24 @@ class MGGApi {
             }
         }
     }
+
+    static isUsernameValid(unfilteredUsername) {
+        let usernameRegex = /^[a-zA-Z0-9-_]*$/g;
+    
+        return usernameRegex.test(unfilteredUsername);
+    }
+    
+    static isCreatorIDValid(unfilteredCreatorID) {
+        let creatorIDRegex = /^P-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$/g;
+    
+        return creatorIDRegex.test(unfilteredCreatorID);
+    }
+    
+    static isGameIDValid(unfilteredGameID) {
+        let gameIDRegex = /^G-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$/g;
+    
+        return gameIDRegex.test(unfilteredGameID);
+    }
 }
 
 class AuthenticationNeededException extends Error {
