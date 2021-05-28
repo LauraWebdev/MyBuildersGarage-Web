@@ -134,6 +134,8 @@ class MGGApi {
             return response.data;
         } catch(error) {
             switch(error.response.data.name) {
+                case "GAME_INGAMEID_WRONGFORMAT":
+                    throw new IngameIDWrongFormatException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
                     throw new AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
@@ -155,6 +157,8 @@ class MGGApi {
             return response.data;
         } catch(error) {
             switch(error.response.data.name) {
+                case "GAME_INGAMEID_WRONGFORMAT":
+                    throw new IngameIDWrongFormatException(error.response.data.text);
                 case "GAME_NOT_FOUND":
                     throw new GameNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
@@ -345,6 +349,13 @@ class GameScreenshotNotFoundException extends Error {
     constructor(message) {
         super(message);
         this.name = "GameScreenshotNotFoundException";
+    }
+}
+
+class IngameIDWrongFormatException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "IngameIDWrongFormatException";
     }
 }
 
