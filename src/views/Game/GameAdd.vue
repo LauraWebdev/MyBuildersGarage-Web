@@ -164,10 +164,25 @@
                     case 0:
                         return true;
                     case 1:
-                        if(this.$data.step0Title == "") return false;
-                        if(this.$data.step0IngameID == "") return false;
+                        if(this.$data.step0Title == "" || this.$data.step0IngameID == "") {
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "plus",
+                                text: "You have to fill out all required fields to continue.",
+                                stay: false,
+                            });
+                            return false;
+                        }
 
-                        // TODO: Verify game code syntax
+                        if(!MGGApi.isGameIDValid(this.$data.step0IngameID)) {
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "plus",
+                                text: "Your game ID is invalid (format: G-000-000-000).",
+                                stay: false,
+                            });
+                            return false;
+                        }
 
                         return true;
                     case 2:
