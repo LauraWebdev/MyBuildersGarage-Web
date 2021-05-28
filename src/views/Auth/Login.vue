@@ -2,9 +2,6 @@
     <div class="page-centered page-login">
         <div class="login-box">
             <div class="box-header">Login</div>
-            <div class="box-error" v-if="errorMessage">
-                {{ errorMessage }}
-            </div>
             <div class="box-content">
                 <input class="input" type="text" v-model="userName" placeholder="Username" />
                 <input class="input" type="password" v-model="userPass" placeholder="Password" />
@@ -27,7 +24,6 @@
                 apiRef: null,
                 userName: "",
                 userPass: "",
-                errorMessage: "",
             }
         },
         created: function() {
@@ -35,26 +31,47 @@
         },
         methods: {
             login: async function() {
-                this.$data.errorMessage = "";
-
                 if(this.$data.userName == "" || this.$data.userPass == "") {
-                    this.$data.errorMessage = "All fields have to be filled out";
+                    this.$root.$emit('addSnackbar', {
+                        type: "error",
+                        icon: "key",
+                        text: "All fields must be filled out.",
+                        stay: false,
+                    });
                     return;
                 }
 
                 try {
                     const loginResponse = await this.$data.apiRef.authLogin(this.$data.userName, this.$data.userPass);
                     this.$store.dispatch('refreshUser', loginResponse);
+
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "key",
+                        text: "Welcome back, " + loginResponse.userData.username,
+                        stay: false,
+                    });
+
                     this.$router.push({ name: 'Index' });
                 } catch(error) {
                     switch(error.name) {
                         case "UserNotFoundException":
                             // Wrong username
-                            this.$data.errorMessage = "This user does not exist.";
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "key",
+                                text: "This user does not exist.",
+                                stay: false,
+                            });
                             break;
                         case "AuthenticationWrongException":
                             // Wrong Password
-                            this.$data.errorMessage = "The password is incorrect.";
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "key",
+                                text: "The password is incorrect.",
+                                stay: false,
+                            });
                             break;
                     }
                 }
@@ -84,13 +101,6 @@
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 0.15em;
-            }
-            & .box-error {
-                background: #fd084d;
-                color: #fff;
-                font-weight: bold;
-                text-align: center;
-                padding: 15px;
             }
             & .box-content {
                 padding: 20px;
