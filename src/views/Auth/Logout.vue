@@ -20,6 +20,14 @@
         },
         methods: {
             logout: function() {
+
+                this.$root.$emit('addSnackbar', {
+                    type: "success",
+                    icon: "key",
+                    text: "You were successfully logged out.",
+                    stay: false,
+                });
+
                 this.$store.dispatch('refreshUser', {
                     userData: null,
                     userRoles: null,
