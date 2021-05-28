@@ -59,6 +59,8 @@ class MGGApi {
             return response.data;
         } catch(error) {
             switch(error.response.data.name) {
+                case "USERNAME_INVALID":
+                    throw new UsernameInvalidException(error.response.data.text);
                 case "USERNAME_EMAIL_CONFLICT":
                     throw new UsernameEmailConflictException(error.response.data.text);
                 default:
@@ -361,6 +363,13 @@ class UsernameEmailConflictException extends Error {
     constructor(message) {
         super(message);
         this.name = "UsernameEmailConflictException";
+    }
+}
+
+class UsernameInvalidException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "UsernameInvalidException";
     }
 }
 
