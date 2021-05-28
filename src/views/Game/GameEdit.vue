@@ -374,7 +374,7 @@
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Your game ID is invalid (format: G-000-000-000)",
+                            text: "Your game ID is invalid (format: G-000-000-000).",
                             stay: true,
                         });
                     } else {
