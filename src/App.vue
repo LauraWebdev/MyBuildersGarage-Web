@@ -2,7 +2,7 @@
     <div class="app">
         <PageHeader />
 
-        <router-view/>
+        <router-view :key="$route.fullPath"/>
 
         <PageFooter />
 
