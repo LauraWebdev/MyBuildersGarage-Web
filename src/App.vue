@@ -5,18 +5,22 @@
         <router-view/>
 
         <PageFooter />
+
+        <Snackbar />
     </div>
 </template>
 
 <script>
     import PageHeader from '@/components/PageHeader';
     import PageFooter from '@/components/PageFooter';
+    import Snackbar from '@/components/General/Snackbar';
 
     export default {
         name: 'App',
         components: {
             PageHeader,
-            PageFooter
+            PageFooter,
+            Snackbar
         }
     }
 </script>
