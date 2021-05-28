@@ -301,6 +301,21 @@ class MGGApi {
             }
         }
     }
+
+    async getUserDetail(userID) {
+        try {
+            const response = await axios.get(this.apiBase + 'users/' + userID);
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "USER_NOT_FOUND":
+                    throw new UserNotFoundException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
 }
 
 class AuthenticationNeededException extends Error {
