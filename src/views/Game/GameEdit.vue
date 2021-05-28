@@ -153,8 +153,14 @@
 
                     if(this.$data.gameDetail.user.id != this.$store.state.userData.id && !this.$store.state.userRoles.includes('moderator', 'admin')) {
                         console.log("User is not allowed to edit this entry");
+
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "lock-off-outline",
+                            text: "You are not allowed to edit this game.",
+                            stay: true,
+                        });
                         return;
-                        // TODO: Display User "You are not allowed" Message
                     }
 
                     this.$data.tab0Title = this.$data.gameDetail.title;
@@ -202,12 +208,22 @@
                     await this.$data.apiRef.deleteGameScreenshot(screenshotID, this.$store.state.userToken);
                     this.loadGame();
 
-                    // TODO: Successful Message to User
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "trash-can-outline",
+                        text: "Screenshot was deleted.",
+                        stay: false,
+                    });
                 } catch(error) {
                     console.error(error);
-                    this.$data.apiLoading = true;
+                    this.$data.apiLoading = false;
 
-                    // TODO: Display Errors to User
+                    this.$root.$emit('addSnackbar', {
+                        type: "error",
+                        icon: "trash-can-outline",
+                        text: "Could not delete screenshot. Please try again later.",
+                        stay: false,
+                    });
                 }
             },
             updateCover: async function() {
@@ -215,20 +231,37 @@
 
                 this.$data.apiLoading = true;
 
-                // TODO: Display Errors to User
-
                 try {
                     await this.$data.apiRef.updateGameCover(this.$data.gameDetail.id, this.$data.tab2CoverFile, this.$store.state.userToken);
 
                     this.$data.apiLoading = false;
                     this.loadGame();
 
-                    // TODO: Successful Message to User
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "content-save-outline",
+                        text: "Cover was updated.",
+                        stay: false,
+                    });
                 } catch(error) {
                     console.error(error);
                     this.$data.apiLoading = false;
 
-                    // TODO: Display Errors to User
+                    if(error.name == "FileWrongFormatException") {
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "content-save-outline",
+                            text: "Cover could not be updated because they have the wrong format. Only .png and .jpg files are allowed!",
+                            stay: true,
+                        });
+                    } else {
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "content-save-outline",
+                            text: "Could not update cover. Please try again later.",
+                            stay: false,
+                        });
+                    }
                 }
             },
             deleteCover: async function() {
@@ -240,12 +273,22 @@
                     this.$data.apiLoading = false;
                     this.loadGame();
 
-                    // TODO: Successful Message to User
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "content-save-outline",
+                        text: "Cover was deleted.",
+                        stay: false,
+                    });
                 } catch(error) {
                     console.error(error);
                     this.$data.apiLoading = false;
 
-                    // TODO: Display Errors to User
+                    this.$root.$emit('addSnackbar', {
+                        type: "error",
+                        icon: "trash-can-outline",
+                        text: "Could not delete cover. Please try again later.",
+                        stay: false,
+                    });
                 }
             },
             uploadScreenshots: async function() {
@@ -259,12 +302,31 @@
                     this.$data.apiLoading = false;
                     this.loadGame();
 
-                    // TODO: Successful Message to User
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "content-save-outline",
+                        text: "Screenshots were uploaded successfully.",
+                        stay: false,
+                    });
                 } catch(error) {
                     console.error(error);
                     this.$data.apiLoading = false;
 
-                    // TODO: Display Errors to User
+                    if(error.name == "FileWrongFormatException") {
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "content-save-outline",
+                            text: "One or more screenshots could not be uploaded because they have the wrong format. Only .png and .jpg files are allowed!",
+                            stay: true,
+                        });
+                    } else {
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "content-save-outline",
+                            text: "Your screenshots couldn't be uploaded due to a server error. Please try it again later!",
+                            stay: true,
+                        });
+                    }
                 }
             },
             saveGame: async function() {
@@ -281,9 +343,15 @@
                     }
 
                     if(gamePayload.title == "" || gamePayload.ingameID == "") {
-                        // TODO: Display "Required Fields cannot be empty" to User
                         this.$data.apiLoading = false;
                         this.loadGame();
+
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "content-save-outline",
+                            text: "Required fields cannot be empty!",
+                            stay: false,
+                        });
                         return;
                     }
 
@@ -292,12 +360,31 @@
                     this.$data.apiLoading = false;
                     this.loadGame();
 
-                    // TODO: Successful Message to User
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "content-save-outline",
+                        text: "Saved changes.",
+                        stay: false,
+                    });
                 } catch(error) {
                     console.error(error);
                     this.$data.apiLoading = false;
 
-                    // TODO: Display Errors to User
+                    if(error.name == "IngameIDWrongFormatException") {
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "content-save-outline",
+                            text: "Your game ID is invalid (format: G-000-000-000)",
+                            stay: true,
+                        });
+                    } else {
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "content-save-outline",
+                            text: "Your screenshots couldn't be uploaded due to a server error. Please try it again later!",
+                            stay: true,
+                        });
+                    }
                 }
             }
         }
