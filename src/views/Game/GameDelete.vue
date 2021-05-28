@@ -68,6 +68,13 @@
                 try {
                     await this.$data.apiRef.deleteGame(this.$router.currentRoute.params.id, this.$store.state.userToken);
 
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "trash-can-outline",
+                        text: "Game was deleted.",
+                        stay: false,
+                    });
+
                     this.$router.push({
                         name: 'UserDetail',
                         params: { id: this.$store.state.userData.id }
@@ -75,6 +82,13 @@
                 } catch(error) {
                     console.error(error);
                     this.$data.apiLoading = false;
+
+                    this.$root.$emit('addSnackbar', {
+                        type: "error",
+                        icon: "trash-can-outline",
+                        text: "Could not delete game.",
+                        stay: false,
+                    });
                 }
             }
         }
