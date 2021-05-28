@@ -1,5 +1,8 @@
 <template>
     <div class="page-gamedetail">
+        <div class="game-loading" v-if="apiLoading">
+            <LoadingCircle />
+        </div>
         <div class="game-detail" v-if="!apiLoading">
             <div class="game-header" :style="`background-image: url('${gameDetail.coverFileName}')`" v-on:click="openTrailer()" v-if="gameDetail.youtubeID != ''">
                 <div class="header-shade">
@@ -77,9 +80,6 @@
 
                 <div v-on:click="closeTrailer()" class="close-button">Close</div>
             </div>
-        </div>
-        <div class="game-loading" v-if="apiLoading">
-            <LoadingCircle />
         </div>
     </div>
 </template>
