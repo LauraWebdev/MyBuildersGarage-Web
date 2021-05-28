@@ -24,7 +24,7 @@
         methods: {
             addItem: function(type, icon, text, stay) {
                 let newItem = { id: this.$data.items.length - 1, active: true, type: type, text: text, icon: icon, stay: stay };
-                let itemIndex = this.$data.items.push(newItem);
+                this.$data.items.push(newItem);
 
                 if(!stay) {
                     setTimeout(() => {

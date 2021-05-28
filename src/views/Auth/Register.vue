@@ -67,7 +67,7 @@
                 }
 
                 try {
-                    const registerResponse = await this.$data.apiRef.authRegister(this.$data.userName, this.$data.userPass, this.$data.userMail);
+                    await this.$data.apiRef.authRegister(this.$data.userName, this.$data.userPass, this.$data.userMail);
                     
                     this.$root.$emit('addSnackbar', {
                         type: "success",
