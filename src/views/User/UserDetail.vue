@@ -51,8 +51,11 @@
                             <LinkButton to="/">Ban User</LinkButton>
                         </div>
                     </div>
-                    <div class="user-games">
+                    <div class="user-games" v-if="userDetail.games.length > 0">
                         <GameItem v-for="game in userDetail.games" v-bind:key="game.id" v-bind="game"></GameItem>
+                    </div>
+                    <div class="user-nogames" v-if="userDetail.games.length == 0">
+                        This user has not uploaded any games yet.
                     </div>
                 </div>
             </div>
@@ -177,5 +180,12 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 25px;
+    }
+    .user-nogames {
+        padding: 25px 50px;
+        text-align: center;
+        background: rgba(0,0,0,0.07);
+        opacity: 0.5;
+        border-radius: 5px;
     }
 </style>
