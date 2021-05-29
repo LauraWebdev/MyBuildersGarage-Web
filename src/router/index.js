@@ -7,6 +7,7 @@ import Search from '../views/Search.vue';
 import ChannelOverview from '../views/Channel/ChannelOverview.vue';
 import ChannelDetail from '../views/Channel/ChannelDetail.vue';
 import UserDetail from '../views/User/UserDetail.vue';
+import UserEdit from '../views/User/UserEdit.vue';
 import GameAdd from '../views/Game/GameAdd.vue';
 import GameDetail from '../views/Game/GameDetail.vue';
 import GameEdit from '../views/Game/GameEdit.vue';
@@ -53,6 +54,13 @@ const routes = [{
     component: UserDetail,
     meta: {
         title: 'User profile',
+    }
+}, {
+    path: '/user/:id/edit',
+    name: 'UserEdit',
+    component: UserEdit,
+    meta: {
+        title: 'Editing a user',
     }
 }, {
     path: '/game/add',
