@@ -14,11 +14,11 @@
                 <div class="page-wrapper page-thirdssplit">
                     <div class="user-meta">
                         <div class="meta-info">
-                            <div class="item" v-if="userDetail.pronouns != null">
+                            <div class="item" v-if="userDetail.pronouns != null && userDetail.pronouns != ''">
                                 <div class="property">Pronouns</div>
                                 <div class="content">{{ userDetail.pronouns }}</div>
                             </div>
-                            <div class="item" v-if="userDetail.ingameID != null">
+                            <div class="item" v-if="userDetail.ingameID != null && userDetail.ingameID != ''">
                                 <div class="property">Ingame-ID</div>
                                 <div class="content">{{ userDetail.ingameID }}</div>
                             </div>
@@ -27,16 +27,16 @@
                                 <div class="content">{{ createdFormatted }}</div>
                             </div>
                         </div>
-                        <div class="meta-info" v-if="userDetail.socialDiscord != null || userDetail.socialTwitter != null || userDetail.socialYouTube != null">
-                            <div class="item" v-if="userDetail.socialDiscord != null">
+                        <div class="meta-info" v-if="userDetail.socialDiscord != null && userDetail.socialDiscord != '' || userDetail.socialTwitter != null && userDetail.socialTwitter != '' || userDetail.socialYouTube != null && userDetail.socialYouTube != ''">
+                            <div class="item" v-if="userDetail.socialDiscord != null && userDetail.socialDiscord != ''">
                                 <div class="property">Discord</div>
                                 <div class="content">{{ userDetail.socialDiscord }}</div>
                             </div>
-                            <div class="item" v-if="userDetail.socialTwitter != null">
+                            <div class="item" v-if="userDetail.socialTwitter != null && userDetail.socialTwitter != ''">
                                 <div class="property">Twitter</div>
                                 <div class="content">{{ userDetail.socialTwitter }}</div>
                             </div>
-                            <div class="item" v-if="userDetail.socialYouTube != null">
+                            <div class="item" v-if="userDetail.socialYouTube != null && userDetail.socialYouTube != ''">
                                 <div class="property">YouTube</div>
                                 <div class="content">{{ userDetail.socialYouTube }}</div>
                             </div>
