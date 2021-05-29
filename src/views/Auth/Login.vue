@@ -55,6 +55,14 @@
                     this.$router.push({ name: 'Index' });
                 } catch(error) {
                     switch(error.name) {
+                        default:
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "key",
+                                text: "There was a server error logging you in. Please try again later.",
+                                stay: false,
+                            });
+                            break;
                         case "UserNotFoundException":
                             // Wrong username
                             this.$root.$emit('addSnackbar', {
@@ -71,6 +79,15 @@
                                 icon: "key",
                                 text: "The password is incorrect.",
                                 stay: false,
+                            });
+                            break;
+                        case "AuthenticationBannedException":
+                            // Banned
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "key",
+                                text: `Your account was banned. Reason: ${error.message}`,
+                                stay: true,
                             });
                             break;
                     }
