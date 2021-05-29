@@ -25,6 +25,8 @@ class MGGApi {
                     throw new UserNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
                     throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_BANNED":
+                    throw new AuthenticationBannedException(error.response.data.reason);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -42,6 +44,8 @@ class MGGApi {
             switch(error.response.data.name) {
                 case "AUTHENTICATION_WRONG":
                     throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_BANNED":
+                    throw new AuthenticationBannedException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -63,6 +67,33 @@ class MGGApi {
                     throw new UsernameInvalidException(error.response.data.text);
                 case "USERNAME_EMAIL_CONFLICT":
                     throw new UsernameEmailConflictException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async authUpdate(userID, securityPayload, jwtToken) {
+        try {
+            const response = await axios.put(this.apiBase + 'auth/update/' + userID, securityPayload, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "EMAIL_INVALID":
+                    throw new EmailInvalidException(error.response.data.text);
+                case "USERNAME_EMAIL_CONFLICT":
+                    throw new UsernameEmailConflictException(error.response.data.text);
+                case "USER_NOT_FOUND":
+                    throw new UserNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -319,6 +350,83 @@ class MGGApi {
         }
     }
 
+    async updateUser(userID, userPayload, jwtToken) {
+        try {
+            const response = await axios.put(this.apiBase + 'users/' + userID, userPayload, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "USER_INGAMEID_WRONGFORMAT":
+                    throw new IngameIDWrongFormatException(error.response.data.text);
+                case "USER_NOT_FOUND":
+                    throw new UserNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async updateUserAvatar(userID, avatarFile, jwtToken) {
+        try {
+            let formData = new FormData();
+            formData.append('avatar', avatarFile);
+
+            const response = await axios.put(this.apiBase + 'users/' + userID + '/avatar', formData, {
+                headers: {
+                    "x-access-token": jwtToken,
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "USER_NOT_FOUND":
+                    throw new UserNotFoundException(error.response.data.text);
+                case "USER_AVATAR_WRONGFORMAT":
+                    throw new FileWrongFormatException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async deleteUserAvatar(userID, jwtToken) {
+        try {
+            const response = await axios.delete(this.apiBase + 'users/' + userID + '/avatar', {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "USER_NOT_FOUND":
+                    throw new UserNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
     static isUsernameValid(unfilteredUsername) {
         let usernameRegex = /^[a-zA-Z0-9-_]*$/g;
     
@@ -352,6 +460,13 @@ class AuthenticationWrongException extends Error {
     }
 }
 
+class AuthenticationBannedException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "AuthenticationBannedException";
+    }
+}
+
 class UserNotFoundException extends Error {
     constructor(message) {
         super(message);
@@ -370,6 +485,13 @@ class UsernameInvalidException extends Error {
     constructor(message) {
         super(message);
         this.name = "UsernameInvalidException";
+    }
+}
+
+class EmailInvalidException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "EmailInvalidException";
     }
 }
 
