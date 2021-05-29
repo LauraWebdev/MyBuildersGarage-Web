@@ -13,8 +13,9 @@
         <div class="actions" v-if="$store.state.userToken !== null && $store.state.userToken !== undefined">
             <AvatarItem v-bind="$store.state.userData"></AvatarItem>
             <IconItem v-bind:route="{name: 'GameAdd'}" v-bind:icon="'plus'"></IconItem>
-            <IconItem v-bind:route="{name: 'PlaylistDetail', params: {id: 1}}" v-bind:icon="'heart-outline'"></IconItem>
-            <IconItem v-bind:route="{name: 'Logout'}" v-bind:icon="'close'"></IconItem>
+            <IconItem v-bind:route="{name: 'PlaylistDetail', params: {id: $store.state.userData.playlists[0].id}}" v-bind:icon="'heart-outline'"></IconItem>
+            <IconItem v-bind:route="{name: 'UserEdit', params: { id: $store.state.userData.id }}" v-bind:icon="'cog-outline'"></IconItem>
+            <IconItem v-bind:route="{name: 'Logout'}" v-bind:icon="'logout-variant'"></IconItem>
         </div>
         <div class="actions actions-unauthorized" v-if="$store.state.userToken === null || $store.state.userToken === undefined">
             <LinkButton to="/auth/register" filled>Join now!</LinkButton>

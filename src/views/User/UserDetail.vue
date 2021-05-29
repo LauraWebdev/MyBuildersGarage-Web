@@ -43,11 +43,10 @@
                         </div>
 
                         <div class="actions" v-if="userDetail.id == $store.state.userData.id || $store.state.userRoles.includes('moderator', 'admin')">
-                            <LinkButton to="/" filled>Edit</LinkButton>
+                            <LinkButton :to="{ name: 'UserEdit', params: { id: userDetail.id }}" filled>Edit</LinkButton>
                         </div>
 
                         <div class="actions" v-if="$store.state.userRoles.includes('moderator', 'admin')">
-                            <LinkButton to="/">Reset Avatar</LinkButton>
                             <LinkButton to="/">Ban User</LinkButton>
                         </div>
                     </div>
