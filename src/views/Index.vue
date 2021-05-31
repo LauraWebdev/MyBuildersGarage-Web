@@ -44,7 +44,7 @@
             fetchLatestGames: async function() {
                 // TODO: Fetch latest games
                 try {
-                    this.$data.latestGames = await this.$data.apiRef.getAllGames();
+                    this.$data.latestGames = await this.$data.apiRef.getAllGames(this.$store.state.userToken);
                 } catch(error) {
                     console.error(error);
                 }
