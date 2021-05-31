@@ -100,9 +100,13 @@ class MGGApi {
         }
     }
 
-    async getAllGames() {
+    async getAllGames(jwtToken = undefined) {
         try {
-            const response = await axios.get(this.apiBase + 'games');
+            const response = await axios.get(this.apiBase + 'games', {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
 
             return response.data;
         } catch(error) {
@@ -141,15 +145,21 @@ class MGGApi {
         }
     }
 
-    async getGameDetail(gameID) {
+    async getGameDetail(gameID, jwtToken = undefined) {
         try {
-            const response = await axios.get(this.apiBase + 'games/' + gameID);
+            const response = await axios.get(this.apiBase + 'games/' + gameID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
 
             return response.data;
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_NOT_FOUND":
                     throw new GameNotFoundException(error.response.data.text);
+                case "GAME_PRIVATE":
+                    throw new GamePrivateException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -335,9 +345,13 @@ class MGGApi {
         }
     }
 
-    async getUserDetail(userID) {
+    async getUserDetail(userID, jwtToken = undefined) {
         try {
-            const response = await axios.get(this.apiBase + 'users/' + userID);
+            const response = await axios.get(this.apiBase + 'users/' + userID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
 
             return response.data;
         } catch(error) {
@@ -417,6 +431,73 @@ class MGGApi {
             switch(error.response.data.name) {
                 case "USER_NOT_FOUND":
                     throw new UserNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async getPlaylistDetail(playlistID) {
+        try {
+            const response = await axios.get(this.apiBase + 'playlists/' + playlistID);
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "PLAYLIST_NOT_FOUND":
+                    throw new PlaylistNotFoundException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async addToPlaylist(playlistID, songID, jwtToken) {
+        try {
+            const response = await axios.post(this.apiBase + 'playlists/' + playlistID + '/add/' + songID, {}, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "PLAYLIST_NOT_FOUND":
+                    throw new PlaylistNotFoundException(error.response.data.text);
+                case "GAME_NOT_FOUND":
+                    throw new GameNotFoundException(error.response.data.text);
+                case "PLAYLIST_GAME_CONFLICT":
+                    throw new PlaylistGameConflictException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async deleteFromPlaylist(playlistID, songID, jwtToken) {
+        try {
+            const response = await axios.delete(this.apiBase + 'playlists/' + playlistID + '/delete/' + songID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "PLAYLIST_NOT_FOUND":
+                    throw new PlaylistNotFoundException(error.response.data.text);
+                case "GAME_NOT_FOUND":
+                    throw new GameNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
                     throw new AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
@@ -509,10 +590,31 @@ class GameNotFoundException extends Error {
     }
 }
 
+class GamePrivateException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "GamePrivateException";
+    }
+}
+
 class GameScreenshotNotFoundException extends Error {
     constructor(message) {
         super(message);
         this.name = "GameScreenshotNotFoundException";
+    }
+}
+
+class PlaylistNotFoundException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "PlaylistNotFoundException";
+    }
+}
+
+class PlaylistGameConflictException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "PlaylistGameConflictException";
     }
 }
 
