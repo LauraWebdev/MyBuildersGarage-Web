@@ -1,9 +1,9 @@
 <template>
     <div class="page-gamedetail">
-        <div class="game-loading" v-if="apiLoading">
+        <div class="game-loading" v-if="apiLoading || gameDetail == null">
             <LoadingCircle />
         </div>
-        <div class="game-detail" v-if="!apiLoading">
+        <div class="game-detail" v-if="!apiLoading && gameDetail != null">
             <div class="game-header" :style="`background-image: url('${gameDetail.coverFileName}')`" v-on:click="openTrailer()" v-if="gameDetail.youtubeID != ''">
                 <div class="header-shade">
                     <span class="mdi mdi-play-circle-outline"></span>
@@ -20,7 +20,9 @@
                         </router-link>
                         <div class="gameID">
                             <div class="ingameID">{{ gameDetail.ingameID }}</div>
-                            <div class="addToPlaylist"><span class="mdi mdi-heart-outline"></span></div>
+                            <div class="addToPlaylist" v-on:click="addToPlaylist" v-if="!isInPlaylist && !playlistActionLoading"><span class="mdi mdi-heart-outline"></span></div>
+                            <div class="addToPlaylist loading" v-if="playlistActionLoading"><span class="mdi mdi-loading"></span></div>
+                            <div class="addToPlaylist" v-on:click="deleteFromPlaylist" v-if="isInPlaylist && !playlistActionLoading"><span class="mdi mdi-heart-off"></span></div>
                         </div>
                         <div class="description" v-if="gameDetail.description != ''">
                             {{ gameDetail.description }}
@@ -101,6 +103,8 @@
                 createdFormatted: "",
                 updatedFormatted: "",
                 activeScreenshot: 0,
+                isInPlaylist: false,
+                playlistActionLoading: false,
             }
         },
         components: {
@@ -118,7 +122,9 @@
                 this.$data.apiLoading = true;
 
                 try {
-                    this.$data.gameDetail = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id);
+                    let gameResponse = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id, this.$store.state.userToken);
+                    this.$data.gameDetail = gameResponse.game;
+                    this.$data.isInPlaylist = gameResponse.isInPlaylist;
                     this.$data.apiLoading = false;
 
                     document.title = `${this.$data.gameDetail.title} by ${this.$data.gameDetail.user.username} ~ MyGarage.games`;
@@ -126,7 +132,34 @@
                     this.$data.createdFormatted = new Date(Date.parse(this.$data.gameDetail.createdAt)).toLocaleDateString("en-US");
                     this.$data.updatedFormatted = new Date(Date.parse(this.$data.gameDetail.updatedAt)).toLocaleDateString("en-US");
                 } catch(error) {
-                    console.error(error);
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "gamepad-square",
+                                text: "Game couldn't be loaded due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                        case "GameNotFoundException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "gamepad-square",
+                                text: "We couldn't find a game that matches this criteria.",
+                                stay: true,
+                            });
+                            break;
+                        case "GamePrivateException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "gamepad-square",
+                                text: "You are not allowed to see this game.",
+                                stay: true,
+                            });
+                            break;
+                    }
+
                     this.$data.apiLoading = false;
                 }
             },
@@ -136,8 +169,76 @@
             closeTrailer: function() {
                 this.$data.trailerOverlayOpen = false;
             },
-            addToPlaylist: function() {
+            addToPlaylist: async function(event) {
+                event.preventDefault();
 
+                this.$data.playlistActionLoading = true;
+
+                try {
+                    await this.$data.apiRef.addToPlaylist(this.$store.state.userData.playlists[0].id, this.$data.gameDetail.id, this.$store.state.userToken);
+
+                    this.$data.playlistActionLoading = false;
+                    this.$data.isInPlaylist = true;
+
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "heart",
+                        text: `${this.$data.gameDetail.title} was added to your playlist.`,
+                        stay: false,
+                    });
+                } catch(error) {
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "heart",
+                                text: "Game couldn't be added to your playlist due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                        case "PlaylistGameConflictException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "success",
+                                icon: "heart",
+                                text: `${this.$data.gameDetail.title} was added to your playlist.`,
+                                stay: false,
+                            });
+                            this.$data.isInPlaylist = true;
+                            break;
+                    }
+
+                    this.$data.playlistActionLoading = false;
+                }
+            },
+            deleteFromPlaylist: async function(event) {
+                event.preventDefault();
+
+                this.$data.playlistActionLoading = true;
+
+                try {
+                    await this.$data.apiRef.deleteFromPlaylist(this.$store.state.userData.playlists[0].id, this.$data.gameDetail.id, this.$store.state.userToken);
+
+                    this.$data.playlistActionLoading = false;
+                    this.$data.isInPlaylist = false;
+
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "heart-off",
+                        text: `${this.$data.gameDetail.title} was deleted from your playlist.`,
+                        stay: false,
+                    });
+                } catch(error) {
+                    console.error(error);
+                    this.$root.$emit('addSnackbar', {
+                        type: "error",
+                        icon: "heart-off",
+                        text: "Game couldn't be deleted from your playlist due to a server error. Please try again later",
+                        stay: false,
+                    });
+
+                    this.$data.playlistActionLoading = false;
+                }
             },
             changeActiveScreenshot: function(screenshotIndex) {
                 this.$data.activeScreenshot = screenshotIndex;
@@ -300,6 +401,10 @@
                     background: #1a8fc5;
                     cursor: pointer;
                 }
+                &.loading {
+                    font-size: 32px;
+                    animation: loadingAnim 0.6s ease-in-out infinite;
+                }
             }
         }
         & .user {
@@ -382,6 +487,7 @@
         position: relative;
         border-radius: 10px;
         overflow: hidden;
+        align-self: flex-start;
 
         & .screenshot {
             display: none;
@@ -450,6 +556,15 @@
             left: 50%;
             right: 0;
             justify-content: flex-end;
+        }
+    }
+
+    @keyframes loadingAnim {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
         }
     }
 </style>
