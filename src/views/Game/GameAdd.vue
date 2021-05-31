@@ -214,7 +214,7 @@
                     try {
                         let createdGame = await this.$data.apiRef.postGame(gamePayload, this.$store.state.userToken);
                         
-                        if(this.$data.step2CoverFile != undefined) {
+                        if(this.$data.step2CoverFile != undefined && this.$data.step2CoverFile != "") {
                             try {
                                 await this.$data.apiRef.updateGameCover(createdGame.id, this.$data.step2CoverFile, this.$store.state.userToken);
                             } catch(error) {
