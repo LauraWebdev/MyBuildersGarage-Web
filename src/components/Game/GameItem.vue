@@ -1,8 +1,15 @@
 <template>
     <router-link :to="{ name: 'GameDetail', params: { id: id }}" class="game-item">
         <div class="cover" :style="`background-image: url('${ coverFileName }')`">
-            <div class="cover-actions" v-if="$store.state.userToken">
-                <div class="action" v-on:click="addToPlaylist"><span class="mdi mdi-heart-outline"></span></div>
+            <div class="cover-actions" v-if="$store.state.userToken && this.$props.mode != 'delete'">
+                <div class="action action-withhover" v-on:click="addToPlaylist" v-if="!apiLoading && !apiSuccessful"><span class="mdi mdi-heart-outline"></span></div>
+                <div class="action loading" v-if="apiLoading"><span class="mdi mdi-loading"></span></div>
+                <div class="action action-red" v-if="!apiLoading && apiSuccessful"><span class="mdi mdi-heart"></span></div>
+            </div>
+            <div class="cover-actions" v-if="$store.state.userToken && this.$props.mode == 'delete'">
+                <div class="action action-withhover action-red" v-on:click="deleteFromPlaylist" v-if="!apiLoading && !apiSuccessful"><span class="mdi mdi-heart-off"></span></div>
+                <div class="action loading" v-if="apiLoading"><span class="mdi mdi-loading"></span></div>
+                <div class="action" v-if="!apiLoading && apiSuccessful"><span class="mdi mdi-heart-outline"></span></div>
             </div>
         </div>
         <div class="title">{{ title }}</div>
@@ -14,19 +21,102 @@
 </template>
 
 <script>
+    import MGGApi from '../../modules/api';
+
     export default {
         name: 'GameItem',
         props: [
             'id',
             'title',
             'coverFileName',
-            'user'
+            'user',
+            'mode'
         ],
+        data: function() {
+            return {
+                apiRef: null,
+                apiLoading: false,
+                apiSuccessful: false,
+            }
+        },
+        created: function() {
+            this.$data.apiRef = new MGGApi(true);
+        },
         methods: {
-            addToPlaylist: function(event) {
+            addToPlaylist: async function(event) {
                 event.preventDefault();
 
-                console.log("AddToPlaylist");
+                this.$data.apiLoading = true;
+                this.$data.apiSuccessful = false;
+
+                try {
+                    await this.$data.apiRef.addToPlaylist(this.$store.state.userData.playlists[0].id, this.$props.id, this.$store.state.userToken);
+
+                    this.$data.apiLoading = false;
+                    this.$data.apiSuccessful = true;
+
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "heart",
+                        text: `${this.$props.title} was added to your playlist.`,
+                        stay: false,
+                    });
+                } catch(error) {
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "heart",
+                                text: "Game couldn't be added to your playlist due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            this.$data.apiSuccessful = false;
+                            break;
+                        case "PlaylistGameConflictException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "success",
+                                icon: "heart",
+                                text: `${this.$props.title} was added to your playlist.`,
+                                stay: false,
+                            });
+                            this.$data.apiSuccessful = true;
+                            break;
+                    }
+
+                    this.$data.apiLoading = false;
+                }
+            },
+            deleteFromPlaylist: async function(event) {
+                event.preventDefault();
+
+                this.$data.apiLoading = true;
+                this.$data.apiSuccessful = false;
+
+                try {
+                    await this.$data.apiRef.deleteFromPlaylist(this.$store.state.userData.playlists[0].id, this.$props.id, this.$store.state.userToken);
+
+                    this.$data.apiLoading = false;
+                    this.$data.apiSuccessful = true;
+
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "heart-off",
+                        text: `${this.$props.title} was deleted from your playlist.`,
+                        stay: false,
+                    });
+                } catch(error) {
+                    console.error(error);
+                    this.$root.$emit('addSnackbar', {
+                        type: "error",
+                        icon: "heart-off",
+                        text: "Game couldn't be deleted from your playlist due to a server error. Please try again later",
+                        stay: false,
+                    });
+                    this.$data.apiSuccessful = false;
+
+                    this.$data.apiLoading = false;
+                }
             }
         }
     }
@@ -74,8 +164,16 @@
                     align-items: center;
                     transition: 0.2s ease-in-out opacity;
 
-                    &:hover {
+                    &.action-withhover:hover {
                         opacity: 0.6;
+                    }
+
+                    &.loading {
+                        font-size: 32px;
+                        animation: loadingAnim 0.6s ease-in-out infinite;
+                    }
+                    &.action-red {
+                        color: #fd084d;
                     }
                 }
             }
@@ -121,6 +219,15 @@
             & .user {
                 opacity: 0.6;
             }
+        }
+    }
+
+    @keyframes loadingAnim {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
         }
     }
 </style>
