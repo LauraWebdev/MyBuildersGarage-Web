@@ -149,7 +149,8 @@
                 this.$data.apiLoading = true;
 
                 try {
-                    this.$data.gameDetail = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id);
+                    let gameResponse = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id);
+                    this.$data.gameDetail = gameResponse.game;
 
                     if(this.$data.gameDetail.user.id != this.$store.state.userData.id && !this.$store.state.userRoles.includes('moderator', 'admin')) {
                         console.log("User is not allowed to edit this entry");
