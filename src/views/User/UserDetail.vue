@@ -1,9 +1,9 @@
 <template>
     <div class="page-userdetail">
-        <div class="user-loading" v-if="apiLoading">
+        <div class="user-loading" v-if="apiLoading || userDetail == null">
             <LoadingCircle />
         </div>
-        <div class="user-detail" v-if="!apiLoading">
+        <div class="user-detail" v-if="!apiLoading && userDetail != null">
             <div class="user-bar"></div>
             <div class="user-basic">
                 <div class="avatar" :style="`background-image: url('${ userDetail.avatarFileName }')`"></div>
@@ -95,13 +95,43 @@
                 this.$data.apiLoading = true;
 
                 try {
-                    this.$data.userDetail = await this.$data.apiRef.getUserDetail(this.$router.currentRoute.params.id);
+                    this.$data.userDetail = await this.$data.apiRef.getUserDetail(this.$router.currentRoute.params.id, this.$store.state.userToken);
                     this.$data.apiLoading = false;
 
                     document.title = `${this.$data.userDetail.username}'s profile ~ MyGarage.games`;
 
                     this.$data.createdFormatted = new Date(Date.parse(this.$data.userDetail.createdAt)).toLocaleDateString("en-US");
+
+                    if(this.$data.userDetail.banActive) {
+                        this.$root.$emit('addSnackbar', {
+                            type: "error",
+                            icon: "account-circle",
+                            text: "This user was banned.",
+                            stay: true,
+                        });
+                        this.$data.userDetail = null;
+                    }
                 } catch(error) {
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "account-circle",
+                                text: "User couldn't be loaded due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                        case "UserNotFoundException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "account-circle",
+                                text: "User couldn't be found.",
+                                stay: true,
+                            });
+                            break;
+                    }
+
                     console.error(error);
                     this.$data.apiLoading = false;
                 }
