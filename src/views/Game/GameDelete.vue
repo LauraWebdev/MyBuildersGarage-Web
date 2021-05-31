@@ -55,7 +55,8 @@
                 this.$data.apiLoading = true;
 
                 try {
-                    this.$data.gameDetail = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id);
+                    let gameResponse = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id);
+                    this.$data.gameDetail = gameResponse.game;
                     this.$data.apiLoading = false;
                 } catch(error) {
                     console.error(error);
