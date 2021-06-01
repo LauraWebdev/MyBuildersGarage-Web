@@ -5,9 +5,9 @@ class MGGApi {
 
     constructor(useStagingApi = false) {
         if(useStagingApi) {
-            this.apiBase = "http://localhost:1337/api/v1/";
+            this.apiBase = "http://localhost:1337/v1/";
         } else {
-            this.apiBase = "https://mygarage.games/api/v1/";
+            this.apiBase = "https://api.mygarage.games/v1/";
         }
     }
 
