@@ -28,7 +28,6 @@
     import MGGApi from '../../modules/api';
 
     import LoadingCircle from '@/components/General/LoadingCircle';
-    import LinkButton from '@/components/General/LinkButton';
     import GameList from '@/components/Game/GameList';
     import GameItem from '@/components/Game/GameItem';
 
@@ -43,7 +42,6 @@
         },
         components: {
             LoadingCircle,
-            LinkButton,
             GameList,
             GameItem,
         },
