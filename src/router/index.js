@@ -15,6 +15,7 @@ import GameDelete from '../views/Game/GameDelete.vue';
 import PlaylistDetail from '../views/Playlist/PlaylistDetail.vue';
 import Legal from '../views/Legal.vue';
 import Login from '../views/Auth/Login.vue';
+import OauthCallback from '../views/Auth/OauthCallback.vue';
 import Register from '../views/Auth/Register.vue';
 import Logout from '../views/Auth/Logout.vue';
 
@@ -124,6 +125,14 @@ const routes = [{
     component: Logout,
     meta: {
         title: 'Logout',
+    }
+}, {
+    path: '/auth/callback/discord',
+    name: 'OauthCallbackDiscord',
+    component: OauthCallback,
+    props: { method: 'discord' },
+    meta: {
+        title: 'Login',
     }
 }];
 
