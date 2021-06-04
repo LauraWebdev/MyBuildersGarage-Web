@@ -100,6 +100,34 @@ class MGGApi {
         }
     }
 
+    async oauthDiscordGetUrl() {
+        try {
+            const response = await axios.get(this.apiBase + 'oauth/discord');
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async oauthDiscordCallback( callbackCode ) {
+        try {
+            const response = await axios.post(this.apiBase + 'oauth/discord/callback', {
+                "callbackCode": callbackCode,
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
     async getAllGames(jwtToken = undefined) {
         try {
             const response = await axios.get(this.apiBase + 'games', {
