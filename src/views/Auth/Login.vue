@@ -7,6 +7,12 @@
                 <input class="input" type="password" v-model="userPass" placeholder="Password" />
 
                 <button v-on:click="login()" class="button button-filled">Login</button>
+                
+                <div class="social-logins">
+                    <button v-on:click="loginDiscord()" class="button">Discord</button>
+                    <!-- <button v-on:click="loginDiscord()" class="button">Twitter</button>
+                    <button v-on:click="loginDiscord()" class="button">Google</button> -->
+                </div>
             </div>
         </div>
     </div>
@@ -92,6 +98,11 @@
                             break;
                     }
                 }
+            },
+            loginDiscord: async function() {
+                let oauthUrl = await this.$data.apiRef.oauthDiscordGetUrl();
+
+                window.location = oauthUrl.url;
             }
         }
     }
@@ -126,6 +137,17 @@
 
                 & button {
                     justify-self: right;
+                }
+
+                & .social-logins {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-gap: 15px;
+                    margin-top: 15px;
+
+                    & button {
+                        justify-self: stretch;
+                    }
                 }
             }
         }
