@@ -2,14 +2,14 @@
     <router-link :to="{ name: 'GameDetail', params: { id: id }}" class="game-item">
         <div class="cover" :style="`background-image: url('${ coverFileName }')`">
             <div class="cover-actions" v-if="$store.state.userToken && this.$props.mode != 'delete'">
-                <div class="action action-withhover" v-on:click="addToPlaylist" v-if="!apiLoading && !apiSuccessful"><span class="mdi mdi-heart-outline"></span></div>
+                <div class="action action-withhover" v-on:click="addToPlaylist" v-if="!apiLoading && !apiSuccessful"><span class="mdi mdi-bookmark-plus-outline"></span></div>
                 <div class="action loading" v-if="apiLoading"><span class="mdi mdi-loading"></span></div>
-                <div class="action action-red" v-if="!apiLoading && apiSuccessful"><span class="mdi mdi-heart"></span></div>
+                <div class="action action-red" v-if="!apiLoading && apiSuccessful"><span class="mdi mdi-bookmark-plus"></span></div>
             </div>
             <div class="cover-actions" v-if="$store.state.userToken && this.$props.mode == 'delete'">
-                <div class="action action-withhover action-red" v-on:click="deleteFromPlaylist" v-if="!apiLoading && !apiSuccessful"><span class="mdi mdi-heart-off"></span></div>
+                <div class="action action-withhover action-red" v-on:click="deleteFromPlaylist" v-if="!apiLoading && !apiSuccessful"><span class="mdi mdi-bookmark-minus"></span></div>
                 <div class="action loading" v-if="apiLoading"><span class="mdi mdi-loading"></span></div>
-                <div class="action" v-if="!apiLoading && apiSuccessful"><span class="mdi mdi-heart-outline"></span></div>
+                <div class="action" v-if="!apiLoading && apiSuccessful"><span class="mdi mdi-bookmark-plus-outline"></span></div>
             </div>
         </div>
         <div class="title">{{ title }}</div>
@@ -57,7 +57,7 @@
 
                     this.$root.$emit('addSnackbar', {
                         type: "success",
-                        icon: "heart",
+                        icon: "bookmark-plus",
                         text: `${this.$props.title} was added to your playlist.`,
                         stay: false,
                     });
@@ -67,7 +67,7 @@
                             console.error(error);
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
-                                icon: "heart",
+                                icon: "bookmark-plus",
                                 text: "Game couldn't be added to your playlist due to a server error. Please try again later",
                                 stay: true,
                             });
@@ -76,7 +76,7 @@
                         case "PlaylistGameConflictException":
                             this.$root.$emit('addSnackbar', {
                                 type: "success",
-                                icon: "heart",
+                                icon: "bookmark-plus",
                                 text: `${this.$props.title} was added to your playlist.`,
                                 stay: false,
                             });
@@ -101,7 +101,7 @@
 
                     this.$root.$emit('addSnackbar', {
                         type: "success",
-                        icon: "heart-off",
+                        icon: "bookmark-minus",
                         text: `${this.$props.title} was deleted from your playlist.`,
                         stay: false,
                     });
@@ -109,7 +109,7 @@
                     console.error(error);
                     this.$root.$emit('addSnackbar', {
                         type: "error",
-                        icon: "heart-off",
+                        icon: "bookmark-minus",
                         text: "Game couldn't be deleted from your playlist due to a server error. Please try again later",
                         stay: false,
                     });
