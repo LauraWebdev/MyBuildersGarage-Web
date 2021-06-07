@@ -41,7 +41,7 @@
                             <router-link :to="{ name: 'ChannelDetail', params: { id: channel.id } }" class="item" v-for="channel in gameDetail.channels" v-bind:key="channel.id">{{ channel.title }}</router-link>
                         </div>
 
-                        <div class="actions" v-if="gameDetail.user.id == $store.state.userData.id || $store.state.userRoles.includes('moderator', 'admin')">
+                        <div class="actions" v-if="$store.state.userData != null ? gameDetail.user.id == $store.state.userData.id || $store.state.userRoles.includes('moderator', 'admin') : false">
                             <LinkButton :to="{ name: 'GameEdit', params: { id: gameDetail.id } }" filled>Edit</LinkButton>
                             <LinkButton :to="{ name: 'GameDelete', params: { id: gameDetail.id } }">Delete</LinkButton>
                         </div>

@@ -42,11 +42,11 @@
                             </div>
                         </div>
 
-                        <div class="actions" v-if="userDetail.id == $store.state.userData.id || $store.state.userRoles.includes('moderator', 'admin')">
+                        <div class="actions" v-if="$store.state.userData ? userDetail.id == $store.state.userData.id || $store.state.userRoles.includes('moderator', 'admin') : false">
                             <LinkButton :to="{ name: 'UserEdit', params: { id: userDetail.id }}" filled>Edit</LinkButton>
                         </div>
 
-                        <div class="actions" v-if="$store.state.userRoles.includes('moderator', 'admin')">
+                        <div class="actions" v-if="$store.state.userData ? $store.state.userRoles.includes('moderator', 'admin') : false">
                             <LinkButton to="/">Ban User</LinkButton>
                         </div>
                     </div>
