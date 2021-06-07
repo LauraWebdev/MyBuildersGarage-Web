@@ -128,9 +128,26 @@ class MGGApi {
         }
     }
 
-    async getAllGames(jwtToken = undefined) {
+    async getNewestGames(jwtToken = undefined) {
         try {
-            const response = await axios.get(this.apiBase + 'games', {
+            const response = await axios.get(this.apiBase + 'discovery/newest', {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async getPopularGames(jwtToken = undefined) {
+        try {
+            const response = await axios.get(this.apiBase + 'discovery/popular', {
                 headers: {
                     "x-access-token": jwtToken
                 }
@@ -158,9 +175,13 @@ class MGGApi {
         }
     }
 
-    async getChannelDetail(channelID) {
+    async getChannelDetail(channelID, jwtToken = undefined) {
         try {
-            const response = await axios.get(this.apiBase + 'gameChannels/' + channelID);
+            const response = await axios.get(this.apiBase + 'gameChannels/' + channelID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
 
             return response.data;
         } catch(error) {
