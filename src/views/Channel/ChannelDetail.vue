@@ -1,13 +1,16 @@
 <template>
     <div class="page-channelOverview">
-        <div class="page-centered page-header" v-if="channelDetail != null">
+        <div class="channel-loading" v-if="apiLoading || channelDetail == null">
+            <LoadingCircle />
+        </div>
+        <div class="page-centered page-header" v-if="!apiLoading && channelDetail != null">
             <div class="page-wrapper">
                 <h1>{{ channelDetail.title }}</h1>
                 <p>{{ channelDetail.description }}</p>
             </div>
         </div>
 
-        <div class="page-centered page-channelList" v-if="channelDetail != null">
+        <div class="page-centered page-channelList" v-if="!apiLoading && channelDetail != null">
             <div class="page-wrapper">
                 <GameList>
                     <GameItem v-for="game in channelDetail.games" v-bind:key="game.id" v-bind="game"></GameItem>
@@ -20,18 +23,21 @@
 <script>
     import MGGApi from '../../modules/api';
 
+    import LoadingCircle from '@/components/General/LoadingCircle';
     import GameList from '@/components/Game/GameList';
     import GameItem from '@/components/Game/GameItem';
 
     export default {
         name: 'ChannelDetail',
         components: {
+            LoadingCircle,
             GameList,
             GameItem,
         },
         data: function() {
             return {
                 apiRef: null,
+                apiLoading: false,
                 channelDetail: null,
             }
         },
@@ -43,11 +49,33 @@
         },
         methods: {
             fetchChannelDetail: async function(channelID) {
+                this.$data.apiLoading = true;
+
                 try {
-                    this.$data.channelDetail = await this.$data.apiRef.getChannelDetail(channelID);
-                    console.log(this.$data.channelDetail);
+                    this.$data.channelDetail = await this.$data.apiRef.getChannelDetail(channelID, this.$store.state.userToken);
+                    this.$data.apiLoading = false;
                 } catch(error) {
-                    console.error(error);
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "gamepad-square",
+                                text: "Channel couldn't be loaded due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                        case "GameChannelNotFoundException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "gamepad-square",
+                                text: "We couldn't find a channel that matches this criteria.",
+                                stay: true,
+                            });
+                            break;
+                    }
+
+                    this.$data.apiLoading = false;
                 }
             }
         }
@@ -57,5 +85,11 @@
 <style lang="less" scoped>
     .page-channelList {
         margin: 50px 0px;
+    }
+    .channel-loading {
+        padding: 150px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
