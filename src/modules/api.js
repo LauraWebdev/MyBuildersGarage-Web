@@ -162,6 +162,25 @@ class MGGApi {
         }
     }
 
+    async getQueryGames(query, jwtToken = undefined) {
+        try {
+            const response = await axios.post(this.apiBase + 'discovery/find', {
+                query: query
+            }, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
     async getAllChannels() {
         try {
             const response = await axios.get(this.apiBase + 'gameChannels');
