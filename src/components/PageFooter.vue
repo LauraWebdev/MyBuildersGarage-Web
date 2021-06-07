@@ -3,6 +3,7 @@
         <p>MyGarage.games is a free platform by the community and in no way affiliated with Nintendo.<br />Game Builder Garage is a trademark by Nintendo.</p>
 
         <LinkButton :to="{name: 'Legal'}">Legal information</LinkButton>
+        <LinkButton to="https://api.mygarage.games">API</LinkButton>
     </footer>
 </template>
 
@@ -31,6 +32,10 @@
             padding: 15px;
             margin: 0 0 15px 0;
             opacity: 0.6;
+        }
+
+        & a {
+            margin: 0px 5px;
         }
     }
 </style>

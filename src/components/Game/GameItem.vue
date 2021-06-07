@@ -40,7 +40,7 @@
             }
         },
         created: function() {
-            this.$data.apiRef = new MGGApi(true);
+            this.$data.apiRef = new MGGApi();
         },
         methods: {
             addToPlaylist: async function(event) {

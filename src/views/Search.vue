@@ -49,7 +49,7 @@
             }
         },
         created: function() {
-            this.$data.apiRef = new MGGApi(true);
+            this.$data.apiRef = new MGGApi();
         },
         mounted: function() {
             this.$refs.searchInput.focus();

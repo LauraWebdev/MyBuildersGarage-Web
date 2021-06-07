@@ -38,7 +38,7 @@
             }
         },
         created: function() {
-            this.$data.apiRef = new MGGApi(true);
+            this.$data.apiRef = new MGGApi();
         },
         methods: {
             register: async function() {

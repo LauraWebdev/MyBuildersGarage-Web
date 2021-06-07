@@ -2,9 +2,10 @@ import axios from 'axios';
 
 class MGGApi {
     apiBase = "";
+    useStagingApi = false;
 
-    constructor(useStagingApi = false) {
-        if(useStagingApi) {
+    constructor() {
+        if(this.useStagingApi) {
             this.apiBase = "http://localhost:1337/v1/";
         } else {
             this.apiBase = "https://api.mygarage.games/v1/";

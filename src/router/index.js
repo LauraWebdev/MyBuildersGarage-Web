@@ -156,7 +156,7 @@ router.beforeEach(async (to, from, next) => {
     }
 
     try {
-        let mggApi = new MGGApi(true);
+        let mggApi = new MGGApi();
         let verifyResponse = await mggApi.authVerify(Store.state.userToken);
 
         Store.dispatch('refreshUser', verifyResponse);
