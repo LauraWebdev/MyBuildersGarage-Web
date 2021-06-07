@@ -124,6 +124,7 @@
             color: #222;
             text-decoration: none;
             border: 2px solid rgba(0,0,0,0.4);
+            background: #fff;
             border-radius: 5px;
             padding: 5px 10px;
             transition: 0.2s ease-in-out background;
