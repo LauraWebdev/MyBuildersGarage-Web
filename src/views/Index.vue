@@ -10,8 +10,12 @@
             </div>
         </div>
 
-        <GameList v-bind:title="'New Games'">
-            <GameItem v-for="game in latestGames" v-bind:key="game.id" v-bind="game"></GameItem>
+        <GameList v-bind:title="'Newest Games'">
+            <GameItem v-for="game in newestGames" v-bind:key="game.id" v-bind="game"></GameItem>
+        </GameList>
+
+        <GameList v-bind:title="'Popular Games'">
+            <GameItem v-for="game in popularGames" v-bind:key="game.id" v-bind="game"></GameItem>
         </GameList>
     </div>
 </template>
@@ -31,20 +35,28 @@
         data: function() {
             return {
                 apiRef: null,
-                latestGames: [],
+                newestGames: [],
+                popularGames: []
             }
         },
         created: function() {
             this.$data.apiRef = new MGGApi(true);
         },
         mounted: function() {
-            this.fetchLatestGames();
+            this.fetchNewestGames();
+            this.fetchPopularGames();
         },
         methods: {
-            fetchLatestGames: async function() {
-                // TODO: Fetch latest games
+            fetchNewestGames: async function() {
                 try {
-                    this.$data.latestGames = await this.$data.apiRef.getAllGames(this.$store.state.userToken);
+                    this.$data.newestGames = await this.$data.apiRef.getNewestGames(this.$store.state.userToken);
+                } catch(error) {
+                    console.error(error);
+                }
+            },
+            fetchPopularGames: async function() {
+                try {
+                    this.$data.popularGames = await this.$data.apiRef.getPopularGames(this.$store.state.userToken);
                 } catch(error) {
                     console.error(error);
                 }
