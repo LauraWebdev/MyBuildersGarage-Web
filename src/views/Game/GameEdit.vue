@@ -7,12 +7,12 @@
             </div>
         </div>
 
-        <div class="page-centered page-deleteLoading" v-if="apiLoading">
+        <div class="page-centered page-deleteLoading" v-if="apiLoading || gameDetail == null">
             <div class="page-wrapper">
                 <LoadingCircle />
             </div>
         </div>
-        <div class="page-centered" v-if="!apiLoading">
+        <div class="page-centered" v-if="!apiLoading && gameDetail != null">
             <div class="page-wrapper">
                 <div class="tabs">
                     <div class="tab" :class="currentTab == 0 ? 'active' : ''" v-on:click="changeTab(0)">General</div>
@@ -149,7 +149,7 @@
                 this.$data.apiLoading = true;
 
                 try {
-                    let gameResponse = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id);
+                    let gameResponse = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id, this.$store.state.userToken);
                     this.$data.gameDetail = gameResponse.game;
 
                     if(this.$data.gameDetail.user.id != this.$store.state.userData.id && !this.$store.state.userRoles.includes('moderator', 'admin')) {
@@ -178,7 +178,34 @@
 
                     this.$data.apiLoading = false;
                 } catch(error) {
-                    console.error(error);
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "gamepad-square",
+                                text: "Game couldn't be loaded due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                        case "GameNotFoundException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "gamepad-square",
+                                text: "We couldn't find a game that matches this criteria.",
+                                stay: true,
+                            });
+                            break;
+                        case "GamePrivateException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "gamepad-square",
+                                text: "You are not allowed to see this game.",
+                                stay: true,
+                            });
+                            break;
+                    }
+
                     this.$data.apiLoading = false;
                 }
             },
