@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+console.clear();
+console.log("---> mygarage.games [mgg-web] <---");
+
 const exec = require('child_process').exec;
 const path = require('path');
 const fs = require('fs');
@@ -65,9 +68,9 @@ function startServer() {
     });
 
     if(process.env.SSL_ACTIVE) {
-        const sslPK = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/privkey.pem', 'utf8');
-        const sslCert = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/cert.pem', 'utf8');
-        const sslCA = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/chain.pem', 'utf8');
+        const sslPK = fs.readFileSync(`${process.env.SSL_DIR}/privkey.pem`, 'utf8');
+        const sslCert = fs.readFileSync(`${process.env.SSL_DIR}/cert.pem`, 'utf8');
+        const sslCA = fs.readFileSync(`${process.env.SSL_DIR}/chain.pem`, 'utf8');
         const credentials = {
             key: sslPK,
             cert: sslCert,
