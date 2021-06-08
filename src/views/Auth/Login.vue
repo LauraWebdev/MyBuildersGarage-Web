@@ -2,6 +2,9 @@
     <div class="page-centered page-login">
         <div class="login-box">
             <div class="box-header">Login</div>
+            <div class="box-banned" v-if="isBanned">
+                You were banned. If you believe this is a mistake, you can send us a <a href="https://forms.gle/gpcpFe9jkymXSCsY7" target="_blank">ban appeal</a>.
+            </div>
             <div class="box-content">
                 <input class="input" type="text" v-model="userName" placeholder="Username" />
                 <input class="input" type="password" v-model="userPass" placeholder="Password" />
@@ -30,6 +33,7 @@
                 apiRef: null,
                 userName: "",
                 userPass: "",
+                isBanned: false,
             }
         },
         created: function() {
@@ -37,6 +41,8 @@
         },
         methods: {
             login: async function() {
+                this.$data.isBanned = false;
+
                 if(this.$data.userName == "" || this.$data.userPass == "") {
                     this.$root.$emit('addSnackbar', {
                         type: "error",
@@ -89,6 +95,7 @@
                             break;
                         case "AuthenticationBannedException":
                             // Banned
+                            this.$data.isBanned = true;
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
@@ -129,6 +136,12 @@
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 0.15em;
+            }
+            & .box-banned {
+                padding: 20px;
+                text-align: center;
+                background: #fd084d;
+                color: #fff;
             }
             & .box-content {
                 padding: 20px;
