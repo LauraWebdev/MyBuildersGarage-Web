@@ -2,7 +2,7 @@
     <div class=" page-playlistdetail">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1 v-if="apiLoading">Playlist</h1>
+                <h1 v-if="apiLoading || playlistDetail == null">Playlist</h1>
                 <h1 v-if="!apiLoading && playlistDetail != null">{{ playlistDetail.title }}</h1>
             </div>
         </div>
@@ -11,7 +11,7 @@
             <LoadingCircle />
         </div>
 
-        <div class="page-centered page-playlist">
+        <div class="page-centered page-playlist" v-if="playlistDetail != null">
             <div class="page-wrapper">
                 <GameList v-if="!apiLoading && playlistDetail.games.length > 0">
                     <GameItem v-for="game in playlistDetail.games" v-bind:key="game.id" v-bind="game" v-bind:mode="'delete'"></GameItem>
@@ -56,12 +56,30 @@
                 this.$data.apiLoading = true;
 
                 try {
-                    this.$data.playlistDetail = await this.$data.apiRef.getPlaylistDetail(this.$router.currentRoute.params.id);
+                    this.$data.playlistDetail = await this.$data.apiRef.getPlaylistDetail(this.$router.currentRoute.params.id, this.$store.state.userToken);
                     this.$data.apiLoading = false;
 
                     document.title = `${this.$data.playlistDetail.user.username}'s playlist ~ MyGarage.games`;
                 } catch(error) {
-                    console.error(error);
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "bookmark",
+                                text: "Playlist couldn't be loaded due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                        case "PlaylistPrivateException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "bookmark",
+                                text: "You are not allowed to see this playlist.",
+                                stay: true,
+                            });
+                            break;
+                    }
                     this.$data.apiLoading = false;
                 }
             },
