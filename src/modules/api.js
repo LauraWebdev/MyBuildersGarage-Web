@@ -1,11 +1,12 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class MGGApi {
     apiBase = "";
-    useStagingApi = false;
 
     constructor() {
-        if(this.useStagingApi) {
+        if(process.env.NODE_ENV === 'development') {
             this.apiBase = "http://localhost:1337/v1/";
         } else {
             this.apiBase = "https://api.mygarage.games/v1/";
