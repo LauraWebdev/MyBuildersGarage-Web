@@ -27,6 +27,10 @@
             <div class="page-wrapper">
                 <div class="step" v-if="currentTab == 0">
                     <div class="step-input">
+                        <label>Username*</label>
+                        <input type="text" class="input" v-model="tab0Username" />
+                    </div>
+                    <div class="step-input">
                         <label>Pronouns</label>
                         <select class="input" v-model="tab0Pronouns">
                             <option value=""></option>
@@ -115,6 +119,7 @@
                 apiError: false,
                 userDetail: null,
                 currentTab: 0,
+                tab0Username: "",
                 tab0Pronouns: "",
                 tab0IngameID: "",
                 tab0Discord: "",
@@ -155,6 +160,7 @@
                         return;
                     }
 
+                    this.$data.tab0Username = this.$data.userDetail.username;
                     this.$data.tab0Pronouns = this.$data.userDetail.pronouns;
                     this.$data.tab0IngameID = this.$data.userDetail.ingameID;
 
@@ -248,8 +254,20 @@
             saveUser: async function() {
                 this.$data.apiLoading = true;
 
+                if(!MGGApi.isUsernameValid(this.$data.tab0Username)) {
+                    this.$root.$emit('addSnackbar', {
+                        type: "error",
+                        icon: "key",
+                        text: "This username contains forbidden characters. Allowed characters are a-z, A-Z, 0-9, hyphens and underscores.",
+                        stay: false,
+                    });
+                    this.loadUser();
+                    return;
+                }
+
                 try {
                     let userPayload = {
+                        username: this.$data.tab0Username,
                         pronouns: this.$data.tab0Pronouns,
                         ingameID: this.$data.tab0IngameID,
                         socialDiscord: this.$data.tab0Discord,
@@ -259,7 +277,6 @@
 
                     await this.$data.apiRef.updateUser(this.$data.userDetail.id, userPayload, this.$store.state.userToken);
 
-                    this.$data.apiLoading = false;
                     this.loadUser();
 
                     this.$root.$emit('addSnackbar', {
@@ -269,23 +286,34 @@
                         stay: false,
                     });
                 } catch(error) {
-                    console.error(error);
                     this.$data.apiLoading = false;
 
-                    if(error.name == "IngameIDWrongFormatException") {
-                        this.$root.$emit('addSnackbar', {
-                            type: "error",
-                            icon: "content-save-outline",
-                            text: "Your profile ID is invalid (format: P-000-000-000).",
-                            stay: true,
-                        });
-                    } else {
-                        this.$root.$emit('addSnackbar', {
-                            type: "error",
-                            icon: "content-save-outline",
-                            text: "Your changes couldn't be saved due to a server error. Please try it again later!",
-                            stay: true,
-                        });
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "content-save-outline",
+                                text: "Your changes couldn't be saved due to a server error. Please try it again later!",
+                                stay: true,
+                            });
+                            break;
+                        case "IngameIDWrongFormatException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "content-save-outline",
+                                text: "Your profile ID is invalid (format: P-000-000-000).",
+                                stay: true,
+                            });
+                            break;
+                        case "UsernameEmailConflictException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "key",
+                                text: "This username is already in use!",
+                                stay: false,
+                            });
+                            break;
                     }
                 }
             },
@@ -311,7 +339,6 @@
 
                     await this.$data.apiRef.authUpdate(this.$data.userDetail.id, securityPayload, this.$store.state.userToken);
 
-                    this.$data.apiLoading = false;
                     this.loadUser();
 
                     this.$root.$emit('addSnackbar', {

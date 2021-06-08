@@ -448,6 +448,10 @@ class MGGApi {
                     throw new ex.IngameIDWrongFormatException(error.response.data.text);
                 case "USER_NOT_FOUND":
                     throw new ex.UserNotFoundException(error.response.data.text);
+                case "USERNAME_INVALID":
+                    throw new ex.UsernameInvalidException(error.response.data.text);
+                case "USERNAME_EMAIL_CONFLICT":
+                    throw new ex.UsernameEmailConflictException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
                     throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
@@ -584,7 +588,8 @@ class MGGApi {
     }
 
     static isUsernameValid(unfilteredUsername) {
-        let usernameRegex = /^[a-zA-Z0-9-_]*$/g;
+        // Allowed: az AZ 09 - _
+        let usernameRegex = /^[\w-]{3,}$/g;
     
         return usernameRegex.test(unfilteredUsername);
     }
