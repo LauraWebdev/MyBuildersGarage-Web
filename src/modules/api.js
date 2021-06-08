@@ -512,7 +512,11 @@ class MGGApi {
 
     async getPlaylistDetail(playlistID, jwtToken = undefined) {
         try {
-            const response = await axios.get(this.apiBase + 'playlists/' + playlistID);
+            const response = await axios.get(this.apiBase + 'playlists/' + playlistID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
 
             return response.data;
         } catch(error) {
