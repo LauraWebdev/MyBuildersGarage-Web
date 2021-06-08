@@ -38,7 +38,7 @@ function startServer() {
     const app = express();
 
     // HTTP to HTTPS redirect
-    if(process.env.SSL_ACTIVE) {
+    if(process.env.SSL_ACTIVE === "true") {
         console.log(`[mgg-web] Using HTTPS redirect.`);
 
         app.use(function(req, res, next) {
@@ -67,7 +67,7 @@ function startServer() {
         console.log(`[mgg-web] HTTP server running on port ${process.env.PORT_HTTP}.`);
     });
 
-    if(process.env.SSL_ACTIVE) {
+    if(process.env.SSL_ACTIVE === "true") {
         const sslPK = fs.readFileSync(`${process.env.SSL_DIR}/privkey.pem`, 'utf8');
         const sslCert = fs.readFileSync(`${process.env.SSL_DIR}/cert.pem`, 'utf8');
         const sslCA = fs.readFileSync(`${process.env.SSL_DIR}/chain.pem`, 'utf8');
