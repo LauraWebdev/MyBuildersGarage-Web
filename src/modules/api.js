@@ -6,7 +6,7 @@ class MGGApi {
     apiBase = "";
 
     constructor() {
-        if(process.env.NODE_ENV === 'development') {
+        if(process.env.API_ENV === 'development') {
             this.apiBase = "http://localhost:1337/v1/";
         } else {
             this.apiBase = "https://api.mygarage.games/v1/";

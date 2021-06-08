@@ -35,7 +35,7 @@ function startServer() {
     const app = express();
 
     // HTTP to HTTPS redirect
-    if(!isDev) {
+    if(process.env.SSL_ACTIVE) {
         console.log(`[mgg-web] Using HTTPS redirect.`);
 
         app.use(function(req, res, next) {
@@ -64,7 +64,7 @@ function startServer() {
         console.log(`[mgg-web] HTTP server running on port ${process.env.PORT_HTTP}.`);
     });
 
-    if(!isDev) {
+    if(process.env.SSL_ACTIVE) {
         const sslPK = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/privkey.pem', 'utf8');
         const sslCert = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/cert.pem', 'utf8');
         const sslCA = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/chain.pem', 'utf8');
@@ -79,7 +79,7 @@ function startServer() {
             console.log(`[mgg-web] HTTPS server running on port ${process.env.PORT_HTTPS}.`);
         });
     } else {
-        console.log(`[mgg-web] HTTPS server disabled on development instances.`);
+        console.log(`[mgg-web] HTTPS server disabled.`);
     }
 }
 
