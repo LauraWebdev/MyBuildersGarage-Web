@@ -3,17 +3,19 @@
         <p>MyGarage.games is a free platform by the community and in no way affiliated with Nintendo.<br />Game Builder Garage is a trademark by Nintendo.</p>
 
         <LinkButton :to="{name: 'Legal'}">Legal information</LinkButton>
-        <LinkButton to="https://api.mygarage.games">API</LinkButton>
+        <ExternalLinkButton href="https://api.mygarage.games">API</ExternalLinkButton>
     </footer>
 </template>
 
 <script>
     import LinkButton from '@/components/General/LinkButton';
+    import ExternalLinkButton from '@/components/General/ExternalLinkButton';
 
     export default {
         name: 'PageFooter',
         components: {
-            LinkButton
+            LinkButton,
+            ExternalLinkButton
         }
     }
 </script>
