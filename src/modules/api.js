@@ -1,12 +1,11 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
+import * as ex from './exceptions';
 
 class MGGApi {
     apiBase = "";
 
     constructor() {
-        if(process.env.API_ENV === 'development') {
+        if(process.env.VUE_APP_API_ENV === 'development') {
             this.apiBase = "http://localhost:1337/v1/";
         } else {
             this.apiBase = "https://api.mygarage.games/v1/";
@@ -24,11 +23,11 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "USER_NOT_FOUND":
-                    throw new UserNotFoundException(error.response.data.text);
+                    throw new ex.UserNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_BANNED":
-                    throw new AuthenticationBannedException(error.response.data.reason);
+                    throw new ex.AuthenticationBannedException(error.response.data.reason);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -45,9 +44,9 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_BANNED":
-                    throw new AuthenticationBannedException(error.response.data.text);
+                    throw new ex.AuthenticationBannedException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -66,9 +65,9 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "USERNAME_INVALID":
-                    throw new UsernameInvalidException(error.response.data.text);
+                    throw new ex.UsernameInvalidException(error.response.data.text);
                 case "USERNAME_EMAIL_CONFLICT":
-                    throw new UsernameEmailConflictException(error.response.data.text);
+                    throw new ex.UsernameEmailConflictException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -87,15 +86,15 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "EMAIL_INVALID":
-                    throw new EmailInvalidException(error.response.data.text);
+                    throw new ex.EmailInvalidException(error.response.data.text);
                 case "USERNAME_EMAIL_CONFLICT":
-                    throw new UsernameEmailConflictException(error.response.data.text);
+                    throw new ex.UsernameEmailConflictException(error.response.data.text);
                 case "USER_NOT_FOUND":
-                    throw new UserNotFoundException(error.response.data.text);
+                    throw new ex.UserNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -208,7 +207,7 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAMECHANNEL_NOT_FOUND":
-                    throw new GameChannelNotFoundException(error.response.data.text);
+                    throw new ex.GameChannelNotFoundException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -227,9 +226,9 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "GAME_PRIVATE":
-                    throw new GamePrivateException(error.response.data.text);
+                    throw new ex.GamePrivateException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -248,11 +247,11 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_INGAMEID_WRONGFORMAT":
-                    throw new IngameIDWrongFormatException(error.response.data.text);
+                    throw new ex.IngameIDWrongFormatException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -271,13 +270,13 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_INGAMEID_WRONGFORMAT":
-                    throw new IngameIDWrongFormatException(error.response.data.text);
+                    throw new ex.IngameIDWrongFormatException(error.response.data.text);
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -300,13 +299,13 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "GAME_COVER_WRONGFORMAT":
-                    throw new FileWrongFormatException(error.response.data.text);
+                    throw new ex.FileWrongFormatException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -325,11 +324,11 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -348,11 +347,11 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -377,13 +376,13 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "GAMESCREENSHOT_COVER_WRONGFORMAT":
-                    throw new FileWrongFormatException(error.response.data.text);
+                    throw new ex.FileWrongFormatException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -402,13 +401,13 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "GAMESCREENSHOT_NOT_FOUND":
-                    throw new GameScreenshotNotFoundException(error.response.data.text);
+                    throw new ex.GameScreenshotNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -427,7 +426,7 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "USER_NOT_FOUND":
-                    throw new UserNotFoundException(error.response.data.text);
+                    throw new ex.UserNotFoundException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -446,13 +445,13 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "USER_INGAMEID_WRONGFORMAT":
-                    throw new IngameIDWrongFormatException(error.response.data.text);
+                    throw new ex.IngameIDWrongFormatException(error.response.data.text);
                 case "USER_NOT_FOUND":
-                    throw new UserNotFoundException(error.response.data.text);
+                    throw new ex.UserNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -475,13 +474,13 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "USER_NOT_FOUND":
-                    throw new UserNotFoundException(error.response.data.text);
+                    throw new ex.UserNotFoundException(error.response.data.text);
                 case "USER_AVATAR_WRONGFORMAT":
-                    throw new FileWrongFormatException(error.response.data.text);
+                    throw new ex.FileWrongFormatException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -500,18 +499,18 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "USER_NOT_FOUND":
-                    throw new UserNotFoundException(error.response.data.text);
+                    throw new ex.UserNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
         }
     }
 
-    async getPlaylistDetail(playlistID) {
+    async getPlaylistDetail(playlistID, jwtToken = undefined) {
         try {
             const response = await axios.get(this.apiBase + 'playlists/' + playlistID);
 
@@ -519,7 +518,9 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "PLAYLIST_NOT_FOUND":
-                    throw new PlaylistNotFoundException(error.response.data.text);
+                    throw new ex.PlaylistNotFoundException(error.response.data.text);
+                case "PLAYLIST_PRIVATE":
+                    throw new ex.PlaylistPrivateException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -538,15 +539,15 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "PLAYLIST_NOT_FOUND":
-                    throw new PlaylistNotFoundException(error.response.data.text);
+                    throw new ex.PlaylistNotFoundException(error.response.data.text);
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "PLAYLIST_GAME_CONFLICT":
-                    throw new PlaylistGameConflictException(error.response.data.text);
+                    throw new ex.PlaylistGameConflictException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -565,13 +566,13 @@ class MGGApi {
         } catch(error) {
             switch(error.response.data.name) {
                 case "PLAYLIST_NOT_FOUND":
-                    throw new PlaylistNotFoundException(error.response.data.text);
+                    throw new ex.PlaylistNotFoundException(error.response.data.text);
                 case "GAME_NOT_FOUND":
-                    throw new GameNotFoundException(error.response.data.text);
+                    throw new ex.GameNotFoundException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
-                    throw new AuthenticationWrongException(error.response.data.text);
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
-                    throw new AuthenticationNeededException(error.response.data.text);
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
             }
@@ -594,111 +595,6 @@ class MGGApi {
         let gameIDRegex = /^G-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}$/g;
     
         return gameIDRegex.test(unfilteredGameID);
-    }
-}
-
-class AuthenticationNeededException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "AuthenticationNeededException";
-    }
-}
-
-class AuthenticationWrongException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "AuthenticationWrongException";
-    }
-}
-
-class AuthenticationBannedException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "AuthenticationBannedException";
-    }
-}
-
-class UserNotFoundException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "UserNotFoundException";
-    }
-}
-
-class UsernameEmailConflictException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "UsernameEmailConflictException";
-    }
-}
-
-class UsernameInvalidException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "UsernameInvalidException";
-    }
-}
-
-class EmailInvalidException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "EmailInvalidException";
-    }
-}
-
-class GameChannelNotFoundException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "GameChannelNotFoundException";
-    }
-}
-
-class GameNotFoundException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "GameNotFoundException";
-    }
-}
-
-class GamePrivateException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "GamePrivateException";
-    }
-}
-
-class GameScreenshotNotFoundException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "GameScreenshotNotFoundException";
-    }
-}
-
-class PlaylistNotFoundException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "PlaylistNotFoundException";
-    }
-}
-
-class PlaylistGameConflictException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "PlaylistGameConflictException";
-    }
-}
-
-class IngameIDWrongFormatException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "IngameIDWrongFormatException";
-    }
-}
-
-class FileWrongFormatException extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "FileWrongFormatException";
     }
 }
 
