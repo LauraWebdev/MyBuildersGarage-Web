@@ -1,6 +1,7 @@
 {
     "script": "server.js",
     "watch": true,
+    "ignore_watch": ["dist"],
     "watch_options": {
         "followSymlinks": false
     },
