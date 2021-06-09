@@ -15,25 +15,6 @@ let isDev = process.env.NODE_ENV !== 'prod';
 
 console.log(`[mgg-web] Starting in ENV ${process.env.NODE_ENV} (isDev=${isDev})`);
 
-function build() {
-    console.log(`[mgg-web] Building VueJS App.`);
-
-    let buildCMD = exec("yarn build", {maxBuffer: 1024 * 500}, function(err, stdout, stderr) {
-        if(err) {
-            console.error(`[mgg-web] Error while building app.`);
-            console.error(err);
-        }
-
-        console.log(stdout);
-
-        startServer();
-    });
-
-    buildCMD.on('exit', function(code) {
-        console.log(`[mgg-web] Building finished with code ${code}.`);
-    });
-}
-
 function startServer() {
     const app = express();
 
@@ -86,4 +67,4 @@ function startServer() {
     }
 }
 
-build();
+startServer();
