@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "server:start": "nodemon server.js --ignore ./dist/",
+    "start": "pm2 start pm2-web.json && pm2 log mgg-web",
+    "stop": "pm2 stop pm2-web.json",
+    "restart": "pm2 restart pm2-web.json",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -16,7 +18,7 @@
     "express": "^4.17.1",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
-    "nodemon": "^2.0.7",
+    "pm2": "^5.0.4",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
