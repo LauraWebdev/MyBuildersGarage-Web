@@ -36,6 +36,14 @@
                         <ExternalLinkButton href="https://discord.gg/fUmgpU5">Discord</ExternalLinkButton>
                     </div>
                 </div>
+                <div class="project">
+                    <div class="banner" :style="{ backgroundImage: 'url(' + require('@/assets/img/projects/gamebuildergarage.png') + ')'}"></div>
+                    <div class="title">Game Builder Garage</div>
+                    <p>A Discord community with a focus on building, collaborating and sharing Game Buider Garage games.</p>
+                    <div class="actions">
+                        <ExternalLinkButton href="https://discord.gg/Kt9tu9z9Yd">Discord</ExternalLinkButton>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
