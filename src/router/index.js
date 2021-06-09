@@ -14,6 +14,7 @@ import GameEdit from '../views/Game/GameEdit.vue';
 import GameDelete from '../views/Game/GameDelete.vue';
 import PlaylistDetail from '../views/Playlist/PlaylistDetail.vue';
 import Legal from '../views/Legal.vue';
+import Talk from '../views/Talk.vue';
 import Login from '../views/Auth/Login.vue';
 import OauthCallback from '../views/Auth/OauthCallback.vue';
 import Register from '../views/Auth/Register.vue';
@@ -104,6 +105,13 @@ const routes = [{
     component: Legal,
     meta: {
         title: 'Legal information',
+    }
+}, {
+    path: '/talk',
+    name: 'Talk',
+    component: Talk,
+    meta: {
+        title: 'Other GBG projects',
     }
 }, {
     path: '/auth/login',
