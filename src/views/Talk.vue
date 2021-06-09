@@ -30,7 +30,7 @@
                 <div class="project">
                     <div class="banner" :style="{ backgroundImage: 'url(' + require('@/assets/img/projects/rgamebuildergarage.png') + ')'}"></div>
                     <div class="title">r/gamebuildergarage</div>
-                    <p>Learn to make games from the minds at Nintendo! Build your own games from the ground up with the colorful and quirky Nodon.</p>
+                    <p>The r/gamebuildergarage Creative Corner is the unofficial subreddit for all things Game Builder Garage with a Discord for LaboVR and GBG.</p>
                     <div class="actions">
                         <ExternalLinkButton href="https://www.reddit.com/r/GameBuilderGarage/">Reddit</ExternalLinkButton>
                         <ExternalLinkButton href="https://discord.gg/fUmgpU5">Discord</ExternalLinkButton>
