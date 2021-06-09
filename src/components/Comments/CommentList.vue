@@ -17,4 +17,10 @@
         grid-gap: 25px;
         align-self: flex-start;
     }
+
+    @media screen and (max-width: 800px) {
+        .comment-list {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>

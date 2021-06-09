@@ -104,4 +104,10 @@
         opacity: 0.5;
         border-radius: 5px;
     }
+
+    .theme-dark {
+        & .playlist-nogames {
+            background: rgba(255,255,255,0.07);
+        }
+    }
 </style>

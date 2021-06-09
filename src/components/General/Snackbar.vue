@@ -111,6 +111,12 @@
         }
     }
 
+    .theme-dark {
+        & .item {
+            background: #414141;
+        }
+    }
+
     @keyframes snackbarEntry {
         from {
             opacity: 0;

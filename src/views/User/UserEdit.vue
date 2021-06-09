@@ -410,7 +410,7 @@
         }
     }
     .page-editForm {
-        margin: 0px 50px 0px;
+        margin-bottom: 50px;
 
         & .step {
             display: grid;
@@ -496,6 +496,17 @@
                 font-size: 14px;
                 opacity: 0.6;
             }
+        }
+    }
+
+    .theme-dark {
+        
+    }
+
+    @media screen and (max-width: 800px) {
+        .tabs {
+            display: grid;
+            grid-template-rows: 1fr;
         }
     }
 </style>

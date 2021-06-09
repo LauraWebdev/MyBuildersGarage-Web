@@ -21,7 +21,7 @@
         margin-right: 5px;
         
         & .avatar {
-            background: rgba(255,0,0,0.1);
+            background-color: rgba(0,0,0,0.07);
             background-size: cover;
             background-position: center;
             width: 36px;
@@ -34,6 +34,16 @@
         }
         &.router-link-exact-active {
             border-bottom-color: #25B9FF;
+        }
+    }
+
+    .theme-dark {
+        & .avatar {
+            background-color: rgba(255,255,255,0.1);
+
+            &:hover {
+                border-bottom-color: rgba(255,255,255,0.2);
+            }
         }
     }
 </style>

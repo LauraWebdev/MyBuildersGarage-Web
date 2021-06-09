@@ -17,7 +17,7 @@
 </script>
 
 <style lang="less" scoped>
-    & .game-list {
+    .game-list {
         display: grid;
         grid-gap: 10px;
         
@@ -29,6 +29,22 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-gap: 25px;
+        }
+    }
+
+    @media screen and (max-width: 1300px) {
+        .game-list {
+            & .list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .game-list {
+            & .list {
+                grid-template-columns: 1fr;
+            }
         }
     }
 </style>

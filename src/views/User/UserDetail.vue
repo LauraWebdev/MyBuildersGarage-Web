@@ -215,4 +215,25 @@
         opacity: 0.5;
         border-radius: 5px;
     }
+
+    .theme-dark {
+        & .user-bar {
+            background: url('../../assets/img/patternDark.png') center rgba(255,255,255,0.07);
+        }
+        & .user-nogames {
+            background: rgba(255,255,255,0.07);
+        }
+    }
+
+    @media screen and (max-width: 1300px) {
+        .page-thirdssplit {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .user-games {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>

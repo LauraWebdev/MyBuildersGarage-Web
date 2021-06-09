@@ -23,7 +23,7 @@
         display: grid;
         grid-gap: 5px;
         text-decoration: none;
-        transition: 0.2s ease-in-out opacity;
+        transition: 0.2s ease-in-out all;
         padding: 15px;
         border-radius: 5px;
         background: rgba(0,0,0,0.07);
@@ -41,7 +41,18 @@
 
         &:hover {
             cursor: pointer;
-            opacity: 0.6;
+            background: #fff;
+            box-shadow: 0px 4px 16px 2px rgba(0,0,0,0.07);
+        }
+    }
+
+    .theme-dark {
+        & .channel-item {
+            background: rgba(255,255,255,0.07);
+
+            &:hover {
+                background: rgba(255,255,255,0.14);
+            }
         }
     }
 </style>

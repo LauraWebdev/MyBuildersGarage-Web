@@ -454,7 +454,7 @@
         }
     }
     .page-editForm {
-        margin: 0px 50px 0px;
+        margin-bottom: 50px;
 
         & .screenshots {
             display: grid;
@@ -600,6 +600,26 @@
             & .footnote {
                 font-size: 14px;
                 opacity: 0.6;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1300px) {
+        .page-editForm {
+            & .screenshots {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .tabs {
+            display: grid;
+            grid-template-rows: 1fr;
+        }
+        .page-editForm {
+            & .screenshots {
+                grid-template-columns: 1fr 1fr;
             }
         }
     }

@@ -156,6 +156,7 @@
                     margin: 10px;
                     width: 56px;
                     height: 56px;
+                    color: #222;
                     background: #fff;
                     font-size: 24px;
                     border-radius: 50%;

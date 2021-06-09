@@ -82,6 +82,7 @@
 
             & .box {
                 background: #fff;
+                color: #222;
                 border: 2px solid #222;
                 border-radius: 10px;
                 width: 90%;
@@ -104,6 +105,23 @@
                     grid-gap: 15px;
                     text-align: center;
                     line-height: 1.5em;
+                }
+            }
+        }
+    }
+
+    .theme-dark {
+        & .welcome {
+            background: url('../assets/img/patternDark.png') center #002639;
+
+            & .box {
+                background: #222;
+                color: #fff;
+                border: 2px solid #fff;
+
+                & .box-header {
+                    background: #fff;
+                    color: #222;
                 }
             }
         }

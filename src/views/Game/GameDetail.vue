@@ -74,7 +74,7 @@
             </div>
 
             <div class="page-centered">
-                <div class="page-wrapper page-thirdssplit">
+                <div class="page-wrapper page-thirdssplit page-comments">
                     <div class="comment-form comment-text" v-if="$store.state.userData == null">
                         Login to write comments<br />and give feedback!
                     </div>
@@ -85,7 +85,7 @@
                     <div class="comment-form comment-loading" v-if="newCommentActionLoading && $store.state.userData != null">
                         <LoadingCircle />
                     </div>
-                    <div class="comment-nocomments">
+                    <div class="comment-nocomments" v-if="gameDetail.comments.length == 0">
                         This game does not have any comments yet.
                     </div>
                     <CommentList v-if="gameDetail.comments.length > 0">
@@ -292,6 +292,17 @@
             addComment: async function() {
                 this.$data.newCommentActionLoading = true;
 
+                if(this.$data.newCommentText == "") {
+                    this.$root.$emit('addSnackbar', {
+                        type: "error",
+                        icon: "comment-processing",
+                        text: "Comments can't be empty.",
+                        stay: false,
+                    });
+                    this.$data.newCommentActionLoading = false;
+                    return;
+                }
+
                 try {
                     await this.$data.apiRef.createGameComment(this.$data.newCommentText, this.$data.gameDetail.id, this.$store.state.userToken);
 
@@ -301,6 +312,8 @@
                         text: `Your comment was posted.`,
                         stay: false,
                     });
+
+                    this.$data.newCommentText = "";
 
                     this.$data.newCommentActionLoading = false;
                     this.loadComments();
@@ -700,12 +713,34 @@
         text-align: center;
     }
 
+    .theme-dark {
+        & .comment-form {
+            background: rgba(255,255,255,0.07);
+        }
+    }
+
     @keyframes loadingAnim {
         from {
             transform: rotate(0deg);
         }
         to {
             transform: rotate(360deg);
+        }
+    }
+
+    @media screen and (max-width: 1300px) {
+        .game-header {
+            height: 200px;
+        }
+
+        .page-comments {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .page-thirdssplit {
+            grid-template-columns: 1fr;
         }
     }
 </style>

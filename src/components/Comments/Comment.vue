@@ -69,7 +69,7 @@
                 overflow: hidden;
             }
             & .date {
-                color: rgba(0,0,0,0.6);
+                opacity: 0.6;
             }
 
             &:hover {
@@ -79,6 +79,12 @@
         }
         & .text {
             line-height: 1.5em;
+        }
+    }
+
+    .theme-dark {
+        & .comment-item {
+            background: rgba(255,255,255,0.07);
         }
     }
 </style>

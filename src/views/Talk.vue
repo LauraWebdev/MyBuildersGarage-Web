@@ -22,7 +22,7 @@
                 <div class="project">
                     <div class="banner" :style="{ backgroundImage: 'url(' + require('@/assets/img/projects/smm2gbgdiscord.png') + ')'}"></div>
                     <div class="title">Super Mario Maker 2 + Game Builder Garage</div>
-                    <p>[Short Description of Community]</p>
+                    <p>A Discord community centered around discussion and content sharing for Super Mario Maker 2 and Game Builder Garage.</p>
                     <div class="actions">
                         <ExternalLinkButton href="https://discord.gg/xtYxQcd846">Discord</ExternalLinkButton>
                     </div>
@@ -79,13 +79,19 @@
             }
             & p {
                 line-height: 1.5em;
-                color: rgba(0,0,0,0.6);
+                opacity: 0.6;
             }
             & .actions {
                 & a {
                     margin-right: 5px;
                 }
             }
+        }
+    }
+
+    .theme-dark {
+        & .project {
+            background: rgba(255,255,255,0.07);
         }
     }
 

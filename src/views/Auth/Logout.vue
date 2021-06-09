@@ -44,6 +44,7 @@
 
         & .logout-box {
             background: #fff;
+            color: #222;
             border: 2px solid #222;
             border-radius: 10px;
             width: 90%;
@@ -53,9 +54,9 @@
 
             & .box-header {
                 background: #222;
+                color: #fff;
                 padding: 10px 15px;
                 font-size: 12px;
-                color: #fff;
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 0.15em;
@@ -66,6 +67,23 @@
                 grid-gap: 15px;
                 text-align: center;
                 line-height: 1.5em;
+            }
+        }
+    }
+
+    .theme-dark {
+        & .page-logout {
+            background: url('../../assets/img/patternDark.png') center rgba(255,255,255,0.07);
+
+            & .logout-box {
+                background: #222;
+                color: #fff;
+                border: 2px solid #fff;
+
+                & .box-header {
+                    background: #fff;
+                    color: #222;
+                }
             }
         }
     }

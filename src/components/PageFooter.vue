@@ -4,6 +4,8 @@
 
         <LinkButton :to="{name: 'Legal'}">Legal information</LinkButton>
         <ExternalLinkButton href="https://api.mygarage.games">API</ExternalLinkButton>
+
+        <br /><br />
     </footer>
 </template>
 
@@ -38,6 +40,14 @@
 
         & a {
             margin: 0px 5px;
+        }
+    }
+
+    .theme-dark {
+        & footer {
+            & p {
+                background: rgba(255,255,255,0.07);
+            }
         }
     }
 </style>
