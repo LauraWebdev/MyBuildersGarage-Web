@@ -77,6 +77,13 @@ class GameScreenshotNotFoundException extends Error {
     }
 }
 
+class GameCommentNotFoundException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "GameCommentNotFoundException";
+    }
+}
+
 class PlaylistNotFoundException extends Error {
     constructor(message) {
         super(message);
@@ -124,6 +131,7 @@ export {
     GameNotFoundException,
     GamePrivateException,
     GameScreenshotNotFoundException,
+    GameCommentNotFoundException,
     PlaylistNotFoundException,
     PlaylistPrivateException,
     PlaylistGameConflictException,

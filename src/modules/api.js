@@ -535,9 +535,57 @@ class MGGApi {
         }
     }
 
-    async addToPlaylist(playlistID, songID, jwtToken) {
+    async createGameComment(text, gameID, jwtToken) {
         try {
-            const response = await axios.post(this.apiBase + 'playlists/' + playlistID + '/add/' + songID, {}, {
+            const response = await axios.post(this.apiBase + 'gameComments/' + gameID, {
+                text: text
+            }, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "GAME_NOT_FOUND":
+                    throw new ex.GameNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async deleteGameComment(commentID, jwtToken) {
+        try {
+            const response = await axios.delete(this.apiBase + 'gameComments/' + commentID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                case "GAMECOMMENT_NOT_FOUND":
+                    throw new ex.GameCommentNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async addToPlaylist(playlistID, gameID, jwtToken) {
+        try {
+            const response = await axios.post(this.apiBase + 'playlists/' + playlistID + '/add/' + gameID, {}, {
                 headers: {
                     "x-access-token": jwtToken
                 }
@@ -562,9 +610,9 @@ class MGGApi {
         }
     }
 
-    async deleteFromPlaylist(playlistID, songID, jwtToken) {
+    async deleteFromPlaylist(playlistID, gameID, jwtToken) {
         try {
-            const response = await axios.delete(this.apiBase + 'playlists/' + playlistID + '/delete/' + songID, {
+            const response = await axios.delete(this.apiBase + 'playlists/' + playlistID + '/delete/' + gameID, {
                 headers: {
                     "x-access-token": jwtToken
                 }

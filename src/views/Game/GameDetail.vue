@@ -4,7 +4,7 @@
             <LoadingCircle />
         </div>
         <div class="game-detail" v-if="!apiLoading && gameDetail != null">
-            <div class="game-header" :style="`background-image: url('${gameDetail.coverFileName}')`" v-on:click="openTrailer()" v-if="gameDetail.youtubeID != ''">
+            <div class="game-header" :style="`background-image: url('${gameDetail.coverFileName}')`" v-on:click="openTrailer()" v-if="gameDetail.youtubeID != '' && gameDetail.youtubeID != null">
                 <div class="header-shade">
                     <span class="mdi mdi-play-circle-outline"></span>
                 </div>
@@ -73,6 +73,27 @@
                 </div>
             </div>
 
+            <div class="page-centered">
+                <div class="page-wrapper page-thirdssplit">
+                    <div class="comment-form comment-text" v-if="$store.state.userData == null">
+                        Login to write comments<br />and give feedback!
+                    </div>
+                    <div class="comment-form" v-if="!newCommentActionLoading && $store.state.userData != null">
+                        <textarea v-model="newCommentText" class="input"></textarea>
+                        <button class="button button-filled" v-on:click="addComment()">Comment</button>
+                    </div>
+                    <div class="comment-form comment-loading" v-if="newCommentActionLoading && $store.state.userData != null">
+                        <LoadingCircle />
+                    </div>
+                    <div class="comment-nocomments">
+                        This game does not have any comments yet.
+                    </div>
+                    <CommentList v-if="gameDetail.comments.length > 0">
+                        <Comment v-for="comment in gameDetail.comments" v-bind="comment" v-bind:key="comment.id" />
+                    </CommentList>
+                </div>
+            </div>
+
             <div class="trailer-overlay" v-if="trailerOverlayOpen">
                 <div class="video-embed">
                     <div class="video-16by9">
@@ -91,6 +112,8 @@
 
     import LoadingCircle from '@/components/General/LoadingCircle';
     import LinkButton from '@/components/General/LinkButton';
+    import CommentList from '@/components/Comments/CommentList';
+    import Comment from '@/components/Comments/Comment';
 
     export default {
         name: 'GameDetail',
@@ -105,17 +128,25 @@
                 activeScreenshot: 0,
                 isInPlaylist: false,
                 playlistActionLoading: false,
+                newCommentText: "",
+                newCommentActionLoading: false,
             }
         },
         components: {
             LoadingCircle,
-            LinkButton
+            LinkButton,
+            CommentList,
+            Comment
         },
         created: function() {
             this.$data.apiRef = new MGGApi();
         },
         mounted: function() {
             this.loadGame();
+
+            this.$root.$on('deleteComment', (commentID) => {
+                this.deleteComment(commentID);
+            });
         },
         methods: {
             loadGame: async function() {
@@ -161,6 +192,24 @@
                     }
 
                     this.$data.apiLoading = false;
+                }
+            },
+            loadComments: async function() {
+                try {
+                    let gameResponse = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id, this.$store.state.userToken);
+                    this.$data.gameDetail.comments = gameResponse.game.comments;
+                } catch(error) {
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "comment-processing",
+                                text: "Comments couldn't be loaded due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                    }
                 }
             },
             openTrailer: function() {
@@ -238,6 +287,66 @@
                     });
 
                     this.$data.playlistActionLoading = false;
+                }
+            },
+            addComment: async function() {
+                this.$data.newCommentActionLoading = true;
+
+                try {
+                    await this.$data.apiRef.createGameComment(this.$data.newCommentText, this.$data.gameDetail.id, this.$store.state.userToken);
+
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "comment-processing",
+                        text: `Your comment was posted.`,
+                        stay: false,
+                    });
+
+                    this.$data.newCommentActionLoading = false;
+                    this.loadComments();
+                } catch(error) {
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "comment-processing",
+                                text: "Comment couldn't be posted due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                    }
+
+                    this.$data.newCommentActionLoading = false;
+                    this.loadComments();
+                }
+            },
+            deleteComment: async function(commentID) {
+                try {
+                    await this.$data.apiRef.deleteGameComment(commentID, this.$store.state.userToken);
+
+                    this.$root.$emit('addSnackbar', {
+                        type: "success",
+                        icon: "comment-processing",
+                        text: `Your comment was deleted.`,
+                        stay: false,
+                    });
+
+                    this.loadComments();
+                } catch(error) {
+                    switch(error.name) {
+                        default:
+                            console.error(error);
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "comment-processing",
+                                text: "Comment couldn't be deleted due to a server error. Please try again later",
+                                stay: true,
+                            });
+                            break;
+                    }
+
+                    this.loadComments();
                 }
             },
             changeActiveScreenshot: function(screenshotIndex) {
@@ -557,6 +666,38 @@
             right: 0;
             justify-content: flex-end;
         }
+    }
+    & .comment-form {
+        background: rgba(0,0,0,0.07);
+        padding: 15px;
+        border-radius: 5px;
+        display: grid;
+        grid-template-rows: 120px auto;
+        grid-template-columns: 1fr;
+        grid-gap: 15px;
+        align-self: flex-start;
+
+        &.comment-loading {
+            display: flex;
+            padding: 50px 0px;
+            justify-content: center;
+        }
+        &.comment-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0.6;
+            padding: 50px 25px;
+        }
+    }
+    & .comment-nocomments {
+        background: rgba(0,0,0,0.07);
+        border-radius: 5px;
+        padding: 50px 25px;
+        opacity: 0.6;
+        align-self: flex-start;
+        text-align: center;
     }
 
     @keyframes loadingAnim {
