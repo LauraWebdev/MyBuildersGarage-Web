@@ -717,6 +717,9 @@
         & .comment-form {
             background: rgba(255,255,255,0.07);
         }
+        & .comment-nocomments {
+            background: rgba(255,255,255,0.07);
+        }
     }
 
     @keyframes loadingAnim {
