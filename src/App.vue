@@ -1,5 +1,5 @@
 <template>
-    <div class="app">
+    <div :class="`app theme-${$store.state.uiMode}`">
         <PageHeader />
 
         <router-view :key="$route.fullPath"/>
@@ -172,6 +172,40 @@
             }
             &::placeholder {
                 opacity: 0.6;
+            }
+        }
+    }
+
+    .theme-dark {
+        background: #222;
+        color: #fff;
+
+        & .page-header {
+            background: url('assets/img/patternDark.png') center rgba(255,255,255,0.07);
+        }
+
+        & .input {
+            border: 2px solid rgba(255,255,255,0.4);
+            background: #222;
+            color: #fff;
+
+            &:hover {
+                background: rgba(255,255,255,0.1);
+            }
+            &:focus {
+                border-color: #fff;
+            }
+        }
+        & .input-select {
+            border: 2px solid rgba(255,255,255,0.4);
+            background: #222;
+            color: #fff;
+
+            &:hover {
+                background: rgba(255,255,255,0.1);
+            }
+            &:focus {
+                border-color: #fff;
             }
         }
     }
