@@ -74,7 +74,7 @@
         position: relative;
         z-index: 50;
 
-        .hamburger-item {
+        & .hamburger-item {
             padding: 8px 0px;
             display: none;
             font-size: 26px;
@@ -121,8 +121,12 @@
 
     .theme-dark {
         & header {
-            background: rgba(255,255,255,0.14);
+            background: #414141;
 
+
+            & .hamburger-item {
+                color: #fff;
+            }
             & nav {
                 & .item {
                     &:hover {
@@ -146,6 +150,10 @@
             }
             & .actions {
                 display: none;
+
+                &.actions-unauthorized {
+                    display: none;
+                }
             }
 
             &.navi-open {

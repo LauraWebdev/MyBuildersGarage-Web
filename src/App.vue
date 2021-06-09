@@ -195,6 +195,10 @@
             &:focus {
                 border-color: #fff;
             }
+            &::placeholder {
+                color: #fff;
+                opacity: 0.4;
+            }
         }
         & .input-select {
             border: 2px solid rgba(255,255,255,0.4);
