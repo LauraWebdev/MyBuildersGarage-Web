@@ -1,15 +1,15 @@
 <template>
     <div class="page-centered page-register">
         <div class="register-box">
-            <div class="box-header">Create a new account</div>
+            <div class="box-header">{{ $t('register.header') }}</div>
             <div class="box-content">
-                <input class="input" type="text" v-model="userName" placeholder="Username" />
-                <span>Allowed characters: a-z, A-Z, 0-9, hyphens, underscores</span>
-                <input class="input" type="password" v-model="userPass" placeholder="Password" />
-                <input class="input" type="password" v-model="userPass2" placeholder="Password (again)" />
-                <input class="input" type="email" v-model="userMail" placeholder="Email" />
+                <input class="input" type="text" v-model="userName" :placeholder="$t('register.form.usernamePlaceholder')" />
+                <span>{{ $t('register.form.usernameRequirements') }}</span>
+                <input class="input" type="password" v-model="userPass" :placeholder="$t('register.form.passwordPlaceholder')" />
+                <input class="input" type="password" v-model="userPass2" :placeholder="$t('register.form.passwordAgainPlaceholder')" />
+                <input class="input" type="email" v-model="userMail" :placeholder="$t('register.form.emailPlaceholder')" />
 
-                <button v-on:click="register()" class="button button-filled">Register</button>
+                <button v-on:click="register()" class="button button-filled">{{ $t('register.form.registerButton') }}</button>
                 
                 <div class="social-logins">
                     <button v-on:click="loginDiscord()" class="button">Discord</button>
