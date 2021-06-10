@@ -2,8 +2,8 @@
     <div class="page-gamedelete">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1>Deleting a game</h1>
-                <p>All actions are unreversible!</p>
+                <h1>{{ $t('gameDelete.header') }}</h1>
+                <p>{{ $t('gameDelete.explaination') }}</p>
             </div>
         </div>
 
@@ -14,11 +14,11 @@
         </div>
         <div class="page-centered page-deleteForm" v-if="!apiLoading">
             <div class="page-wrapper">
-                <div class="title">Are you sure?</div>
-                <div class="text">You are about to remove your game <strong>{{ gameDetail.title }}</strong> from MyGarage.games. All screenshots and comments will be deleted with it. This action is unreversible.</div>
+                <div class="title">{{ $t('gameDelete.confirm.header') }}</div>
+                <div class="text" v-html="$t('gameDelete.confirm.text', {gameTitle: gameDetail.title})"></div>
                 <div class="actions">
-                    <LinkButton :to="{ name: 'GameDetail', params: { id: gameDetail.id } }" filled>Nevermind</LinkButton>
-                    <div class="button" v-on:click="confirmDeletion()">Yes, go ahead!</div>
+                    <LinkButton :to="{ name: 'GameDetail', params: { id: gameDetail.id } }" filled>{{ $t('gameDelete.confirm.nevermindButton') }}</LinkButton>
+                    <div class="button" v-on:click="confirmDeletion()">{{ $t('gameDelete.confirm.yesButton') }}</div>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "trash-can-outline",
-                        text: "Game was deleted.",
+                        text: this.$t('gameDelete.snackbar.success'),
                         stay: false,
                     });
 
@@ -90,7 +90,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "trash-can-outline",
-                        text: "Could not delete game.",
+                        text: this.$t('gameDelete.snackbar.error'),
                         stay: false,
                     });
                 }
