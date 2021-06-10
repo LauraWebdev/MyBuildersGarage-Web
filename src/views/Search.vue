@@ -2,8 +2,8 @@
     <div class="page-search">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1>Find</h1>
-                <input type="text" v-model="searchQuery" v-on:input="changeSearch" ref="searchInput" class="input" placeholder="Enter a search query..." />
+                <h1>{{ $t('find.header') }}</h1>
+                <input type="text" v-model="searchQuery" v-on:input="changeSearch" ref="searchInput" class="input" :placeholder="$t('find.searchboxPlaceholder')" />
             </div>
         </div>
 
@@ -18,7 +18,7 @@
                 </GameList>
 
                 <div class="empty-results" v-if="results.length == 0">
-                    Couldn't find any games with this search query<br />Please try a different one!
+                    {{ $t('find.noresults') }}
                 </div>
             </div>
         </div>
