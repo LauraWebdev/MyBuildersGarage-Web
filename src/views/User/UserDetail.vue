@@ -41,12 +41,16 @@
                                 <div class="content">{{ userDetail.socialYouTube }}</div>
                             </div>
                         </div>
+                        <div class="team-banner" v-if="['moderator', 'admin'].some(str => userDetail.roles.includes(str))">
+                            <span class="mdi mdi-shield-check"></span>
+                            <span>This user is a verified member of the MyGarage.games team.</span>
+                        </div>
 
-                        <div class="actions" v-if="$store.state.userData ? userDetail.id == $store.state.userData.id || $store.state.userRoles.includes('moderator', 'admin') : false">
+                        <div class="actions" v-if="$store.state.userData ? userDetail.id == $store.state.userData.id || ['moderator', 'admin'].some(str => $store.state.userRoles.includes(str)) : false">
                             <LinkButton :to="{ name: 'UserEdit', params: { id: userDetail.id }}" filled>Edit</LinkButton>
                         </div>
 
-                        <div class="actions" v-if="$store.state.userData ? $store.state.userRoles.includes('moderator', 'admin') : false">
+                        <div class="actions" v-if="$store.state.userData ? ['moderator', 'admin'].some(str => $store.state.userRoles.includes(str)) : false">
                             <LinkButton to="/">Ban User</LinkButton>
                         </div>
                     </div>
@@ -195,6 +199,20 @@
                 & div:nth-child(1) {
                     opacity: 0.6;
                 }
+            }
+        }
+        & .team-banner {
+            background: #ff8144;
+            padding: 15px;
+            border-radius: 5px;
+            color: #fff;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-gap: 15px;
+            align-items: center;
+
+            & .mdi {
+                font-size: 24px;
             }
         }
         & .actions {
