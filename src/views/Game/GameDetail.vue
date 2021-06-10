@@ -20,9 +20,9 @@
                         </router-link>
                         <div class="gameID">
                             <div class="ingameID">{{ gameDetail.ingameID }}</div>
-                            <div class="addToPlaylist" v-on:click="addToPlaylist" v-if="!isInPlaylist && !playlistActionLoading"><span class="mdi mdi-bookmark-plus-outline"></span></div>
-                            <div class="addToPlaylist loading" v-if="playlistActionLoading"><span class="mdi mdi-loading"></span></div>
-                            <div class="addToPlaylist" v-on:click="deleteFromPlaylist" v-if="isInPlaylist && !playlistActionLoading"><span class="mdi mdi-bookmark-minus"></span></div>
+                            <div class="addToPlaylist" v-on:click="addToPlaylist" v-if="$store.state.userData != null && !isInPlaylist && !playlistActionLoading"><span class="mdi mdi-bookmark-plus-outline"></span></div>
+                            <div class="addToPlaylist loading" v-if="$store.state.userData != null && playlistActionLoading"><span class="mdi mdi-loading"></span></div>
+                            <div class="addToPlaylist" v-on:click="deleteFromPlaylist" v-if="$store.state.userData != null && isInPlaylist && !playlistActionLoading"><span class="mdi mdi-bookmark-minus"></span></div>
                         </div>
                         <div class="description" v-if="gameDetail.description != ''">
                             {{ gameDetail.description }}
