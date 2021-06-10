@@ -2,9 +2,9 @@
     <div class="page-useredit">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1 v-if="apiLoading">Updating your profile</h1>
+                <h1 v-if="apiLoading">{{ $t('userEdit.header') }}</h1>
                 <h1 v-if="!apiLoading && userDetail != null">{{ userDetail.username }}</h1>
-                <p>Uploading an avatar, changing your bio or password.</p>
+                <p>{{ $t('userEdit.explaination') }}</p>
             </div>
         </div>
 
@@ -16,9 +16,9 @@
         <div class="page-centered" v-if="!apiLoading">
             <div class="page-wrapper">
                 <div class="tabs">
-                    <div class="tab" :class="currentTab == 0 ? 'active' : ''" v-on:click="changeTab(0)">General</div>
-                    <div class="tab" :class="currentTab == 1 ? 'active' : ''" v-on:click="changeTab(1)">Avatar</div>
-                    <div class="tab" :class="currentTab == 2 ? 'active' : ''" v-on:click="changeTab(2)">Security</div>
+                    <div class="tab" :class="currentTab == 0 ? 'active' : ''" v-on:click="changeTab(0)">{{ $t('userEdit.tabs.general') }}</div>
+                    <div class="tab" :class="currentTab == 1 ? 'active' : ''" v-on:click="changeTab(1)">{{ $t('userEdit.tabs.avatar') }}</div>
+                    <div class="tab" :class="currentTab == 2 ? 'active' : ''" v-on:click="changeTab(2)">{{ $t('userEdit.tabs.security') }}</div>
                 </div>
             </div>
         </div>
@@ -27,11 +27,11 @@
             <div class="page-wrapper">
                 <div class="step" v-if="currentTab == 0">
                     <div class="step-input">
-                        <label>Username*</label>
-                        <input type="text" class="input" v-model="tab0Username" />
+                        <label>{{ $t('userEdit.form.username') }}*</label>
+                        <input type="text" class="input" autocomplete="off" v-model="tab0Username" />
                     </div>
                     <div class="step-input">
-                        <label>Pronouns</label>
+                        <label>{{ $t('userEdit.form.pronouns') }}</label>
                         <select class="input" v-model="tab0Pronouns">
                             <option value=""></option>
                             <option value="she/her">she/her</option>
@@ -43,61 +43,61 @@
                         </select>
                     </div>
                     <div class="step-input">
-                        <label>Ingame-ID</label>
-                        <input type="text" class="input" placeholder="P-000-000-000" v-model="tab0IngameID" />
+                        <label>{{ $t('userEdit.form.ingameID') }}</label>
+                        <input type="text" class="input" autocomplete="off" :placeholder="$t('userEdit.form.ingameIDPlaceholder')" v-model="tab0IngameID" />
                     </div>
                     <div class="step-input">
                         <label>Discord</label>
-                        <input type="text" class="input" placeholder="coolbuilder#1234" v-model="tab0Discord" />
+                        <input type="text" class="input" autocomplete="off" placeholder="coolbuilder#1234" v-model="tab0Discord" />
                     </div>
                     <div class="step-input">
                         <label>Twitter</label>
-                        <input type="text" class="input" placeholder="@coolbuilder" v-model="tab0Twitter" />
+                        <input type="text" class="input" autocomplete="off" placeholder="@coolbuilder" v-model="tab0Twitter" />
                     </div>
                     <div class="step-input">
                         <label>YouTube</label>
-                        <input type="text" class="input" placeholder="CoolBuilder" v-model="tab0Youtube" />
+                        <input type="text" class="input" autocomplete="off" placeholder="https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw" v-model="tab0Youtube" />
                     </div>
                 </div>
 
                 <div class="step" v-if="currentTab == 1">
                     <div class="step-input">
-                        <label>Avatar Image</label>
+                        <label>{{ $t('userEdit.form.avatarImage') }}</label>
                         <div class="avatar-holder">
                             <div class="change-avatar" v-on:click="$refs.avatarFile.click()" :style="`background-image: url('${userDetail.avatarFileName}')`">
                                 <div class="icon">
                                     <span class="mdi mdi-image-edit"></span>
-                                    <div class="hint">.png / .jpg</div>
+                                    <div class="hint">{{ $t('gameEdit.form.fileHint') }}</div>
                                 </div>
                                 <input type="file" ref="avatarFile" v-on:change="processAvatarFile" accept="png,jpg" />
                             </div>
 
-                            <div class="button" v-on:click="deleteAvatar()">Delete Avatar</div>
+                            <div class="button" v-on:click="deleteAvatar()">{{ $t('userEdit.form.deleteAvatarButton') }}</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="step" v-if="currentTab == 2">
                     <div class="step-input">
-                        <label>Email</label>
+                        <label>{{ $t('userEdit.form.email') }}</label>
                         <input type="email" class="input" placeholder="email@example.org" v-model="tab2Email" />
                     </div>
                     <div class="step-input">
-                        <label>Password</label>
+                        <label>{{ $t('userEdit.form.password') }}</label>
                         <input type="password" class="input" placeholder="" v-model="tab2Password" />
                     </div>
                     <div class="step-input">
-                        <label>Password (again)</label>
+                        <label>{{ $t('userEdit.form.passwordAgain') }}</label>
                         <input type="password" class="input" placeholder="" v-model="tab2Password2" />
                     </div>
                 </div>
 
                 <div class="step-actions">
-                    <div class="footnote">* = required</div>
-                    <LinkButton :to="{ name: 'UserDetail', params: { id: userDetail.id }}">Back to profile</LinkButton>
+                    <div class="footnote">{{ $t('gameAdd.requiredNotice') }}</div>
+                    <LinkButton :to="{ name: 'UserDetail', params: { id: userDetail.id }}">{{ $t('userEdit.form.backToProfileButton') }}</LinkButton>
                     <div v-if="currentTab == 1"></div>
-                    <button class="button button-filled" v-on:click="saveUser()" v-if="currentTab == 0">Save</button>
-                    <button class="button button-filled" v-on:click="saveSecurity()" v-if="currentTab == 2">Save</button>
+                    <button class="button button-filled" v-on:click="saveUser()" v-if="currentTab == 0">{{ $t('userEdit.form.saveButton') }}</button>
+                    <button class="button button-filled" v-on:click="saveSecurity()" v-if="currentTab == 2">{{ $t('userEdit.form.saveButton') }}</button>
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "lock-off-outline",
-                            text: "You are not allowed to edit this user.",
+                            text: this.$t('userEdit.snackbar.error.notAllowed'),
                             stay: true,
                         });
                         return;
@@ -203,7 +203,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "content-save-outline",
-                        text: "Avatar was updated.",
+                        text: this.$t('userEdit.snackbar.success.avatarUpdated'),
                         stay: false,
                     });
                 } catch(error) {
@@ -214,14 +214,14 @@
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Avatar could not be updated because they have the wrong format. Only .png and .jpg files are allowed!",
+                            text: this.$t('userEdit.snackbar.error.avatarWrongFormat'),
                             stay: true,
                         });
                     } else {
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Could not update avatar. Please try again later.",
+                            text: this.$t('userEdit.snackbar.error.avatarServerError'),
                             stay: false,
                         });
                     }
@@ -239,7 +239,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "content-save-outline",
-                        text: "Avatar was deleted.",
+                        text: this.$t('userEdit.snackbar.success.avatarDeleted'),
                         stay: false,
                     });
                 } catch(error) {
@@ -249,7 +249,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "trash-can-outline",
-                        text: "Could not delete avatar. Please try again later.",
+                        text: this.$t('userEdit.snackbar.error.avatarDeleteServerError'),
                         stay: false,
                     });
                 }
@@ -261,7 +261,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "key",
-                        text: "This username contains forbidden characters. Allowed characters are a-z, A-Z, 0-9, hyphens and underscores.",
+                        text: this.$t('userEdit.snackbar.error.usernameForbidden'),
                         stay: false,
                     });
                     this.loadUser();
@@ -285,7 +285,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "content-save-outline",
-                        text: "Saved changes.",
+                        text: this.$t('userEdit.snackbar.success.saved'),
                         stay: false,
                     });
                 } catch(error) {
@@ -297,7 +297,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "content-save-outline",
-                                text: "Your changes couldn't be saved due to a server error. Please try it again later!",
+                                text: this.$t('userEdit.snackbar.error.saveServerError'),
                                 stay: true,
                             });
                             break;
@@ -305,7 +305,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "content-save-outline",
-                                text: "Your profile ID is invalid (format: P-000-000-000).",
+                                text: this.$t('userEdit.snackbar.error.saveIngameIDInvalid'),
                                 stay: true,
                             });
                             break;
@@ -313,7 +313,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: "This username is already in use!",
+                                text: this.$t('userEdit.snackbar.error.saveUsernameConflict'),
                                 stay: false,
                             });
                             break;
@@ -327,7 +327,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "key",
-                        text: "The entered passwords are not identical.",
+                        text: this.$t('userEdit.snackbar.error.securityNotIdentical'),
                         stay: false,
                     });
                     this.loadUser();
@@ -347,7 +347,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "content-save-outline",
-                        text: "Saved changes.",
+                        text: this.$t('userEdit.snackbar.success.saved'),
                         stay: false,
                     });
                 } catch(error) {
@@ -359,7 +359,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "content-save-outline",
-                                text: "Your changes couldn't be saved due to a server error. Please try it again later!",
+                                text: this.$t('userEdit.snackbar.error.saveServerError'),
                                 stay: true,
                             });
                             return;
@@ -367,7 +367,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "content-save-outline",
-                                text: "Your email is invalid!",
+                                text: this.$t('userEdit.snackbar.error.securityEmailInvalid'),
                                 stay: true,
                             });
                             return;
