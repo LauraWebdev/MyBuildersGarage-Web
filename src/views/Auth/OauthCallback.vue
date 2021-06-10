@@ -111,4 +111,21 @@
             }
         }
     }
+
+    .theme-dark {
+        & .page-login {
+            background: url('../../assets/img/patternDark.png') center #322700;
+
+            & .login-box {
+                background: #222;
+                color: #fff;
+                border: 2px solid #fff;
+
+                & .box-header {
+                    background: #fff;
+                    color: #222;
+                }
+            }
+        }
+    }
 </style>
