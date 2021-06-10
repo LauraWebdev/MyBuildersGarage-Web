@@ -47,7 +47,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "key",
-                        text: "All fields must be filled out.",
+                        text: this.$t('login.snackbar.error.fillOut'),
                         stay: false,
                     });
                     return;
@@ -57,7 +57,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "key",
-                        text: "Please use a valid email adress.",
+                        text: this.$t('login.snackbar.error.emailInvalid'),
                         stay: false,
                     });
                     return;
@@ -67,7 +67,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "key",
-                        text: "The entered passwords are not identical.",
+                        text: this.$t('login.snackbar.error.passwordNotEqual'),
                         stay: false,
                     });
                     return;
@@ -79,7 +79,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "key",
-                        text: "Successfully created a new account.",
+                        text: this.$t('register.snackbar.success'),
                         stay: false,
                     });
                     this.$router.push({ name: 'Login' });
@@ -91,7 +91,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: "Could not create account due to a server error. Please try again later.",
+                                text: this.$t('login.snackbar.error.registerServerError'),
                                 stay: false,
                             });
                             break;
@@ -99,7 +99,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: "This username contains forbidden characters. Allowed characters are a-z, A-Z, 0-9, hyphens and underscores.",
+                                text: this.$t('userEdit.snackbar.error.usernameForbidden'),
                                 stay: false,
                             });
                             break;
@@ -107,7 +107,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: "This username or email is already in use!",
+                                text: this.$t('login.snackbar.error.inUse'),
                                 stay: false,
                             });
                             break;
