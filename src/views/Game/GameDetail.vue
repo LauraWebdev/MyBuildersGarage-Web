@@ -42,8 +42,8 @@
                         </div>
 
                         <div class="actions" v-if="$store.state.userData != null ? gameDetail.user.id == $store.state.userData.id || ['moderator', 'admin'].some(str => $store.state.userRoles.includes(str)) : false">
-                            <LinkButton :to="{ name: 'GameEdit', params: { id: gameDetail.id } }" filled>Edit</LinkButton>
-                            <LinkButton :to="{ name: 'GameDelete', params: { id: gameDetail.id } }">Delete</LinkButton>
+                            <LinkButton :to="{ name: 'GameEdit', params: { id: gameDetail.id } }" filled>{{ $t('gameDetail.action.edit') }}</LinkButton>
+                            <LinkButton :to="{ name: 'GameDelete', params: { id: gameDetail.id } }">{{ $t('gameDetail.action.delete') }}</LinkButton>
                         </div>
                     </div>
                     <div class="game-screenshots">
@@ -75,18 +75,16 @@
 
             <div class="page-centered">
                 <div class="page-wrapper page-thirdssplit page-comments">
-                    <div class="comment-form comment-text" v-if="$store.state.userData == null">
-                        Login to write comments<br />and give feedback!
-                    </div>
+                    <div class="comment-form comment-text" v-if="$store.state.userData == null" v-html="$t('gameDetail.comments.form.notLoggedIn')"></div>
                     <div class="comment-form" v-if="!newCommentActionLoading && $store.state.userData != null">
                         <textarea v-model="newCommentText" class="input"></textarea>
-                        <button class="button button-filled" v-on:click="addComment()">Comment</button>
+                        <button class="button button-filled" v-on:click="addComment()">{{ $t('gameDetail.comments.form.commentButton') }}</button>
                     </div>
                     <div class="comment-form comment-loading" v-if="newCommentActionLoading && $store.state.userData != null">
                         <LoadingCircle />
                     </div>
                     <div class="comment-nocomments" v-if="gameDetail.comments.length == 0">
-                        This game does not have any comments yet.
+                        {{ $t('gameDetail.comments.noComments') }}
                     </div>
                     <CommentList v-if="gameDetail.comments.length > 0">
                         <Comment v-for="comment in gameDetail.comments" v-bind="comment" v-bind:key="comment.id" />
@@ -101,7 +99,7 @@
                     </div>
                 </div>
 
-                <div v-on:click="closeTrailer()" class="close-button">Close</div>
+                <div v-on:click="closeTrailer()" class="close-button">{{ $t('gameDetail.trailerOverlay.closeButton') }}</div>
             </div>
         </div>
     </div>
@@ -172,7 +170,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "gamepad-square",
-                                text: "Game couldn't be loaded due to a server error. Please try again later",
+                                text: this.$t('gameDetail.snackbar.error.serverError'),
                                 stay: true,
                             });
                             break;
@@ -180,7 +178,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "gamepad-square",
-                                text: "We couldn't find a game that matches this criteria.",
+                                text: this.$t('gameDetail.snackbar.error.notFound'),
                                 stay: true,
                             });
                             break;
@@ -188,7 +186,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "gamepad-square",
-                                text: "You are not allowed to see this game.",
+                                text: this.$t('gameDetail.snackbar.error.private'),
                                 stay: true,
                             });
                             break;
@@ -208,7 +206,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "comment-processing",
-                                text: "Comments couldn't be loaded due to a server error. Please try again later",
+                                text: this.$t('gameDetail.snackbar.comments.error.serverError'),
                                 stay: true,
                             });
                             break;
@@ -235,7 +233,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "bookmark-plus",
-                        text: `${this.$data.gameDetail.title} was added to your playlist.`,
+                        text: this.$t('gameDetail.snackbar.addToPlaylist.success', {gameTitle: this.$data.gameDetail.title}),
                         stay: false,
                     });
                 } catch(error) {
@@ -245,7 +243,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "bookmark-plus",
-                                text: "Game couldn't be added to your playlist due to a server error. Please try again later",
+                                text: this.$t('gameDetail.snackbar.addToPlaylist.error.serverError'),
                                 stay: true,
                             });
                             break;
@@ -253,7 +251,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "success",
                                 icon: "bookmark-plus",
-                                text: `${this.$data.gameDetail.title} was added to your playlist.`,
+                                text: this.$t('gameDetail.snackbar.addToPlaylist.success', {gameTitle: this.$data.gameDetail.title}),
                                 stay: false,
                             });
                             this.$data.isInPlaylist = true;
@@ -277,7 +275,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "bookmark-minus",
-                        text: `${this.$data.gameDetail.title} was deleted from your playlist.`,
+                        text: this.$t('gameDetail.snackbar.deleteFromPlaylist.success', {gameTitle: this.$data.gameDetail.title}),
                         stay: false,
                     });
                 } catch(error) {
@@ -285,7 +283,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "bookmark-minus",
-                        text: "Game couldn't be deleted from your playlist due to a server error. Please try again later",
+                        text: this.$t('gameDetail.snackbar.deleteFromPlaylist.error.serverError'),
                         stay: false,
                     });
 
@@ -299,7 +297,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "comment-processing",
-                        text: "Comments can't be empty.",
+                        text: this.$t('gameDetail.snackbar.comments.notEmpty'),
                         stay: false,
                     });
                     this.$data.newCommentActionLoading = false;
@@ -312,7 +310,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "comment-processing",
-                        text: `Your comment was posted.`,
+                        text: this.$t('gameDetail.snackbar.comments.success.posted'),
                         stay: false,
                     });
 
@@ -327,7 +325,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "comment-processing",
-                                text: "Comment couldn't be posted due to a server error. Please try again later",
+                                text: this.$t('gameDetail.snackbar.comments.error.postedServerError'),
                                 stay: true,
                             });
                             break;
@@ -344,7 +342,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "comment-processing",
-                        text: `Your comment was deleted.`,
+                        text: this.$t('gameDetail.snackbar.comments.success.deleted'),
                         stay: false,
                     });
 
@@ -356,7 +354,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "comment-processing",
-                                text: "Comment couldn't be deleted due to a server error. Please try again later",
+                                text: this.$t('gameDetail.snackbar.comments.error.deletedServerError'),
                                 stay: true,
                             });
                             break;
