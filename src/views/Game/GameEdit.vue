@@ -152,7 +152,7 @@
                     let gameResponse = await this.$data.apiRef.getGameDetail(this.$router.currentRoute.params.id, this.$store.state.userToken);
                     this.$data.gameDetail = gameResponse.game;
 
-                    if(this.$data.gameDetail.user.id != this.$store.state.userData.id && !this.$store.state.userRoles.includes('moderator', 'admin')) {
+                    if(this.$data.gameDetail.user.id != this.$store.state.userData.id && !['moderator', 'admin'].some(str => this.$store.state.userRoles.includes(str))) {
                         console.log("User is not allowed to edit this entry");
 
                         this.$root.$emit('addSnackbar', {

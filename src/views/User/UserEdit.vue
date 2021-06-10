@@ -148,7 +148,7 @@
                 try {
                     this.$data.userDetail = await this.$data.apiRef.getUserDetail(this.$router.currentRoute.params.id);
 
-                    if(this.$data.userDetail.id != this.$store.state.userData.id && !this.$store.state.userRoles.includes('moderator', 'admin')) {
+                    if(this.$data.userDetail.id != this.$store.state.userData.id && !['moderator', 'admin'].some(str => this.$store.state.userRoles.includes(str))) {
                         console.log("User is not allowed to edit this entry");
 
                         this.$root.$emit('addSnackbar', {
@@ -192,7 +192,7 @@
                 this.$data.apiLoading = true;
 
                 try {
-                    await this.$data.apiRef.updateUserAvatar(this.$store.state.userData.id, this.$data.tab1AvatarFile, this.$store.state.userToken);
+                    await this.$data.apiRef.updateUserAvatar(this.$data.userDetail.id, this.$data.tab1AvatarFile, this.$store.state.userToken);
 
                     this.$data.apiLoading = false;
                     this.loadUser();
