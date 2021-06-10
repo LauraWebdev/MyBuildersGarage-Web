@@ -22,7 +22,7 @@
                 this.$root.$emit('addSnackbar', {
                     type: "success",
                     icon: "key",
-                    text: $t('logout.snackbar.successful'),
+                    text: this.$t('logout.snackbar.successful'),
                     stay: false,
                 });
 
