@@ -8,10 +8,10 @@
         </router-link>
 
         <nav>
-            <router-link :to="{name: 'Index'}" class="item">Discover</router-link>
-            <router-link :to="{name: 'ChannelOverview'}" class="item">Channels</router-link>
-            <router-link :to="{name: 'Search'}" class="item">Find</router-link>
-            <router-link :to="{name: 'Talk'}" class="item">Talk</router-link>
+            <router-link :to="{name: 'Index'}" class="item">{{ $t('header.nav.discover') }}</router-link>
+            <router-link :to="{name: 'ChannelOverview'}" class="item">{{ $t('header.nav.channels') }}</router-link>
+            <router-link :to="{name: 'Search'}" class="item">{{ $t('header.nav.find') }}</router-link>
+            <router-link :to="{name: 'Talk'}" class="item">{{ $t('header.nav.talk') }}</router-link>
         </nav>
 
         <div class="actions" v-if="$store.state.userToken !== null && $store.state.userToken !== undefined">
@@ -24,8 +24,8 @@
         </div>
         <div class="actions actions-unauthorized" v-if="$store.state.userToken === null || $store.state.userToken === undefined">
             <ThemeItem></ThemeItem>
-            <LinkButton to="/auth/register" filled>Join now!</LinkButton>
-            <LinkButton to="/auth/login" class="button">Login</LinkButton>
+            <LinkButton to="/auth/register" filled>{{ $t('header.actions.join') }}</LinkButton>
+            <LinkButton to="/auth/login" class="button">{{ $t('header.actions.login') }}</LinkButton>
         </div>
     </header>
 </template>
