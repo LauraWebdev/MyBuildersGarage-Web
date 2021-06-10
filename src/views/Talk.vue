@@ -2,8 +2,8 @@
     <div class="page-talk">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1>Talk</h1>
-                <p>The Game Builder Garage community is big! Here are some other community projects and hangouts to find creators and learn more about Game Builder Garage!</p>
+                <h1>{{ $t('talk.header') }}</h1>
+                <p>{{ $t('talk.explaination') }}</p>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
 
         <div class="page-centered">
             <div class="page-wrapper">
-                <div class="project-missing">Any projects we're missing? Let us know on our Discord!</div>
+                <div class="project-missing">{{ $t('talk.missing') }}</div>
             </div>
         </div>
     </div>
