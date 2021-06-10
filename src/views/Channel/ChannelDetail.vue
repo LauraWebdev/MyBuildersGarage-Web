@@ -67,7 +67,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "gamepad-square",
-                                text: "Channel couldn't be loaded due to a server error. Please try again later",
+                                text: this.$t('channelDetail.snackbar.serverError'),
                                 stay: true,
                             });
                             break;
@@ -75,7 +75,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "gamepad-square",
-                                text: "We couldn't find a channel that matches this criteria.",
+                                text: this.$t('channelDetail.snackbar.notFound'),
                                 stay: true,
                             });
                             break;
