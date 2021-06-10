@@ -310,7 +310,7 @@ const messages = {
     },
     "game": {
         "snackbar": {
-            "successful": {
+            "success": {
                 "addToPlaylist": "{gameTitle} was added to your playlist.",
                 "deleteFromPlaylist": "{gameTitle} was deleted from your playlist."
             },
