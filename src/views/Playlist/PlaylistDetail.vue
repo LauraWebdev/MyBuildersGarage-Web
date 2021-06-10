@@ -33,6 +33,9 @@
 
     export default {
         name: 'PlaylistDetail',
+        metaInfo: {
+            title: 'Playlist detail',
+        },
         data: function() {
             return {
                 apiRef: null,
@@ -59,7 +62,7 @@
                     this.$data.playlistDetail = await this.$data.apiRef.getPlaylistDetail(this.$router.currentRoute.params.id, this.$store.state.userToken);
                     this.$data.apiLoading = false;
 
-                    document.title = `${this.$data.playlistDetail.user.username}'s playlist ~ MyGarage.games`;
+                    document.title = `${this.$data.playlistDetail.title} by ${this.$data.playlistDetail.user.username} ~ MyGarage.games`;
                 } catch(error) {
                     switch(error.name) {
                         default:

@@ -17,6 +17,10 @@
 
     export default {
         name: 'App',
+        metaInfo: {
+            title: 'Discover & Share',
+            titleTemplate: '%s ~ MyGarage.games'
+        },
         components: {
             PageHeader,
             PageFooter,

@@ -112,6 +112,9 @@
 
     export default {
         name: 'UserEdit',
+        metaInfo: {
+            title: 'Editing a user',
+        },
         data: function() {
             return {
                 apiRef: null,

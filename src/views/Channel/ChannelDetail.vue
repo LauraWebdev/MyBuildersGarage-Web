@@ -29,6 +29,9 @@
 
     export default {
         name: 'ChannelDetail',
+        metaInfo: {
+            title: 'Channel detail',
+        },
         components: {
             LoadingCircle,
             GameList,
@@ -53,6 +56,9 @@
 
                 try {
                     this.$data.channelDetail = await this.$data.apiRef.getChannelDetail(channelID, this.$store.state.userToken);
+
+                    document.title = `#${this.$data.channelDetail.title} games ~ MyGarage.games`;
+
                     this.$data.apiLoading = false;
                 } catch(error) {
                     switch(error.name) {

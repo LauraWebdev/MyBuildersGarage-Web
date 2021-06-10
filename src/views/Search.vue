@@ -34,6 +34,9 @@
     
     export default {
         name: 'Search',
+        metaInfo: {
+            title: 'Find new games',
+        },
         components: {
             LoadingCircle,
             GameList,

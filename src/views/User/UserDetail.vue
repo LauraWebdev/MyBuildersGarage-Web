@@ -75,6 +75,9 @@
 
     export default {
         name: 'UserDetail',
+        metaInfo: {
+            title: 'User detail',
+        },
         data: function() {
             return {
                 apiRef: null,

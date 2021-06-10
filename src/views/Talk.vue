@@ -60,6 +60,9 @@
 
     export default {
         name: 'Talk',
+        metaInfo: {
+            title: 'Other projects',
+        },
         components: {
             ExternalLinkButton
         },

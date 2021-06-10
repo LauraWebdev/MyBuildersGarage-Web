@@ -26,7 +26,8 @@
 
     export default {
         name: 'Login',
-        components: {
+        metaInfo: {
+            title: 'Login',
         },
         data: function() {
             return {

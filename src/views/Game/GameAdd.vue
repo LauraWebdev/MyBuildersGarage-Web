@@ -115,6 +115,9 @@
 
     export default {
         name: 'GameAdd',
+        metaInfo: {
+            title: 'Add a new game',
+        },
         data: function() {
             return {
                 apiRef: null,

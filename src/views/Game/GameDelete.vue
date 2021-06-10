@@ -2,7 +2,7 @@
     <div class="page-gamedelete">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1>Removing a game</h1>
+                <h1>Deleting a game</h1>
                 <p>All actions are unreversible!</p>
             </div>
         </div>
@@ -33,6 +33,9 @@
 
     export default {
         name: 'GameDelete',
+        metaInfo: {
+            title: 'Deleting a game',
+        },
         data: function() {
             return {
                 apiRef: null,

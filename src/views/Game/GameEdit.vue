@@ -115,6 +115,9 @@
 
     export default {
         name: 'GameEdit',
+        metaInfo: {
+            title: 'Editing a game',
+        },
         data: function() {
             return {
                 apiRef: null,

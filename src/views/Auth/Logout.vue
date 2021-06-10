@@ -13,7 +13,8 @@
 <script>
     export default {
         name: 'Logout',
-        components: {
+        metaInfo: {
+            title: 'See you soon!',
         },
         mounted: function() {
             this.logout();

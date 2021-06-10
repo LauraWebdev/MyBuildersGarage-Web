@@ -28,6 +28,9 @@
 
     export default {
         name: 'Index',
+        metaInfo: {
+            title: 'Discover & Share',
+        },
         components: {
             GameList,
             GameItem,

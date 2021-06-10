@@ -7,5 +7,8 @@
 <script>
     export default {
         name: 'Legal',
+        metaInfo: {
+            title: 'Legal information',
+        },
     }
 </script>

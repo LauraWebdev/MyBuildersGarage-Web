@@ -25,6 +25,9 @@
 
     export default {
         name: 'ChannelOverview',
+        metaInfo: {
+            title: 'Channel Overview',
+        },
         components: {
             ChannelList,
             ChannelItem,

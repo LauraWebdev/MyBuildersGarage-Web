@@ -117,6 +117,9 @@
 
     export default {
         name: 'GameDetail',
+        metaInfo: {
+            title: 'Game detail',
+        },
         data: function() {
             return {
                 apiRef: null,

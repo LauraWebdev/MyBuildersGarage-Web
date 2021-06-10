@@ -151,13 +151,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-    const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
-    if(nearestWithTitle) {
-        document.title = nearestWithTitle.meta.title + " ~ MyGarage.games";
-    } else {
-        document.title = "MyGarage.games";
-    }
-
     if(Store.state.userToken === undefined || Store.state.userToken === null) {
         next();
         return;

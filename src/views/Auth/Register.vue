@@ -26,7 +26,8 @@
 
     export default {
         name: 'Register',
-        components: {
+        metaInfo: {
+            title: 'Create a new account',
         },
         data: function() {
             return {
