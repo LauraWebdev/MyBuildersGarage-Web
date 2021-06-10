@@ -2,7 +2,7 @@
     <div class="page page-wrapper page-index">
         <div class="welcome">
             <span class="mdi mdi-bug"></span>
-            <div class="text">Welcome to the MyGarage.games BETA!<br />Please report bugs and feedback in the Discord, thank you!</div>
+            <div class="text">{{ $t('index.welcome') }}</div>
             <div class="actions">
                 <ExternalLinkButton href="https://mygarage.games/discord">Indiegesindel Discord</ExternalLinkButton>
             </div>
@@ -18,7 +18,7 @@
 
         <div class="support">
             <span class="mdi mdi-hand-heart"></span>
-            <div class="text">Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! We want to keep MyGarage.games free off advertisements and any "plus membership" system. <i>&dash; Laura</i></div>
+            <div class="text">{{ $t('index.support') }}</div>
             <div class="actions">
                 <ExternalLinkButton href="https://paypal.me/pools/c/8Ad2xnFEH4">PayPal Moneypool</ExternalLinkButton>
                 <ExternalLinkButton href="https://indiegesindel.itch.io/">Itch.io Games</ExternalLinkButton>
