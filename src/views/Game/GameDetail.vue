@@ -233,7 +233,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "bookmark-plus",
-                        text: this.$t('gameDetail.snackbar.addToPlaylist.success', {gameTitle: this.$data.gameDetail.title}),
+                        text: this.$t('game.snackbar.success.addToPlaylist', {gameTitle: this.$data.gameDetail.title}),
                         stay: false,
                     });
                 } catch(error) {
@@ -243,7 +243,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "bookmark-plus",
-                                text: this.$t('gameDetail.snackbar.addToPlaylist.error.serverError'),
+                                text: this.$t('game.snackbar.error.addToPlaylistServerError'),
                                 stay: true,
                             });
                             break;
@@ -251,7 +251,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "success",
                                 icon: "bookmark-plus",
-                                text: this.$t('gameDetail.snackbar.addToPlaylist.success', {gameTitle: this.$data.gameDetail.title}),
+                                text: this.$t('game.snackbar.success.addToPlaylist', {gameTitle: this.$data.gameDetail.title}),
                                 stay: false,
                             });
                             this.$data.isInPlaylist = true;
@@ -275,7 +275,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "bookmark-minus",
-                        text: this.$t('gameDetail.snackbar.deleteFromPlaylist.success', {gameTitle: this.$data.gameDetail.title}),
+                        text: this.$t('game.snackbar.success.deleteFromPlaylist', {gameTitle: this.$data.gameDetail.title}),
                         stay: false,
                     });
                 } catch(error) {
@@ -283,7 +283,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "bookmark-minus",
-                        text: this.$t('gameDetail.snackbar.deleteFromPlaylist.error.serverError'),
+                        text: this.$t('game.snackbar.error.deleteFromPlaylistServerError'),
                         stay: false,
                     });
 
