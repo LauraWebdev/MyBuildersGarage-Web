@@ -1,9 +1,9 @@
 <template>
     <footer>
-        <p>MyGarage.games is a free platform by the community and in no way affiliated with Nintendo.<br />Game Builder Garage is a trademark by Nintendo.</p>
+        <p v-html="$t('footer.disclaimer')"></p>
 
-        <LinkButton :to="{name: 'Legal'}">Legal information</LinkButton>
-        <ExternalLinkButton href="https://api.mygarage.games">API</ExternalLinkButton>
+        <LinkButton :to="{name: 'Legal'}">{{ $t('footer.legalLink') }}</LinkButton>
+        <ExternalLinkButton href="https://api.mygarage.games">{{ $t('footer.apiLink') }}</ExternalLinkButton>
 
         <br /><br />
     </footer>
