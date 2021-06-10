@@ -1,15 +1,15 @@
 <template>
     <div class="page-centered page-login">
         <div class="login-box">
-            <div class="box-header">Login</div>
+            <div class="box-header">{{ $t('login.header') }}</div>
             <div class="box-banned" v-if="isBanned">
-                You were banned. If you believe this is a mistake, you can send us a <a href="https://forms.gle/gpcpFe9jkymXSCsY7" target="_blank">ban appeal</a>.
+                {{ $t('login.banned.message') }} <a href="https://forms.gle/gpcpFe9jkymXSCsY7" target="_blank">{{ $t('login.banned.appealLinkText') }}</a>
             </div>
             <div class="box-content">
-                <input class="input" type="text" v-model="userName" placeholder="Username" />
-                <input class="input" type="password" v-model="userPass" placeholder="Password" />
+                <input class="input" type="text" v-model="userName" :placeholder="$t('login.form.usernamePlaceholder')" />
+                <input class="input" type="password" v-model="userPass" :placeholder="$t('login.form.passwordPlaceholder')" />
 
-                <button v-on:click="login()" class="button button-filled">Login</button>
+                <button v-on:click="login()" class="button button-filled">{{ $t('login.form.loginButton') }}</button>
                 
                 <div class="social-logins">
                     <button v-on:click="loginDiscord()" class="button">Discord</button>
@@ -48,7 +48,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "key",
-                        text: "All fields must be filled out.",
+                        text: this.$t('login.snackbar.error.fillOut'),
                         stay: false,
                     });
                     return;
@@ -61,7 +61,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "key",
-                        text: "Welcome back, " + loginResponse.userData.username,
+                        text: this.$t('login.snackbar.welcomeBack', {username: loginResponse.userData.username}),
                         stay: false,
                     });
 
@@ -72,7 +72,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: "There was a server error logging you in. Please try again later.",
+                                text: this.$t('login.snackbar.error.serverError'),
                                 stay: false,
                             });
                             break;
@@ -81,7 +81,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: "This user does not exist.",
+                                text: this.$t('login.snackbar.error.userDoesntExist'),
                                 stay: false,
                             });
                             break;
@@ -90,7 +90,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: "The password is incorrect.",
+                                text: this.$t('login.snackbar.error.passwordWrong'),
                                 stay: false,
                             });
                             break;
@@ -100,7 +100,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: `Your account was banned. Reason: ${error.message}`,
+                                text: this.$t('login.snackbar.error.banned', {reason: error.message}),
                                 stay: true,
                             });
                             break;
