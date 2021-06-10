@@ -9,7 +9,7 @@
             {{ text }}
         </div>
         <div class="actions" v-if="$store.state.userData != null ? user.id == $store.state.userData.id || ['moderator', 'admin'].some(str => $store.state.userRoles.includes(str)) : false">
-            <button class="button button-filled" v-if="$store.state.userData.id == user.id || $store.state.userRoles" v-on:click="deleteComment()">Delete</button>
+            <button class="button button-filled" v-if="$store.state.userData.id == user.id || $store.state.userRoles" v-on:click="deleteComment()">{{ $t('comment.deleteButton') }}</button>
         </div>
     </div>
 </template>
