@@ -46,6 +46,12 @@
                 </div>
             </div>
         </div>
+
+        <div class="page-centered">
+            <div class="page-wrapper">
+                <div class="project-missing">Any projects we're missing? Let us know on our Discord!</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -97,8 +103,18 @@
         }
     }
 
+    & .project-missing {
+        background: rgba(0,0,0,0.07);
+        padding: 25px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
     .theme-dark {
         & .project {
+            background: rgba(255,255,255,0.07);
+        }
+        & .project-missing {
             background: rgba(255,255,255,0.07);
         }
     }
