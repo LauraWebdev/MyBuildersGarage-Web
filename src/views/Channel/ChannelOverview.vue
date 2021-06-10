@@ -2,8 +2,8 @@
     <div class="page-channelOverview">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1>Channel Overview</h1>
-                <p>Discover new games by a specific topic, style or concept.</p>
+                <h1>{{ $t('channelOverview.header') }}</h1>
+                <p>{{ $t('channelOverview.explaination') }}</p>
             </div>
         </div>
 
