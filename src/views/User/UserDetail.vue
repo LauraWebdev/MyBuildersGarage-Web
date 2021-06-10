@@ -15,15 +15,15 @@
                     <div class="user-meta">
                         <div class="meta-info">
                             <div class="item" v-if="userDetail.pronouns != null && userDetail.pronouns != ''">
-                                <div class="property">Pronouns</div>
+                                <div class="property">{{ $t('userDetail.meta.pronouns') }}</div>
                                 <div class="content">{{ userDetail.pronouns }}</div>
                             </div>
                             <div class="item" v-if="userDetail.ingameID != null && userDetail.ingameID != ''">
-                                <div class="property">Ingame-ID</div>
+                                <div class="property">{{ $t('userDetail.meta.ingameID') }}</div>
                                 <div class="content">{{ userDetail.ingameID }}</div>
                             </div>
                             <div class="item">
-                                <div class="property">Joined</div>
+                                <div class="property">{{ $t('userDetail.meta.joinedDate') }}</div>
                                 <div class="content">{{ createdFormatted }}</div>
                             </div>
                         </div>
@@ -43,22 +43,22 @@
                         </div>
                         <div class="team-banner" v-if="['moderator', 'admin'].some(str => userDetail.roles.includes(str))">
                             <span class="mdi mdi-shield-check"></span>
-                            <span>This user is a verified member of the MyGarage.games team.</span>
+                            <span>{{ $t('userDetail.meta.teamVerified') }}</span>
                         </div>
 
                         <div class="actions" v-if="$store.state.userData ? userDetail.id == $store.state.userData.id || ['moderator', 'admin'].some(str => $store.state.userRoles.includes(str)) : false">
-                            <LinkButton :to="{ name: 'UserEdit', params: { id: userDetail.id }}" filled>Edit</LinkButton>
+                            <LinkButton :to="{ name: 'UserEdit', params: { id: userDetail.id }}" filled>{{ $t('userDetail.action.edit') }}</LinkButton>
                         </div>
 
                         <div class="actions" v-if="$store.state.userData ? ['moderator', 'admin'].some(str => $store.state.userRoles.includes(str)) : false">
-                            <LinkButton to="/">Ban User</LinkButton>
+                            <!-- <LinkButton to="/">Ban User</LinkButton> -->
                         </div>
                     </div>
                     <div class="user-games" v-if="userDetail.games.length > 0">
                         <GameItem v-for="game in userDetail.games" v-bind:key="game.id" v-bind="game"></GameItem>
                     </div>
                     <div class="user-nogames" v-if="userDetail.games.length == 0">
-                        This user has not uploaded any games yet.
+                        {{ $t('userDetail.nogames') }}
                     </div>
                 </div>
             </div>
@@ -201,6 +201,10 @@
 
                 & div:nth-child(1) {
                     opacity: 0.6;
+                }
+                & div:nth-child(2) {
+                    word-wrap: break-word;
+                    overflow: hidden;
                 }
             }
         }
