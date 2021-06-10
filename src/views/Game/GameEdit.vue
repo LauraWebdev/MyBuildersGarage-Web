@@ -2,8 +2,8 @@
     <div class="page-gameedit">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1>Edit a game</h1>
-                <p>Adjust information, add screenshots or trailers and publish / unpublish your game.</p>
+                <h1>{{ $t('gameEdit.header') }}</h1>
+                <p>{{ $t('gameEdit.explaination') }}</p>
             </div>
         </div>
 
@@ -15,10 +15,10 @@
         <div class="page-centered" v-if="!apiLoading && gameDetail != null">
             <div class="page-wrapper">
                 <div class="tabs">
-                    <div class="tab" :class="currentTab == 0 ? 'active' : ''" v-on:click="changeTab(0)">General</div>
-                    <div class="tab" :class="currentTab == 1 ? 'active' : ''" v-on:click="changeTab(1)">Discoverability</div>
-                    <div class="tab" :class="currentTab == 2 ? 'active' : ''" v-on:click="changeTab(2)">Additional Media</div>
-                    <div class="tab" :class="currentTab == 3 ? 'active' : ''" v-on:click="changeTab(3)">Screenshots</div>
+                    <div class="tab" :class="currentTab == 0 ? 'active' : ''" v-on:click="changeTab(0)">{{ $t('gameAdd.general.header') }}</div>
+                    <div class="tab" :class="currentTab == 1 ? 'active' : ''" v-on:click="changeTab(1)">{{ $t('gameAdd.discoverability.header') }}</div>
+                    <div class="tab" :class="currentTab == 2 ? 'active' : ''" v-on:click="changeTab(2)">{{ $t('gameAdd.media.header') }}</div>
+                    <div class="tab" :class="currentTab == 3 ? 'active' : ''" v-on:click="changeTab(3)">{{ $t('gameEdit.screenshots.header') }}</div>
                 </div>
             </div>
         </div>
@@ -27,30 +27,30 @@
             <div class="page-wrapper">
                 <div class="step" v-if="currentTab == 0">
                     <div class="step-input">
-                        <label>Title of your entry*</label>
-                        <input type="text" class="input" v-model="tab0Title" placeholder="My super awesome game" />
+                        <label>{{ $t('gameAdd.general.form.title') }}*</label>
+                        <input type="text" class="input" v-model="tab0Title" :placeholder="$t('gameAdd.general.form.titlePlaceholder')" />
                     </div>
                     <div class="step-input">
-                        <label>Please describe your entry. What type of experience is it? How do you play?</label>
+                        <label>{{ $t('gameAdd.general.form.description') }}</label>
                         <textarea rows="4" class="input" v-model="tab0Description"></textarea>
                     </div>
                     <div class="step-input">
-                        <label>Enter the ID that you see on Game Builder Garage after uploading*</label>
-                        <input type="text" class="input" v-model="tab0IngameID" placeholder="G-000-000-000" />
+                        <label>{{ $t('gameAdd.general.form.ingameID') }}*</label>
+                        <input type="text" class="input" v-model="tab0IngameID" :placeholder="$t('gameAdd.general.form.ingameIDPlaceholder')" />
                     </div>
                 </div>
 
                 <div class="step" v-if="currentTab == 1">
                     <div class="step-input">
-                        <label>Who should be able to see your entry?</label>
+                        <label>{{ $t('gameAdd.discoverability.form.displayStatus') }}</label>
                         <select class="input" v-model="tab1DisplayStatus">
-                            <option value="0">Everyone</option>
-                            <option value="1">Hidden - Only people with the link can access it</option>
-                            <option value="2">Private - Only you can access it</option>
+                            <option value="0">{{ $t('gameAdd.discoverability.form.displayStatus0') }}</option>
+                            <option value="1">{{ $t('gameAdd.discoverability.form.displayStatus1') }}</option>
+                            <option value="2">{{ $t('gameAdd.discoverability.form.displayStatus2') }}</option>
                         </select>
                     </div>
                     <div class="step-input">
-                        <label>Select channels for your entry (Hold CTRL to select multiple channels)</label>
+                        <label>{{ $t('gameAdd.discoverability.form.channels') }}</label>
                         <select class="input-select" multiple v-model="tab1Channels">
                             <option v-for="channel in tab1AllChannels" v-bind:key="channel.id" :value="channel.id">{{ channel.title }}</option>
                         </select>
@@ -59,21 +59,21 @@
 
                 <div class="step" v-if="currentTab == 2">
                     <div class="step-input">
-                        <label>Cover Image</label>
+                        <label>{{ $t('gameAdd.media.form.coverFile') }}</label>
                         <div class="cover-holder">
                             <div class="change-cover" v-on:click="$refs.coverFile.click()" :style="`background-image: url('${gameDetail.coverFileName}')`">
                                 <div class="icon">
                                     <span class="mdi mdi-image-edit"></span>
-                                    <div class="hint">.png / .jpg</div>
+                                    <div class="hint">{{ $t('gameEdit.media.form.fileHint') }}</div>
                                 </div>
                                 <input type="file" ref="coverFile" v-on:change="processCoverFile" accept="png,jpg" />
                             </div>
 
-                            <div class="button" v-on:click="deleteCover()">Delete Cover</div>
+                            <div class="button" v-on:click="deleteCover()">{{ $t('gameEdit.media.form.deleteCoverButton') }}</div>
                         </div>
                     </div>
                     <div class="step-input">
-                        <label>Do you have a YouTube trailer? Add the URL in here!</label>
+                        <label>{{ $t('gameAdd.media.form.youtubeUrl') }}</label>
                         <input type="text" class="input" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" v-model="tab2VideoURL" />
                     </div>
                 </div>
@@ -91,16 +91,16 @@
                     <div class="add-screenshot" v-on:click="$refs.screenshotFiles.click()">
                         <div class="icon">
                             <span class="mdi mdi-image-plus"></span>
-                            <div class="hint">.png / .jpg</div>
+                            <div class="hint">{{ $t('gameEdit.media.form.fileHint') }}</div>
                         </div>
                         <input type="file" ref="screenshotFiles" v-on:change="processScreenshotFiles" multiple accept="png,jpg" />
                     </div>
                 </div>
 
                 <div class="step-actions" v-if="currentTab != 3">
-                    <div class="footnote">* = required</div>
-                    <LinkButton :to="{ name: 'GameDetail', params: { id: gameDetail.id }}">Back to Game Page</LinkButton>
-                    <button class="button button-filled" v-on:click="saveGame()">Save</button>
+                    <div class="footnote">{{ $t('gameAdd.requiredNotice') }}</div>
+                    <LinkButton :to="{ name: 'GameDetail', params: { id: gameDetail.id }}">{{ $t('gameEdit.backToGamePageButton') }}</LinkButton>
+                    <button class="button button-filled" v-on:click="saveGame()">{{ $t('gameEdit.saveButton') }}</button>
                 </div>
             </div>
         </div>
@@ -156,12 +156,10 @@
                     this.$data.gameDetail = gameResponse.game;
 
                     if(this.$data.gameDetail.user.id != this.$store.state.userData.id && !['moderator', 'admin'].some(str => this.$store.state.userRoles.includes(str))) {
-                        console.log("User is not allowed to edit this entry");
-
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "lock-off-outline",
-                            text: "You are not allowed to edit this game.",
+                            text: this.$t('gameEdit.snackbar.error.notAllowed'),
                             stay: true,
                         });
                         return;
@@ -187,7 +185,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "gamepad-square",
-                                text: "Game couldn't be loaded due to a server error. Please try again later",
+                                text: this.$t('gameEdit.snackbar.error.loadServerError'),
                                 stay: true,
                             });
                             break;
@@ -195,7 +193,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "gamepad-square",
-                                text: "We couldn't find a game that matches this criteria.",
+                                text: this.$t('gameEdit.snackbar.error.loadNotFound'),
                                 stay: true,
                             });
                             break;
@@ -203,7 +201,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "gamepad-square",
-                                text: "You are not allowed to see this game.",
+                                text: this.$t('gameEdit.snackbar.error.loadPrivate'),
                                 stay: true,
                             });
                             break;
@@ -242,7 +240,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "trash-can-outline",
-                        text: "Screenshot was deleted.",
+                        text: this.$t('gameEdit.snackbar.success.screenshotDeleted'),
                         stay: false,
                     });
                 } catch(error) {
@@ -252,7 +250,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "trash-can-outline",
-                        text: "Could not delete screenshot. Please try again later.",
+                        text: this.$t('gameEdit.snackbar.error.screenshotDeleted'),
                         stay: false,
                     });
                 }
@@ -271,7 +269,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "content-save-outline",
-                        text: "Cover was updated.",
+                        text: this.$t('gameEdit.snackbar.success.coverUpdated'),
                         stay: false,
                     });
                 } catch(error) {
@@ -282,14 +280,14 @@
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Cover could not be updated because they have the wrong format. Only .png and .jpg files are allowed!",
+                            text: this.$t('gameEdit.snackbar.success.coverWrongFormat'),
                             stay: true,
                         });
                     } else {
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Could not update cover. Please try again later.",
+                            text: this.$t('gameEdit.snackbar.success.coverServerError'),
                             stay: false,
                         });
                     }
@@ -307,7 +305,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "content-save-outline",
-                        text: "Cover was deleted.",
+                        text: this.$t('gameEdit.snackbar.success.coverDeleted'),
                         stay: false,
                     });
                 } catch(error) {
@@ -317,7 +315,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "trash-can-outline",
-                        text: "Could not delete cover. Please try again later.",
+                        text: this.$t('gameEdit.snackbar.error.coverDeleteServerError'),
                         stay: false,
                     });
                 }
@@ -336,7 +334,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "content-save-outline",
-                        text: "Screenshots were uploaded successfully.",
+                        text: this.$t('gameEdit.snackbar.success.screenshotUploaded'),
                         stay: false,
                     });
                 } catch(error) {
@@ -347,14 +345,14 @@
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "One or more screenshots could not be uploaded because they have the wrong format. Only .png and .jpg files are allowed!",
+                            text: this.$t('gameEdit.snackbar.error.screenshotWrongFormat'),
                             stay: true,
                         });
                     } else {
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Your screenshots couldn't be uploaded due to a server error. Please try it again later!",
+                            text: this.$t('gameEdit.snackbar.error.screenshotUploadServerError'),
                             stay: true,
                         });
                     }
@@ -380,7 +378,7 @@
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Required fields cannot be empty!",
+                            text: this.$t('gameEdit.snackbar.error.requiredEmpty'),
                             stay: false,
                         });
                         return;
@@ -394,7 +392,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "content-save-outline",
-                        text: "Saved changes.",
+                        text: this.$t('gameEdit.snackbar.success.saved'),
                         stay: false,
                     });
                 } catch(error) {
@@ -405,14 +403,14 @@
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Your game ID is invalid (format: G-000-000-000).",
+                            text: this.$t('gameEdit.snackbar.error.gameIDInvalid'),
                             stay: true,
                         });
                     } else {
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "content-save-outline",
-                            text: "Your screenshots couldn't be uploaded due to a server error. Please try it again later!",
+                            text: this.$t('gameEdit.snackbar.error.screenshotUploadServerError'),
                             stay: true,
                         });
                     }
