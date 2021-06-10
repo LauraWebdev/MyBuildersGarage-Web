@@ -1,11 +1,8 @@
 <template>
     <div class="page-centered page-logout">
         <div class="logout-box">
-            <div class="box-header">Goodbye</div>
-            <div class="box-content">
-                You were successfully logged out!<br />
-                Thank you for visiting myGarage.games!
-            </div>
+            <div class="box-header">{{ $t('logout.header') }}</div>
+            <div class="box-content" v-html="$t('logout.text')"></div>
         </div>
     </div>
 </template>
@@ -25,7 +22,7 @@
                 this.$root.$emit('addSnackbar', {
                     type: "success",
                     icon: "key",
-                    text: "You were successfully logged out.",
+                    text: $t('logout.snackbar.successful'),
                     stay: false,
                 });
 
