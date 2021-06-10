@@ -2,7 +2,7 @@
     <div class=" page-playlistdetail">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1 v-if="apiLoading || playlistDetail == null">Playlist</h1>
+                <h1 v-if="apiLoading || playlistDetail == null">{{ $t('playlistDetail.header') }}</h1>
                 <h1 v-if="!apiLoading && playlistDetail != null">{{ playlistDetail.title }}</h1>
             </div>
         </div>
@@ -17,7 +17,7 @@
                     <GameItem v-for="game in playlistDetail.games" v-bind:key="game.id" v-bind="game" v-bind:mode="'delete'"></GameItem>
                 </GameList>
                 <div class="playlist-nogames" v-if="!apiLoading && playlistDetail.games.length == 0">
-                    There are no games in this playlist yet.
+                    {{ $t('playlistDetail.nogames') }}
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "bookmark",
-                                text: "Playlist couldn't be loaded due to a server error. Please try again later",
+                                text: this.$t('playlistDetail.snackbar.error.notFound'),
                                 stay: true,
                             });
                             break;
@@ -78,7 +78,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "bookmark",
-                                text: "You are not allowed to see this playlist.",
+                                text: this.$t('playlistDetail.snackbar.error.notAwllowed'),
                                 stay: true,
                             });
                             break;
