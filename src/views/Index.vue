@@ -1,13 +1,5 @@
 <template>
     <div class="page page-wrapper page-index">
-        <div class="support">
-            <span class="mdi mdi-hand-heart"></span>
-            <div class="text">Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! We want to keep MyGarage.games free off advertisements and any "plus membership" system. <i>&dash; Laura</i></div>
-            <div class="actions">
-                <ExternalLinkButton href="https://paypal.me/pools/c/8Ad2xnFEH4">PayPal Moneypool</ExternalLinkButton>
-                <ExternalLinkButton href="https://indiegesindel.itch.io/">Itch.io Games</ExternalLinkButton>
-            </div>
-        </div>
         <div class="welcome">
             <span class="mdi mdi-bug"></span>
             <div class="text">Welcome to the MyGarage.games BETA!<br />Please report bugs and feedback in the Discord, thank you!</div>
@@ -23,6 +15,15 @@
         <GameList v-bind:title="'Popular Games'">
             <GameItem v-for="game in popularGames" v-bind:key="game.id" v-bind="game"></GameItem>
         </GameList>
+
+        <div class="support">
+            <span class="mdi mdi-hand-heart"></span>
+            <div class="text">Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! We want to keep MyGarage.games free off advertisements and any "plus membership" system. <i>&dash; Laura</i></div>
+            <div class="actions">
+                <ExternalLinkButton href="https://paypal.me/pools/c/8Ad2xnFEH4">PayPal Moneypool</ExternalLinkButton>
+                <ExternalLinkButton href="https://indiegesindel.itch.io/">Itch.io Games</ExternalLinkButton>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -110,7 +111,6 @@
 
         & .welcome {
             background: #00d19844;
-            margin-top: -25px;
 
             & .mdi {
                 color: #00d198;
