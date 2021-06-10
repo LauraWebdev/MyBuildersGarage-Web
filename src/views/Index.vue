@@ -1,12 +1,18 @@
 <template>
     <div class="page page-wrapper page-index">
+        <div class="support">
+            <span class="mdi mdi-hand-heart"></span>
+            <div class="text">Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! We want to keep MyGarage.games free off advertisements and any "plus membership" system. <i>&dash; Laura</i></div>
+            <div class="actions">
+                <ExternalLinkButton href="https://paypal.me/pools/c/8Ad2xnFEH4">PayPal Moneypool</ExternalLinkButton>
+                <ExternalLinkButton href="https://indiegesindel.itch.io/">Itch.io Games</ExternalLinkButton>
+            </div>
+        </div>
         <div class="welcome">
-            <div class="box">
-                <div class="box-header">Welcome</div>
-                <div class="box-content">
-                    Welcome to the MyGarage.games BETA! Please report bugs and feedback in the Discord.<br />
-                    <i>Thank you!</i>
-                </div>
+            <span class="mdi mdi-bug"></span>
+            <div class="text">Welcome to the MyGarage.games BETA!<br />Please report bugs and feedback in the Discord, thank you!</div>
+            <div class="actions">
+                <ExternalLinkButton href="https://mygarage.games/discord">Indiegesindel Discord</ExternalLinkButton>
             </div>
         </div>
 
@@ -23,6 +29,7 @@
 <script>
     import MGGApi from '../modules/api';
 
+    import ExternalLinkButton from '@/components/General/ExternalLinkButton';
     import GameList from '@/components/Game/GameList';
     import GameItem from '@/components/Game/GameItem';
 
@@ -32,6 +39,7 @@
             title: 'Discover & Share',
         },
         components: {
+            ExternalLinkButton,
             GameList,
             GameItem,
         },
@@ -75,56 +83,47 @@
         grid-gap: 50px;
         align-content: flex-start;
 
+        & .support, & .welcome {
+            background: #25b9ff44;
+            padding: 25px;
+            border-radius: 5px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-gap: 10px 25px;
+
+            & .mdi {
+                color: #25b9ff;
+                font-size: 24px;
+            }
+            & .text {
+                line-height: 1.5em;
+                opacity: 0.6;
+            }
+            & .actions {
+                grid-column: 2;
+
+                & a {
+                    margin-right: 10px;
+                }
+            }
+        }
+
         & .welcome {
-            background: url('../assets/img/patternLight.png') center #25b9ff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 24px rgba(0,0,0,0.12);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #00d19844;
+            margin-top: -25px;
 
-            & .box {
-                background: #fff;
-                color: #222;
-                border: 2px solid #222;
-                border-radius: 10px;
-                width: 90%;
-                margin: 50px;
-                max-width: 400px;
-                overflow: hidden;
-
-                & .box-header {
-                    background: #222;
-                    padding: 10px 15px;
-                    font-size: 12px;
-                    color: #fff;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    letter-spacing: 0.15em;
-                }
-                & .box-content {
-                    padding: 20px;
-                    display: grid;
-                    grid-gap: 15px;
-                    text-align: center;
-                    line-height: 1.5em;
-                }
+            & .mdi {
+                color: #00d198;
             }
         }
     }
 
     .theme-dark {
-        & .welcome {
-            background: url('../assets/img/patternDark.png') center #002639;
-
-            & .box {
-                background: #222;
-                color: #fff;
-                border: 2px solid #fff;
-
-                & .box-header {
-                    background: #fff;
-                    color: #222;
+        & .support, & .welcome {
+            & .actions {
+                & a {
+                    color: #fff;
+                    border-color: rgba(255,255,255,0.4);
                 }
             }
         }
