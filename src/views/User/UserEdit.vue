@@ -94,10 +94,10 @@
 
                 <div class="step-actions">
                     <div class="footnote">{{ $t('gameAdd.requiredNotice') }}</div>
-                    <LinkButton :to="{ name: 'UserDetail', params: { id: userDetail.id }}">{{ $t('userEdit.form.backToProfileButton') }}</LinkButton>
+                    <LinkButton :to="{ name: 'UserDetail', params: { id: userDetail.id }}">{{ $t('userEdit.backToProfileButton') }}</LinkButton>
                     <div v-if="currentTab == 1"></div>
-                    <button class="button button-filled" v-on:click="saveUser()" v-if="currentTab == 0">{{ $t('userEdit.form.saveButton') }}</button>
-                    <button class="button button-filled" v-on:click="saveSecurity()" v-if="currentTab == 2">{{ $t('userEdit.form.saveButton') }}</button>
+                    <button class="button button-filled" v-on:click="saveUser()" v-if="currentTab == 0">{{ $t('userEdit.saveButton') }}</button>
+                    <button class="button button-filled" v-on:click="saveSecurity()" v-if="currentTab == 2">{{ $t('userEdit.saveButton') }}</button>
                 </div>
             </div>
         </div>
