@@ -2,105 +2,105 @@
     <div class="page-gameadd">
         <div class="page-centered page-header">
             <div class="page-wrapper">
-                <h1>Add a new game</h1>
-                <p>Have you created a game in Game Builder Garage?<br />Add it to MyGarage.games to get share it with the world!</p>
+                <h1>{{ $t('gameAdd.header') }}</h1>
+                <p v-html="$t('gameAdd.explaination')"></p>
             </div>
         </div>
 
         <div class="page-centered page-addGameForm">
             <div class="page-wrapper">
                 <div class="step" v-if="currentStep == 0">
-                    <div class="step-title">Submission rules</div>
+                    <div class="step-title">{{ $t('gameAdd.rules.header') }}</div>
                     <div class="step-text">
-                        Your submission <strong>may not</strong>
+                        <span v-html="$t('gameAdd.rules.maynot')"></span>
                         <ul>
-                            <li>be hateful, inappropriate, sexist or queerphobic. This includes content against other ethnicities, sexualities or minorities.</li>
-                            <li>violate the copyright or IP of other entities.</li>
-                            <li>contain adult content like nudity, hard violence or otherwise graphically disturbing content. This includes the games content, media assets and description.</li>
+                            <li>{{ $t('gameAdd.rules.ruleHateful') }}</li>
+                            <li>{{ $t('gameAdd.rules.ruleIP') }}</li>
+                            <li>{{ $t('gameAdd.rules.ruleExplicit') }}</li>
                         </ul>
                     </div>
                     <div class="step-text">
-                        Do not create multiple submissions for the same game. Do not submit content with highly low effort.
+                        {{ $t('gameAdd.rules.ruleLowEffort') }}
                     </div>
                     <div class="step-text">
-                        Please provide content descriptions if your submission has fast strobing graphic effects to protect those with sensitivities.
+                        {{ $t('gameAdd.rules.ruleContentNotice') }}
                     </div>
                     <div class="step-text">
-                        The moderation team will hide screenshots, and remove or hide videos or submissions if needed. If you continuously break our submission rules, we might prevent you from submitting further content or deactivate your account.
+                        {{ $t('gameAdd.rules.ruleModeration') }}
                     </div>
                     <div class="step-text">
-                        These rules are not indicative of a full list. Moderators will always act at their own discretion. We reserve the right to adjust this ruleset and make exceptions to any rule if needed.
+                        {{ $t('gameAdd.rules.ruleDiscretion') }}
                     </div>
                 </div>
                 <div class="step" v-if="currentStep == 1">
-                    <div class="step-title">General Information</div>
+                    <div class="step-title">{{ $t('gameAdd.general.header') }}</div>
                     <div class="step-input">
-                        <label>Title of your entry*</label>
-                        <input type="text" class="input" v-model="step0Title" placeholder="My super awesome game" />
+                        <label>{{ $t('gameAdd.general.form.title') }}*</label>
+                        <input type="text" class="input" v-model="step0Title" :placeholder="$t('gameAdd.general.form.titlePlaceholder')" />
                     </div>
                     <div class="step-input">
-                        <label>Please describe your entry. What type of experience is it? How do you play?</label>
+                        <label>{{ $t('gameAdd.general.form.description') }}</label>
                         <textarea rows="4" class="input" v-model="step0Description"></textarea>
                     </div>
                     <div class="step-input">
-                        <label>Enter the ID that you see on Game Builder Garage after uploading*</label>
-                        <input type="text" class="input" v-model="step0IngameID" placeholder="G-000-000-000" />
+                        <label>{{ $t('gameAdd.general.form.ingameID') }}*</label>
+                        <input type="text" class="input" v-model="step0IngameID" :placeholder="$t('gameAdd.general.form.ingameIDPlaceholder')" />
                     </div>
                 </div>
                 <div class="step" v-if="currentStep == 2">
-                    <div class="step-title">Discoverability</div>
+                    <div class="step-title">{{ $t('gameAdd.discoverability.header') }}</div>
                     <div class="step-input">
-                        <label>Who should be able to see your entry?</label>
+                        <label>{{ $t('gameAdd.discoverability.form.displayStatus') }}</label>
                         <select class="input" v-model="step1DisplayStatus">
-                            <option value="0">Everyone</option>
-                            <option value="1">Hidden - Only people with the link can access it</option>
-                            <option value="2">Private - Only you can access it</option>
+                            <option value="0">{{ $t('gameAdd.discoverability.form.displayStatus0') }}</option>
+                            <option value="1">{{ $t('gameAdd.discoverability.form.displayStatus1') }}</option>
+                            <option value="2">{{ $t('gameAdd.discoverability.form.displayStatus2') }}</option>
                         </select>
                     </div>
                     <div class="step-input">
-                        <label>Select channels for your entry (Hold CTRL to select multiple channels)</label>
+                        <label>{{ $t('gameAdd.discoverability.form.channels') }}</label>
                         <select class="input-select" multiple v-model="step1Channels">
                             <option v-for="channel in step1AllChannels" v-bind:key="channel.id" :value="channel.id">{{ channel.title }}</option>
                         </select>
                     </div>
                 </div>
                 <div class="step" v-if="currentStep == 3">
-                    <div class="step-title">Additional Media</div>
+                    <div class="step-title">{{ $t('gameAdd.media.header') }}</div>
                     <div class="step-input">
-                        <label>Cover Image (16 by 9, .jpg or .png)</label>
+                        <label>{{ $t('gameAdd.media.form.coverFile') }}</label>
                         <input type="file" v-on:change="processCoverFile" />
                     </div>
                     <div class="step-input">
-                        <label>Do you have a YouTube trailer? Add the URL in here!</label>
+                        <label>{{ $t('gameAdd.media.form.youtubeUrl') }}</label>
                         <input type="text" class="input" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" v-model="step2VideoURL" />
                     </div>
                 </div>
                 <div class="step" v-if="currentStep == 4">
-                    <div class="step-title" v-if="!apiLoading && !apiError">That's it!</div>
+                    <div class="step-title" v-if="!apiLoading && !apiError">{{ $t('gameAdd.done.success.header') }}</div>
                     <div class="step-text" v-if="!apiLoading && !apiError">
-                        Well done, your game was successfully published. You can now add screenshots, adjust the theme and share your game by visiting the games page.
+                        {{ $t('gameAdd.done.success.text') }}
                     </div>
                     <div class="step-text" v-if="!apiLoading && apiErrorCoverWrongFormat">
-                        <strong>The cover file couldn't be upload, because it was not a valid file. Please keep in mind that only PNG and JPEG files are valid cover filetypes.</strong>
+                        <strong>{{ $t('gameAdd.done.success.coverWrongFormat') }}</strong>
                     </div>
                     <div class="step-loading" v-if="apiLoading">
                         <LoadingCircle />
                     </div>
                 </div>
                 <div class="step" v-if="apiError">
-                    <div class="step-title">Whoops!</div>
+                    <div class="step-title">{{ $t('gameAdd.done.error.header') }}</div>
                     <div class="step-text">
-                        There was an issue publishing your game. Please try again later.
+                        {{ $t('gameAdd.done.error.text') }}
                     </div>
                 </div>
                 <div class="step-actions">
-                    <div class="footnote" v-if="currentStep != 0 && currentStep != 4">* = required</div>
-                    <button class="button" v-on:click="stepBack()" v-if="currentStep != 0 && currentStep != 4">Back</button>
-                    <button class="button button-filled" v-on:click="stepContinue()" v-if="currentStep != 4">{{ currentStep == 0 ? 'I agree' : 'Continue' }}</button>
+                    <div class="footnote" v-if="currentStep != 0 && currentStep != 4">{{ $t('gameAdd.requiredNotice') }}</div>
+                    <button class="button" v-on:click="stepBack()" v-if="currentStep != 0 && currentStep != 4">{{ $t('gameAdd.action.backButton') }}</button>
+                    <button class="button button-filled" v-on:click="stepContinue()" v-if="currentStep != 4">{{ currentStep == 0 ? $t('gameAdd.action.agreeButton') : $t('gameAdd.action.continueButton') }}</button>
 
                     <div v-if="currentStep == 4 && !apiLoading && !apiError"></div>
                     <div v-if="currentStep == 4 && !apiLoading && !apiError"></div>
-                    <LinkButton :to="{ name: 'GameDetail', params: { id: createdGame.id }}" filled v-if="currentStep == 4 && !apiLoading && !apiError">Go to Game Page</LinkButton>
+                    <LinkButton :to="{ name: 'GameDetail', params: { id: createdGame.id }}" filled v-if="currentStep == 4 && !apiLoading && !apiError">{{ $t('gameAdd.action.goToGameButton') }}</LinkButton>
                 </div>
             </div>
         </div>
@@ -171,7 +171,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "plus",
-                                text: "You have to fill out all required fields to continue.",
+                                text: this.$t('gameAdd.snackbar.fillOut'),
                                 stay: false,
                             });
                             return false;
@@ -181,7 +181,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "plus",
-                                text: "Your game ID is invalid (format: G-000-000-000).",
+                                text: this.$t('gameAdd.snackbar.gameIDInvalid'),
                                 stay: false,
                             });
                             return false;
