@@ -1,10 +1,7 @@
 /* eslint-disable no-console */
-import dotenv from 'dotenv';
-dotenv.config();
-
 import { register } from 'register-service-worker'
 
-if (process.env.NODE_ENV === 'prod') {
+if(process.env.VUE_APP_API_ENV !== 'development') {
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready () {
       console.log(
@@ -31,4 +28,6 @@ if (process.env.NODE_ENV === 'prod') {
       console.error('Error during service worker registration:', error)
     }
   })
+} else {
+  console.log(`Not registering service worker in development mode`);
 }
