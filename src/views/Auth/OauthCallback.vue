@@ -1,7 +1,7 @@
 <template>
     <div class="page-centered page-login">
         <div class="login-box">
-            <div class="box-header">Login</div>
+            <div class="box-header">{{ $t('oauthDiscordCallback.header') }}</div>
             <div class="box-content">
                 <LoadingCircle />
             </div>
@@ -33,7 +33,7 @@
                 this.$root.$emit('addSnackbar', {
                     type: "error",
                     icon: "key",
-                    text: "Couldn't log you in. Please try again later.",
+                    text: this.$t('login.snackbar.error.serverError'),
                     stay: true,
                 });
 
@@ -56,7 +56,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "key",
-                        text: "Welcome back, " + loginResponse.userData.username,
+                        text: this.$t('login.snackbar.welcomeBack', {username: loginResponse.userData.username}),
                         stay: false,
                     });
 
@@ -67,7 +67,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "key",
-                                text: "There was a server error logging you in. Please try again later.",
+                                text: this.$t('login.snackbar.error.serverError'),
                                 stay: false,
                             });
                             break;
