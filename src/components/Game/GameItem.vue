@@ -58,7 +58,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "bookmark-plus",
-                        text: `${this.$props.title} was added to your playlist.`,
+                        text: this.$t('game.snackbar.success.addToPlaylist', {gameTitle: this.$props.title}),
                         stay: false,
                     });
                 } catch(error) {
@@ -68,7 +68,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "bookmark-plus",
-                                text: "Game couldn't be added to your playlist due to a server error. Please try again later",
+                                text: this.$t('game.snackbar.error.addToPlaylistServerError'),
                                 stay: true,
                             });
                             this.$data.apiSuccessful = false;
@@ -77,7 +77,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "success",
                                 icon: "bookmark-plus",
-                                text: `${this.$props.title} was added to your playlist.`,
+                                text: this.$t('game.snackbar.success.addToPlaylist', {gameTitle: this.$props.title}),
                                 stay: false,
                             });
                             this.$data.apiSuccessful = true;
@@ -102,7 +102,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "success",
                         icon: "bookmark-minus",
-                        text: `${this.$props.title} was deleted from your playlist.`,
+                        text: this.$t('game.snackbar.success.deleteFromPlaylist', {gameTitle: this.$props.title}),
                         stay: false,
                     });
                 } catch(error) {
@@ -110,7 +110,7 @@
                     this.$root.$emit('addSnackbar', {
                         type: "error",
                         icon: "bookmark-minus",
-                        text: "Game couldn't be deleted from your playlist due to a server error. Please try again later",
+                        text: this.$t('game.snackbar.error.deleteFromPlaylistServerError'),
                         stay: false,
                     });
                     this.$data.apiSuccessful = false;
