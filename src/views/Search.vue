@@ -17,9 +17,7 @@
                     <GameItem v-for="game in results" v-bind:key="game.id" v-bind="game"></GameItem>
                 </GameList>
 
-                <div class="empty-results" v-if="results.length == 0">
-                    {{ $t('find.noresults') }}
-                </div>
+                <div class="empty-results" v-if="results.length == 0" v-html="$t('find.noresults')"></div>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
     <div class="page page-wrapper page-index">
         <div class="welcome">
             <span class="mdi mdi-bug"></span>
-            <div class="text">{{ $t('index.welcome') }}</div>
+            <div class="text" v-html="$t('index.welcome')"></div>
             <div class="actions">
                 <ExternalLinkButton href="https://mygarage.games/discord">Indiegesindel Discord</ExternalLinkButton>
             </div>
@@ -18,7 +18,7 @@
 
         <div class="support">
             <span class="mdi mdi-hand-heart"></span>
-            <div class="text">{{ $t('index.support') }}</div>
+            <div class="text" v-html="$t('index.support')"></div>
             <div class="actions">
                 <ExternalLinkButton href="https://paypal.me/pools/c/8Ad2xnFEH4">PayPal Moneypool</ExternalLinkButton>
                 <ExternalLinkButton href="https://indiegesindel.itch.io/">Itch.io Games</ExternalLinkButton>
