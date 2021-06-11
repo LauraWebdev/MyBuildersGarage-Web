@@ -4,7 +4,7 @@ const messages = {
             "discover": "Ontdekken",
             "channels": "Kanalen",
             "find": "Zoeken",
-            "talk": "Praten"
+            "talk": "Community"
         },
         "actions": {
             "join": "Maak een account!",
@@ -14,7 +14,7 @@ const messages = {
     "login": {
         "header": "Inloggen",
         "banned": {
-            "message": "Je bent verbannen. Als je denkt dat dit een fout was, kan je ons een verzoek sturen de verbanning op te heffen.",
+            "message": "Je bent verbannen van MyGarage.games. Als je denkt dat dit een fout was, kan je ons een verzoek sturen om de verbanning op te heffen.",
             "appealLinkText": "Bezwaarformulier invullen"
         },
         "form": {
@@ -28,20 +28,20 @@ const messages = {
                 "fillOut": "Elk veld moet gevuld worden.",
                 "serverError": "Er was een serverfout bij het inloggen. Probeer het later nog eens.",
                 "userDoesntExist": "Deze gebruiker bestaat niet.",
-                "passwordWrong": "Het wachtwoord is incorrect.",
+                "passwordWrong": "Het wachtwoord is onjuist.",
                 "banned": "Je account is verbannen. Reden: {reason}"
             }
         }
     },
     "logout": {
         "header": "Tot ziens!",
-        "text": "Je bent succesvol uitgelogd<br />Bedankt voor het bezoeken van myGarage.games!",
+        "text": "Je bent succesvol uitgelogd<br />Bedankt voor het bezoeken van MyGarage.games!",
         "snackbar": {
             "successful": "Je bent succesvol uitgelogd."
         }
     },
     "oauthDiscordCallback": {
-        "header": "Inloggen via Discord",
+        "header": "Inloggen via Discord"
     },
     "register": {
         "header": "Maak een nieuw account",
@@ -58,26 +58,26 @@ const messages = {
             "error": {
                 "emailInvalid": "Gebruik a.u.b. een geldig e-mail adres.",
                 "passwordNotEqual": "De ingevoerde wachtwoorden zijn niet identiek.",
-                "registerServerError": "Kon het nieuwe account niet aanmaken door een fout in de server. Probeer het later opnieuw.",
+                "registerServerError": "Account aanmaken mislukt, er was een fout in de server. Probeer het later opnieuw.",
                 "inUse": "Deze gebruikersnaam of e-mail is al in gebruik!"
             }
         }
     },
     "index": {
-        "welcome": "Welkom bij de MyGarage.games BETA!<br />Meld fouten en feedback in de Discord, bedankt!",
-        "support": "Hallo daar, als je mij wil steunen of ons helpen onze severs te funderen, overweeg het alstublieft om aan de PayPal geldpot te doneren, of koop een van onze games op itch.io! We willen MyGarage.games vrijhouden van advertenties of \"speciaal lidmaatschap\" systemen. <i>&dash; Laura</i>",
+        "welcome": "Welkom bij de MyGarage.games BETA!<br />Meld fouten en geef feedback in de Discord server!",
+        "support": "Hallo daar, als je mij wil steunen of ons wil helpen onze severs te financieren, overweeg het alstublieft om aan de PayPal geldpot te doneren, of koop een van onze games op itch.io! We willen MyGarage.games vrijhouden van advertenties of \"speciaal lidmaatschap\" systemen. <i>&dash; Laura</i>",
         "newestHeader": "Nieuwste Games",
-        "popularHeader": "Populairste Games"
+        "popularHeader": "Populaire Games"
     },
     "find": {
         "header": "Zoeken",
         "searchboxPlaceholder": "Voer een zoekopdracht in...",
-        "noresults": "We konden geen games vinden met deze zoekopdracht<br />Probeer maar een andere!"
+        "noresults": "We konden geen games vinden met deze zoekopdracht<br />Probeer een andere!"
     },
     "talk": {
-        "header": "Praten",
+        "header": "Community",
         "explaination": "De Gamestudio community is groot! Hier zijn een paar andere (Engelse) community projecten and groepen om andere game-makers te vinden en meer over Gamestudio te leren!",
-        "missing": "Missen we een project? Laat het ons weten op onze Discord!"
+        "missing": "Missen we een project? Laat het ons weten op onze Discord server!"
     },
     "channelOverview": {
         "header": "Kanaaloverzicht",
@@ -85,8 +85,8 @@ const messages = {
     },
     "channelDetail": {
         "snackbar": {
-            "serverError": "Kanaal kon niet geladen worden door een fout in de server. Probeer het later opnieuw",
-            "notFound": "We konden geen kanaal vinden dat met die criteria overeenkomt."
+            "serverError": "Kanaal laden mislukt door een server fout. Probeer het later opnieuw",
+            "notFound": "We konden geen kanaal vinden dat met deze criteria overeenkomt."
         }
     },
     "gameAdd": {
@@ -94,19 +94,19 @@ const messages = {
         "explaination": "Heb je een game gemaakt in Gamestudio?<br />Voeg het toe aan MyGarage.games om het met de wereld te delen!",
         "rules": {
             "header": "Regels voor de inzending",
-            "maynot": "Uw inzending <strong>mag niet</strong>",
-            "ruleHateful": "haatdragend, ongepast, seksistisch of queerfobisch zijn. Dat omvat ook content tegen andere etniciteiten, seksualiteiten of minderheden.",
+            "maynot": "Je inzending <strong>mag niet</strong>",
+            "ruleHateful": "haatdragend, ongepast, seksistisch of queerfobisch zijn. Dat omvat ook content tegen andere etniciteiten, seksualiteiten of minderheidsgroepen.",
             "ruleIP": "de copyright of IP van andere entiteiten schenden.",
             "ruleExplicit": "volwassen materiaal zoals naaktheid, extreem geweld or anders grafisch verontrustend content bevatten. Dit geldt voor de inhoud van de game, de media-items en de beschrijving.",
             "ruleLowEffort": "Maak niet meerdere inzendingen voor dezelfde game. Zend geen materiaal waar duidelijk extreem lage inspanning voor was ingestoken.",
-            "ruleContentNotice": "Als uw inzending snel bewegende of flikkerende beelden bevat, meld dat dan a.u.b. in de beschrijving, om mensen met gevoeligheden te beschermen.",
-            "ruleModeration": "Het moderatieteam kan screenshots verbergen, en kan video's of inzendingen verwijderen of verbergen als dat nodig is. Als je de inzendregels herhaaldelijk breekt, zouden we je kunnen verbieden meer in te zenden, of zelfs je account deactiveren.",
-            "ruleDiscretion": "Deze regels zijn niet volledig. Moderators naar eigen inzicht ingrijpen. We hebben het recht om deze regels aan te passen en uitzonderingen te maken als dat nodig is."
+            "ruleContentNotice": "Als je inzending snel bewegende of flikkerende beelden bevat, meld dat dan a.u.b. in de beschrijving, om mensen met gevoeligheden te beschermen.",
+            "ruleModeration": "Het moderatieteam kan screenshots verbergen, en kan video's of inzendingen verwijderen of verbergen als dat nodig is. Als je de inzendregels herhaaldelijk breekt, zouden we je kunnen weerhouden meer in te zenden, of zelfs je account deactiveren.",
+            "ruleDiscretion": "Deze regels zijn niet volledig. Moderators zullen altijd naar eigen inzicht ingrijpen. Wij hebben het recht om deze regels aan te passen en uitzonderingen te maken waar nodig."
         },
         "general": {
             "header": "Algemene Informatie",
             "form": {
-                "title": "Titel van uw inzending",
+                "title": "Titel van je inzending",
                 "titlePlaceholder": "Mijn super geweldige game",
                 "description": "Beschrijf je inzending. Welk soort ervaring is het? Hoe speel je het?",
                 "ingameID": "Vul het ID in dat je ziet in Gamestudio na het uploaden",
@@ -116,30 +116,30 @@ const messages = {
         "discoverability": {
             "header": "Ontdekbaarheid",
             "form": {
-                "displayStatus": "Wie kan uw inzending zien?",
+                "displayStatus": "Wie kan je inzending zien?",
                 "displayStatus0": "Iedereen",
                 "displayStatus1": "Verborgen - Alleen mensen met een link hebben toegang",
                 "displayStatus2": "Privé - Alleen jij hebt toegang",
-                "channels": "Selecteer kanalen voor uw inzending (Houdt CTRL ingedrukt om meerdere kanalen te kiezen)",
+                "channels": "Selecteer kanalen voor je inzending (Houdt CTRL ingedrukt om meerdere kanalen te kiezen)"
 
             }
         },
         "media": {
             "header": "Additionele Media",
             "form": {
-                "coverFile": "Omslagfoto (16 bij 9, .jpg of .png)",
-                "youtubeUrl": "Heb je een YouTube trailer? Voeg de URL hier toe!"
+                "coverFile": "Omslagfoto (16 bij 9 fomraat, .jpg of .png)",
+                "youtubeUrl": "Heb je een YouTube trailer? Voeg de URL of link hier toe!"
             }
         },
         "done": {
             "success": {
                 "header": "Dat is alles!",
-                "text": "Goed gedaan, uw game is succesvol ingezonden. Je kan nu screenshots toevoegen, het thema aanpassen en je game delen door de game's pagina te bezoeken.",
-                "coverWrongFormat": "De omslagfoto kon niet worden geüpload, omdat het bestand niet geldig is. Denk eraan dat alleen PNG en JPEG bestanden geldig zijn."
+                "text": "Goed gedaan, je game is succesvol ingezonden. Je kan nu screenshots toevoegen, het thema aanpassen en je game delen door de game's pagina te bezoeken.",
+                "coverWrongFormat": "De omslagfoto kon niet geüpload worden, omdat het bestand niet geldig is. Denk eraan dat alleen PNG en JPEG bestanden geldig zijn."
             },
             "error": {
                 "header": "Oeps!",
-                "text": "Er was een probleem met het uploaden van uw game. Probeer het later nog eens."
+                "text": "Er was een probleem met het uploaden van je game. Probeer het later nog eens."
             }
         },
         "requiredNotice": "* = verplicht",
@@ -151,15 +151,15 @@ const messages = {
         },
         "snackbar": {
             "fillOut": "Je moet alle verplichte velden invullen om door te gaan.",
-            "gameIDInvalid": "Uw game ID is ongeldig (formaat: G-000-000-000)."
+            "gameIDInvalid": "Je game ID is ongeldig (formaat: G-000-000-000)."
         }
     },
     "gameDelete": {
         "header": "Een game verwijderen",
-        "explaination": "Alle acties kunnen niet ongedaan worden gemaakt, dus wees voorzichtig!",
+        "explaination": "Alle acties kunnen niet ongedaan gemaakt worden, dus wees voorzichtig!",
         "confirm": {
             "header": "Weet je het zeker?",
-            "text": "Je staat op het punt uw game <strong>{gameTitle}</strong> van MyGarage.games te verwijderen. Alle screenshots en reacties zullen ook verwijderd worden. Deze actie kan niet ongedaan worden gemaakt.",
+            "text": "Je staat op het punt je game <strong>{gameTitle}</strong> van MyGarage.games te verwijderen. Alle screenshots en reacties zullen ook verwijderd worden. Deze actie kan niet ongedaan gemaakt worden.",
             "nevermindButton": "Doe toch maar niet",
             "yesButton": "Ja, doe maar!"
         },
@@ -191,8 +191,8 @@ const messages = {
             },
             "comments": {
                 "success": {
-                    "posted": "Uw reactie is geplaatst.",
-                    "deleted": "Uw reactie is verwijderd."
+                    "posted": "Je reactie is geplaatst.",
+                    "deleted": "Je reactie is verwijderd."
                 },
                 "error": {
                     "serverError": "Reacties konden niet geladen worden door een fout in de server. Probeer het later nog eens",
@@ -205,7 +205,7 @@ const messages = {
     },
     "gameEdit": {
         "header": "Bewerk een game",
-        "explaination": "Pas informatie aan, voeg screenshots or trailers toe en publiceer / depubliceer uw game.",
+        "explaination": "Pas informatie aan, voeg screenshots or trailers toe en publiceer / depubliceer je game.",
         "media": {
             "form": {
                 "fileHint": ".png / .jpg",
@@ -231,13 +231,13 @@ const messages = {
                 "loadPrivate": "Je mag deze game niet zien.",
                 "notAllowed": "Je mag deze game niet bewerken.",
                 "screenshotDeleted": "Kon de screenshot niet verwijderen. Probeer het later nog eens.",
-                "coverWrongFormat": "Omslagfoto kon niet worden bijgewerkt omdat het een verkeerd formaat heeft. Alleen .png en .jpg bestanden zijn toegestaan!",
+                "coverWrongFormat": "Omslagfoto kon niet worden bijgewerkt omdat het een verkeerd bestandstype is. Alleen .png en .jpg bestanden zijn toegestaan!",
                 "coverServerError": "Kon de omslagfoto niet bijwerken. Probeer het later nog eens.",
                 "coverDeleteServerError": "Kon de omslagfoto niet verwijderen. Probeer het later nog eens.",
-                "screenshotWrongFormat": "Éen of meer screenshots konden niet worden geüpload omdat ze een verkeerd formaat hebben. Alleen .png en .jpg bestanden zijn toegestaan!",
-                "screenshotUploadServerError": "Uw screenshots konden niet worden geüpload door een fout in de server. Probeer het later nog eens!",
+                "screenshotWrongFormat": "Éen of meer screenshots konden niet worden geüpload omdat ze een verkeerd bestandstype zijn. Alleen .png en .jpg bestanden zijn toegestaan!",
+                "screenshotUploadServerError": "Je screenshots konden niet worden geüpload door een fout in de server. Probeer het later nog eens!",
                 "requiredEmpty": "Verplichten velden kunnen niet leeg zijn!",
-                "gameIDInvalid": "Uw game ID is ongeldig (formaat: G-000-000-000).",
+                "gameIDInvalid": "Je game ID is ongeldig (formaat: G-000-000-000)."
             }
         }
     },
@@ -265,8 +265,8 @@ const messages = {
         "nogames": "Deze gebruiker heeft nog geen games geüpload."
     },
     "userEdit": {
-        "header": "Uw profiel bewerken",
-        "explaination": "Een profielfoto uploaden, verander uw bio of wachtwoord.",
+        "header": "Je profiel bewerken",
+        "explaination": "Een profielfoto uploaden, verander je bio of wachtwoord.",
         "tabs": {
             "general": "Algemeen",
             "avatar": "Profielfoto",
@@ -277,7 +277,7 @@ const messages = {
             "pronouns": "Voornaamwoorden",
             "ingameID": "Ingame-ID",
             "ingameIDPlaceholder": "P-000-000-000",
-            "avatarImage": "Profielfoto (1 bij 1, .jpg of .png)",
+            "avatarImage": "Profielfoto (1 bij 1 formaat, .jpg of .png)",
             "deleteAvatarButton": "Verwijder Profielfoto",
             "email": "E-mail",
             "password": "Wachtwoord",
@@ -293,15 +293,15 @@ const messages = {
             },
             "error": {
                 "notAllowed": "Je mag deze gebruiker niet bewerken.",
-                "avatarWrongFormat": "Profielfoto kon niet worden geüpload omdat het een verkeerd formaat heeft. Alleen .png en .jpg bestanden zijn toegestaan!",
+                "avatarWrongFormat": "Profielfoto kon niet worden geüpload omdat het een verkeerd bestandstype is. Alleen .png en .jpg bestanden zijn toegestaan!",
                 "avatarServerError": "Kon profielfoto niet bijwerken. Probeer het later nog eens.",
                 "avatarDeleteServerError": "Kon profielfoto niet verwijderen. Probeer het later nog eens.",
                 "usernameForbidden": "Deze gebruikersnaam bevat verboden tekens. Toegestane tekens zijn a-z, A-Z, 0-9, koppeltekens en onderstrepingstekens.",
-                "saveServerError": "Uw veranderingen konden niet worden opgeslagen door een fout in de server. Probeer het later nog eens!",
-                "saveIngameIDInvalid": "Uw profiel ID is ongeldig (formaat: P-000-000-000).",
+                "saveServerError": "Je veranderingen konden niet worden opgeslagen door een fout in de server. Probeer het later nog eens!",
+                "saveIngameIDInvalid": "Je profiel ID is ongeldig (formaat: P-000-000-000).",
                 "saveUsernameConflict": "Deze gebruikersnaam is al in gebruik!",
                 "securityNotIdentical": "De ingevulde wachtwoorden zijn niet identiek.",
-                "securityEmailInvalid": "Uw e-mail is ongeldig!"
+                "securityEmailInvalid": "Je e-mail is ongeldig!"
             }
         }
     },
@@ -311,12 +311,12 @@ const messages = {
     "game": {
         "snackbar": {
             "success": {
-                "addToPlaylist": "{gameTitle} is toegevoegd aan uw afspeellijst.",
-                "deleteFromPlaylist": "{gameTitle} is verwijderd van uw afspeellijst."
+                "addToPlaylist": "{gameTitle} is toegevoegd aan je afspeellijst.",
+                "deleteFromPlaylist": "{gameTitle} is verwijderd van je afspeellijst."
             },
             "error": {
-                "addToPlaylistServerError": "Game kon niet aan uw afspeellijst worden toegevoegd door een fout in de server. Probeer het later nog eens",
-                "deleteFromPlaylistServerError": "Game kon niet van uw afspeellijst worden verwijderd door een fout in de server. Probeer het later nog eens"
+                "addToPlaylistServerError": "Game kon niet aan je afspeellijst worden toegevoegd door een fout in de server. Probeer het later nog eens",
+                "deleteFromPlaylistServerError": "Game kon niet van je afspeellijst worden verwijderd door een fout in de server. Probeer het later nog eens"
             }
         }
     },
