@@ -35,7 +35,7 @@ const messages = {
     },
     "logout": {
         "header": "Goodbye",
-        "text": "You were successfully logged out!<br />Thank you for visiting myGarage.games!",
+        "text": "You were successfully logged out!<br />Thank you for visiting MyGarage.games!",
         "snackbar": {
             "successful": "You were successfully logged out."
         }
@@ -127,7 +127,7 @@ const messages = {
         "media": {
             "header": "Additional Media",
             "form": {
-                "coverFile": "Cover Image (16 by 9, .jpg or .png)",
+                "coverFile": "Cover Image (16 by 9 format, .jpg or .png)",
                 "youtubeUrl": "Do you have a YouTube trailer? Add the URL in here!"
             }
         },
@@ -277,7 +277,7 @@ const messages = {
             "pronouns": "Pronouns",
             "ingameID": "Ingame-ID",
             "ingameIDPlaceholder": "P-000-000-000",
-            "avatarImage": "Avatar Image (1 by 1, .jpg or .png)",
+            "avatarImage": "Avatar Image (1 by 1 format, .jpg or .png)",
             "deleteAvatarButton": "Delete Avatar",
             "email": "Email",
             "password": "Password",
