@@ -64,7 +64,7 @@ const messages = {
         }
     },
     "index": {
-        "welcome": "Welkom bij de MyGarage.games BETA!<br />Meld fouten en geef feedback in de Discord server!",
+        "welcome": "Welkom bij de MyGarage.games BETA!<br />Als je fouten tegenkomt, of feedback hebt, meld die dan in onze Discord server!",
         "support": "Hallo daar, als je mij wil steunen of ons wil helpen onze severs te financieren, overweeg het alstublieft om aan de PayPal geldpot te doneren, of koop een van onze games op itch.io! We willen MyGarage.games vrijhouden van advertenties of \"speciaal lidmaatschap\" systemen. <i>&dash; Laura</i>",
         "newestHeader": "Nieuwste Games",
         "popularHeader": "Populaire Games"
