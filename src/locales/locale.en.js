@@ -91,7 +91,7 @@ const messages = {
     },
     "gameAdd": {
         "header": "Add a new game",
-        "explaination": "Have you created a game in Game Builder Garage?<br />Add it to MyGarage.games to get share it with the world!",
+        "explaination": "Have you created a game in Game Builder Garage?<br />Add it to MyGarage.games to share it with the world!",
         "rules": {
             "header": "Submission rules",
             "maynot": "Your submission <strong>may not</strong>",
@@ -135,7 +135,7 @@ const messages = {
             "success": {
                 "header": "That's it!",
                 "text": "Well done, your game was successfully published. You can now add screenshots, adjust the theme and share your game by visiting the games page.",
-                "coverWrongFormat": "The cover file couldn't be upload, because it was not a valid file. Please keep in mind that only PNG and JPEG files are valid cover filetypes."
+                "coverWrongFormat": "The cover file couldn't be uploaded, because it was not a valid file. Please keep in mind that only PNG and JPEG files are valid cover filetypes."
             },
             "error": {
                 "header": "Whoops!",
