@@ -159,7 +159,7 @@ const messages = {
         "explaination": "Cette action est irréversible, faites attention !",
         "confirm": {
             "header": "Êtes-vous sûr(e) ?",
-            "gameTitle": "Vous êtes sur le point de supprimer <strong>{gameTitle}</strong> de MyGarage.games. Les commentaires et captures d'écran seront également supprimés. Cette action est irréversible.",
+            "text": "Vous êtes sur le point de supprimer <strong>{gameTitle}</strong> de MyGarage.games. Les commentaires et captures d'écran seront également supprimés. Cette action est irréversible.",
             "nevermindButton": "Annuler",
             "yesButton": "Supprimer"
         },

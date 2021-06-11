@@ -159,7 +159,7 @@ const messages = {
         "explaination": "Alle Handlungen können nicht rückgängig gemacht werden, sei also vorsichtig!",
         "confirm": {
             "header": "Bist du dir sicher?",
-            "gameTitle": "Du bist dabei, das Spiel <strong>{gameTitle}</strong> von MyGarage.games zu entfernen. Alle Screenshots und Comments werden ebenfalls entfernt. Diese Aktion kann nicht rückgängig gemacht werden.",
+            "text": "Du bist dabei, das Spiel <strong>{gameTitle}</strong> von MyGarage.games zu entfernen. Alle Screenshots und Comments werden ebenfalls entfernt. Diese Aktion kann nicht rückgängig gemacht werden.",
             "nevermindButton": "Nein, doch nicht",
             "yesButton": "Ja, bitte löschen!"
         },

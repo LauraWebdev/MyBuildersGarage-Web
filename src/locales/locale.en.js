@@ -159,7 +159,7 @@ const messages = {
         "explaination": "All actions are unreversible, so please be careful!",
         "confirm": {
             "header": "Are you sure?",
-            "gameTitle": "You are about to remove your game <strong>{gameTitle}</strong> from MyGarage.games. All screenshots and comments will be deleted with it. This action is unreversible.",
+            "text": "You are about to remove your game <strong>{gameTitle}</strong> from MyGarage.games. All screenshots and comments will be deleted with it. This action is unreversible.",
             "nevermindButton": "Nevermind",
             "yesButton": "Yes, go ahead!"
         },
