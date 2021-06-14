@@ -47,7 +47,7 @@
         }
 
         & .games {
-            background: rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.07);
             padding: 4px 15px;
             border-radius: 50px;
             font-size: 12px;
@@ -72,6 +72,10 @@
     .theme-dark {
         & .channel-item {
             background: rgba(255,255,255,0.07);
+
+            & .games {
+                background: rgba(255,255,255,0.1);
+            }
 
             &:hover {
                 background: rgba(255,255,255,0.14);
