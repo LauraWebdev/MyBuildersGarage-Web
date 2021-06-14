@@ -45,7 +45,7 @@
             fetchPopularGames: async function(page) {
                 this.$data.popularGames = [];
                 try {
-                    this.$data.popularGames = await this.$data.apiRef.getPopularGames(this.$data.page);
+                    this.$data.popularGames = await this.$data.apiRef.getDiscoveryGames('popular', this.$data.page);
                 } catch(error) {
                     console.error(error);
                 }

@@ -2,13 +2,13 @@
     <div class="page-centered">
         <div class="page-wrapper">
             <GameList>
-                <GameItem v-for="game in newestGames" v-bind:key="game.id" v-bind="game"></GameItem>
+                <GameItem v-for="game in randomGames" v-bind:key="game.id" v-bind="game"></GameItem>
             </GameList>
         </div>
 
         <div class="page-wrapper actions">
             <button class="button button-filled" :disabled="page < 1" v-on:click="previousPage()">{{ $t('index.previousPage') }}</button>
-            <button class="button button-filled" :disabled="newestGames.length < 11" v-on:click="nextPage()">{{ $t('index.nextPage') }}</button>
+            <button class="button button-filled" :disabled="randomGames.length < 11" v-on:click="nextPage()">{{ $t('index.nextPage') }}</button>
         </div>
     </div>
 </template>
@@ -20,9 +20,9 @@
     import GameItem from '@/components/Game/GameItem';
 
     export default {
-        name: 'DiscoveryNewest',
+        name: 'DiscoveryRandom',
         metaInfo: {
-            title: 'Newest games',
+            title: 'Random',
         },
         components: {
             GameList,
@@ -31,7 +31,7 @@
         data: function() {
             return {
                 apiRef: null,
-                newestGames: [],
+                randomGames: [],
                 page: 0,
             }
         },
@@ -39,26 +39,24 @@
             this.$data.apiRef = new MGGApi();
         },
         mounted: function() {
-            this.fetchNewestGames();
+            this.fetchRandomGames();
         },
         methods: {
-            fetchNewestGames: async function(page) {
-                this.$data.newestGames = [];
+            fetchRandomGames: async function(page) {
+                this.$data.randomGames = [];
                 try {
-                    this.$data.newestGames = await this.$data.apiRef.getDiscoveryGames('newest', this.$data.page);
+                    this.$data.randomGames = await this.$data.apiRef.getDiscoveryGames('random', this.$data.page);
                 } catch(error) {
                     console.error(error);
                 }
             },
             nextPage: async function() {
-                console.log("Next");
                 this.$data.page++;
-                this.fetchNewestGames();
+                this.fetchRandomGames();
             },
             previousPage: async function() {
-                console.log("Next");
                 this.$data.page--;
-                this.fetchNewestGames();
+                this.fetchRandomGames();
             }
         }
     }

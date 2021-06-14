@@ -45,7 +45,7 @@
             fetchHotThisWeekGames: async function(page) {
                 this.$data.hotGames = [];
                 try {
-                    this.$data.hotGames = await this.$data.apiRef.getHotThisWeekGames(this.$data.page);
+                    this.$data.hotGames = await this.$data.apiRef.getDiscoveryGames('hotThisWeek', this.$data.page);
                 } catch(error) {
                     console.error(error);
                 }

@@ -129,35 +129,9 @@ class MGGApi {
         }
     }
 
-    async getNewestGames(page = 0) {
+    async getDiscoveryGames(route = "", page = 0) {
         try {
-            const response = await axios.get(this.apiBase + 'discovery/newest/' + page);
-
-            return response.data;
-        } catch(error) {
-            switch(error.response.data.name) {
-                default:
-                    throw new Error(error.response.data.text);
-            }
-        }
-    }
-
-    async getHotThisWeekGames(page = 0) {
-        try {
-            const response = await axios.get(this.apiBase + 'discovery/hotThisWeek/' + page);
-
-            return response.data;
-        } catch(error) {
-            switch(error.response.data.name) {
-                default:
-                    throw new Error(error.response.data.text);
-            }
-        }
-    }
-
-    async getPopularGames(page = 0) {
-        try {
-            const response = await axios.get(this.apiBase + 'discovery/popular/' + page);
+            const response = await axios.get(this.apiBase + 'discovery/' + route + '/' + page);
 
             return response.data;
         } catch(error) {

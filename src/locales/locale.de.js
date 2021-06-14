@@ -68,6 +68,7 @@ const messages = {
         "support": "Moin! Wenn du mich unterstützen oder unsere Serverkosten finanzieren möchtest, kannst du an unserem PayPal MoneyPool spenden oder eines unserer Spiele auf Itch unterstützen! Wir möchten MyGarage.games werbefrei und frei von \"Plus Mitgliedschaften\" halten. <i>&dash; Laura</i>",
         "newestHeader": "Neueste Spiele",
         "hotThisWeekHeader": "Diese Woche beliebt",
+        "randomHeader": "Zufällig",
         "popularHeader": "Beliebte Spiele",
         "previousPage": "Vorherige Seite",
         "nextPage": "Nächste Seite"

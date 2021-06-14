@@ -68,6 +68,7 @@ const messages = {
         "support": "Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! We want to keep MyGarage.games free off advertisements and any \"plus membership\" system. <i>&dash; Laura</i>",
         "newestHeader": "Newest Games",
         "hotThisWeekHeader": "Hot this Week",
+        "randomHeader": "Random",
         "popularHeader": "Popular Games",
         "previousPage": "Previous Page",
         "nextPage": "Next Page"
