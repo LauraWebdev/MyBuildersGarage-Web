@@ -38,11 +38,11 @@ const routes = [{
             name: 'DiscoveryIndex',
             component: DiscoveryIndex,
         }, {
-            path: '/discovery/newest/:page?',
+            path: '/discovery/newest',
             name: 'DiscoveryNewest',
             component: DiscoveryNewest,
         }, {
-            path: '/discovery/popular/:page?',
+            path: '/discovery/popular',
             name: 'DiscoveryPopular',
             component: DiscoveryPopular,
         }

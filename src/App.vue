@@ -86,6 +86,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
         & .button {
             display: inline-block;
@@ -102,7 +103,7 @@
             transition: 0.2s ease-in-out background;
             font-family: 'Poppins', sans-serif;
 
-            &:hover {
+            &:not(:disabled):hover {
                 background: #25baff44;
                 cursor: pointer;
             }
@@ -111,12 +112,16 @@
                 border: 2px solid #1a8fc5;
                 color: #fff;
 
-                &:hover {
+                &:not(:disabled):hover {
                     background: #1a8fc5;
                 }
             }
             &:focus {
                 outline: none;
+            }
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
             }
         }
         select.input {

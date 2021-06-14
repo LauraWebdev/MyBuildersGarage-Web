@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <div class="page-centered" v-if="!apiLoading">
+        <div class="page-centered">
             <div class="page-wrapper">
                 <div class="tabs">
                     <router-link class="tab icon" :to="{ name: 'DiscoveryIndex' }"><span class="mdi mdi-home"></span></router-link>

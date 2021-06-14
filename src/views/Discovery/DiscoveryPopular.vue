@@ -5,6 +5,11 @@
                 <GameItem v-for="game in popularGames" v-bind:key="game.id" v-bind="game"></GameItem>
             </GameList>
         </div>
+
+        <div class="page-wrapper actions">
+            <button class="button button-filled" :disabled="page < 1" v-on:click="previousPage()">{{ $t('index.previousPage') }}</button>
+            <button class="button button-filled" :disabled="popularGames.length < 11" v-on:click="nextPage()">{{ $t('index.nextPage') }}</button>
+        </div>
     </div>
 </template>
 
@@ -38,6 +43,7 @@
         },
         methods: {
             fetchPopularGames: async function(page) {
+                this.$data.popularGames = [];
                 try {
                     this.$data.popularGames = await this.$data.apiRef.getPopularGames(this.$data.page);
                 } catch(error) {
@@ -59,5 +65,14 @@
 <style lang="less" scoped>
     .page-discovery {
         padding: 50px 0px;
+    }
+    .actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+
+        & button {
+            margin: 0px 7px;
+        }
     }
 </style>
