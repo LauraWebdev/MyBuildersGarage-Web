@@ -5,6 +5,7 @@ import MGGApi from '../modules/api';
 import Index from '../views/Index.vue';
 import DiscoveryIndex from '../views/Discovery/DiscoveryIndex.vue';
 import DiscoveryNewest from '../views/Discovery/DiscoveryNewest.vue';
+import DiscoveryHotThisWeek from '../views/Discovery/DiscoveryHotThisWeek.vue';
 import DiscoveryPopular from '../views/Discovery/DiscoveryPopular.vue';
 import Search from '../views/Search.vue';
 import ChannelOverview from '../views/Channel/ChannelOverview.vue';
@@ -37,6 +38,10 @@ const routes = [{
             path: '/discovery/index',
             name: 'DiscoveryIndex',
             component: DiscoveryIndex,
+        }, {
+            path: '/discovery/hotThisWeek',
+            name: 'DiscoveryHotThisWeek',
+            component: DiscoveryHotThisWeek,
         }, {
             path: '/discovery/newest',
             name: 'DiscoveryNewest',

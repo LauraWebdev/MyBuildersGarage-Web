@@ -67,6 +67,7 @@ const messages = {
         "welcome": "Willkommen zur MyGarage.games BETA!<br />Bitte sende uns Feedback und Bugreports auf Discord. Vielen Dank!",
         "support": "Moin! Wenn du mich unterstützen oder unsere Serverkosten finanzieren möchtest, kannst du an unserem PayPal MoneyPool spenden oder eines unserer Spiele auf Itch unterstützen! Wir möchten MyGarage.games werbefrei und frei von \"Plus Mitgliedschaften\" halten. <i>&dash; Laura</i>",
         "newestHeader": "Neueste Spiele",
+        "hotThisWeekHeader": "Diese Woche beliebt",
         "popularHeader": "Beliebte Spiele",
         "previousPage": "Vorherige Seite",
         "nextPage": "Nächste Seite"

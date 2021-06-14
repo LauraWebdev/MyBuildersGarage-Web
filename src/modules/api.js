@@ -142,6 +142,19 @@ class MGGApi {
         }
     }
 
+    async getHotThisWeekGames(page = 0) {
+        try {
+            const response = await axios.get(this.apiBase + 'discovery/hotThisWeek/' + page);
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
     async getPopularGames(page = 0) {
         try {
             const response = await axios.get(this.apiBase + 'discovery/popular/' + page);

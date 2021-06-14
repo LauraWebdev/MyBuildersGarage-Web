@@ -5,6 +5,7 @@
                 <div class="tabs">
                     <router-link class="tab icon" :to="{ name: 'DiscoveryIndex' }"><span class="mdi mdi-home"></span></router-link>
                     <router-link class="tab" :to="{ name: 'DiscoveryNewest' }">{{ $t('index.newestHeader') }}</router-link>
+                    <router-link class="tab" :to="{ name: 'DiscoveryHotThisWeek' }">{{ $t('index.hotThisWeekHeader') }}</router-link>
                     <router-link class="tab" :to="{ name: 'DiscoveryPopular' }">{{$t('index.popularHeader') }}</router-link>
                 </div>
             </div>
