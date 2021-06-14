@@ -2,13 +2,13 @@
     <header :class="isNaviOpen ? 'navi-open' : ''">
         <div class="hamburger-item" v-on:click="toggleNavigation()"><span class="mdi mdi-menu"></span></div>
 
-        <router-link :to="{name: 'Index'}">
+        <router-link :to="{name: 'DiscoveryIndex'}">
             <img src="@/assets/img/logoLight.svg" v-if="$store.state.uiMode == 'light'" class="logo" />
             <img src="@/assets/img/logoDark.svg" v-if="$store.state.uiMode == 'dark'" class="logo" />
         </router-link>
 
         <nav>
-            <router-link :to="{name: 'Index'}" class="item">{{ $t('header.nav.discover') }}</router-link>
+            <router-link :to="{name: 'DiscoveryIndex'}" class="item">{{ $t('header.nav.discover') }}</router-link>
             <router-link :to="{name: 'ChannelOverview'}" class="item">{{ $t('header.nav.channels') }}</router-link>
             <router-link :to="{name: 'Search'}" class="item">{{ $t('header.nav.find') }}</router-link>
             <router-link :to="{name: 'Talk'}" class="item">{{ $t('header.nav.talk') }}</router-link>

@@ -3,6 +3,9 @@ import VueRouter from 'vue-router';
 import Store from '../store/index';
 import MGGApi from '../modules/api';
 import Index from '../views/Index.vue';
+import DiscoveryIndex from '../views/Discovery/DiscoveryIndex.vue';
+import DiscoveryNewest from '../views/Discovery/DiscoveryNewest.vue';
+import DiscoveryPopular from '../views/Discovery/DiscoveryPopular.vue';
 import Search from '../views/Search.vue';
 import ChannelOverview from '../views/Channel/ChannelOverview.vue';
 import ChannelDetail from '../views/Channel/ChannelDetail.vue';
@@ -26,6 +29,24 @@ const routes = [{
     path: '/',
     name: 'Index',
     component: Index,
+    children: [
+        {
+            path: '/',
+            redirect: '/discovery/index',
+        }, {
+            path: '/discovery/index',
+            name: 'DiscoveryIndex',
+            component: DiscoveryIndex,
+        }, {
+            path: '/discovery/newest/:page?',
+            name: 'DiscoveryNewest',
+            component: DiscoveryNewest,
+        }, {
+            path: '/discovery/popular/:page?',
+            name: 'DiscoveryPopular',
+            component: DiscoveryPopular,
+        }
+    ]
 }, {
     path: '/search/:query?',
     name: 'Search',

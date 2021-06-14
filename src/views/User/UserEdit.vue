@@ -379,30 +379,6 @@
 </script>
 
 <style lang="less" scoped>
-    .tabs {
-        padding: 25px 0px;
-        display: flex;
-        flex-wrap: wrap;
-
-        & .tab {
-            color: #1EA0DE;
-            padding: 7px 20px;
-            border-radius: 100px;
-            margin-right: 10px;
-            transition: 0.2s ease-in-out color, 0.2s ease-in-out background;
-
-            &:not(.active):hover {
-                background: #25baff44;
-                cursor: pointer;
-            }
-            &.active {
-                background: #1EA0DE;
-                color: #fff;
-                cursor: default;
-            }
-        }
-    }
-
     .page-deleteLoading {
         margin: 100px 0px;
 
@@ -499,17 +475,6 @@
                 font-size: 14px;
                 opacity: 0.6;
             }
-        }
-    }
-
-    .theme-dark {
-        
-    }
-
-    @media screen and (max-width: 800px) {
-        .tabs {
-            display: grid;
-            grid-template-rows: 1fr;
         }
     }
 </style>

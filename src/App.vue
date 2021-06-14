@@ -180,6 +180,39 @@
         }
     }
 
+    .tabs {
+        padding: 25px 0px;
+        display: flex;
+        flex-wrap: wrap;
+
+        & .tab {
+            color: #1EA0DE;
+            padding: 7px 20px;
+            border-radius: 100px;
+            margin-right: 10px;
+            text-decoration: none;
+            transition: 0.2s ease-in-out color, 0.2s ease-in-out background;
+
+            &:not(.active):not(.router-link-exact-active):hover {
+                background: #25baff44;
+                cursor: pointer;
+            }
+            &.active, &.router-link-exact-active {
+                background: #1EA0DE;
+                color: #fff;
+                cursor: default;
+            }
+
+            &.icon {
+                padding: 3px 20px;
+
+                & .mdi {
+                    font-size: 19px;
+                }
+            }
+        }
+    }
+
     .theme-dark {
         background: #222;
         color: #fff;
@@ -215,6 +248,13 @@
             &:focus {
                 border-color: #fff;
             }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .tabs {
+            display: grid;
+            grid-template-rows: 1fr;
         }
     }
 </style>
