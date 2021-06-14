@@ -24,6 +24,7 @@ import Login from '../views/Auth/Login.vue';
 import OauthCallback from '../views/Auth/OauthCallback.vue';
 import Register from '../views/Auth/Register.vue';
 import Logout from '../views/Auth/Logout.vue';
+import PageNotFound from '../views/PageNotFound.vue';
 
 Vue.use(VueRouter);
 
@@ -122,6 +123,10 @@ const routes = [{
     name: 'OauthCallbackDiscord',
     component: OauthCallback,
     props: { method: 'discord' },
+}, {
+    path: '*',
+    name: 'PageNotFound',
+    component: PageNotFound,
 }];
 
 const router = new VueRouter({

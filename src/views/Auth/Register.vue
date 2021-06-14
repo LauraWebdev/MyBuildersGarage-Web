@@ -2,7 +2,7 @@
     <div class="page-centered page-register">
         <div class="register-box">
             <div class="box-header">{{ $t('register.header') }}</div>
-            <div class="box-content">
+            <form class="box-content" v-on:submit.prevent="register()">
                 <input class="input" type="text" v-model="userName" :placeholder="$t('register.form.usernamePlaceholder')" />
                 <span>{{ $t('register.form.usernameRequirements') }}</span>
                 <input class="input" type="password" v-model="userPass" :placeholder="$t('register.form.passwordPlaceholder')" />
@@ -16,7 +16,7 @@
                     <!-- <button v-on:click="loginDiscord()" class="button">Twitter</button>
                     <button v-on:click="loginDiscord()" class="button">Google</button> -->
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>
@@ -32,6 +32,7 @@
         data: function() {
             return {
                 apiRef: null,
+                apiLoading: false,
                 userName: "",
                 userPass: "",
                 userPass2: "",
@@ -43,6 +44,8 @@
         },
         methods: {
             register: async function() {
+                if(this.$data.apiLoading) return;
+
                 if(this.$data.userName == "" || this.$data.userPass == "" || this.$data.userPass2 == "" || this.$data.userMail == "") {
                     this.$root.$emit('addSnackbar', {
                         type: "error",
@@ -73,8 +76,12 @@
                     return;
                 }
 
+                this.$data.apiLoading = true;
+
                 try {
                     await this.$data.apiRef.authRegister(this.$data.userName, this.$data.userPass, this.$data.userMail);
+
+                    this.$data.apiLoading = false;
                     
                     this.$root.$emit('addSnackbar', {
                         type: "success",
@@ -85,6 +92,7 @@
                     this.$router.push({ name: 'Login' });
                 } catch(error) {
                     console.error(error);
+                    this.$data.apiLoading = false;
 
                     switch(error.name) {
                         default:

@@ -5,7 +5,7 @@
             <div class="box-banned" v-if="isBanned">
                 {{ $t('login.banned.message') }} <a href="https://forms.gle/gpcpFe9jkymXSCsY7" target="_blank">{{ $t('login.banned.appealLinkText') }}</a>
             </div>
-            <div class="box-content">
+            <form class="box-content" v-on:submit.prevent="login()">
                 <input class="input" type="text" v-model="userName" :placeholder="$t('login.form.usernamePlaceholder')" />
                 <input class="input" type="password" v-model="userPass" :placeholder="$t('login.form.passwordPlaceholder')" />
 
@@ -16,7 +16,7 @@
                     <!-- <button v-on:click="loginDiscord()" class="button">Twitter</button>
                     <button v-on:click="loginDiscord()" class="button">Google</button> -->
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>
@@ -32,6 +32,7 @@
         data: function() {
             return {
                 apiRef: null,
+                apiLoading: false,
                 userName: "",
                 userPass: "",
                 isBanned: false,
@@ -42,6 +43,8 @@
         },
         methods: {
             login: async function() {
+                if(this.$data.apiLoading) return;
+
                 this.$data.isBanned = false;
 
                 if(this.$data.userName == "" || this.$data.userPass == "") {
@@ -53,10 +56,14 @@
                     });
                     return;
                 }
+                
+                this.$data.apiLoading = true;
 
                 try {
                     const loginResponse = await this.$data.apiRef.authLogin(this.$data.userName, this.$data.userPass);
                     this.$store.dispatch('refreshUser', loginResponse);
+
+                    this.$data.apiLoading = false;
 
                     this.$root.$emit('addSnackbar', {
                         type: "success",
@@ -65,8 +72,10 @@
                         stay: false,
                     });
 
-                    this.$router.push({ name: 'Index' });
+                    this.$router.push({ name: 'DiscoveryIndex' });
                 } catch(error) {
+                    this.$data.apiLoading = false;
+
                     switch(error.name) {
                         default:
                             this.$root.$emit('addSnackbar', {
