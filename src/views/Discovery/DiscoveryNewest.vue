@@ -42,7 +42,7 @@
             this.fetchNewestGames();
         },
         methods: {
-            fetchNewestGames: async function(page) {
+            fetchNewestGames: async function() {
                 this.$data.newestGames = [];
                 try {
                     this.$data.newestGames = await this.$data.apiRef.getDiscoveryGames('newest', this.$data.page);

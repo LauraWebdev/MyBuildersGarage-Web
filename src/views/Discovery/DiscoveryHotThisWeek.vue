@@ -42,7 +42,7 @@
             this.fetchHotThisWeekGames();
         },
         methods: {
-            fetchHotThisWeekGames: async function(page) {
+            fetchHotThisWeekGames: async function() {
                 this.$data.hotGames = [];
                 try {
                     this.$data.hotGames = await this.$data.apiRef.getDiscoveryGames('hotThisWeek', this.$data.page);

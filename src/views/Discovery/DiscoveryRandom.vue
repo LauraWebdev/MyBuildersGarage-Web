@@ -42,7 +42,7 @@
             this.fetchRandomGames();
         },
         methods: {
-            fetchRandomGames: async function(page) {
+            fetchRandomGames: async function() {
                 this.$data.randomGames = [];
                 try {
                     this.$data.randomGames = await this.$data.apiRef.getDiscoveryGames('random', this.$data.page);

@@ -17,15 +17,12 @@
 </template>
 
 <script>
-    import ExternalLinkButton from '@/components/General/ExternalLinkButton';
-
     export default {
         name: 'Index',
         metaInfo: {
             title: 'Discover & Share',
         },
         components: {
-            ExternalLinkButton,
         }
     }
 </script>

@@ -25,7 +25,7 @@
                             <div class="addToPlaylist" v-on:click="deleteFromPlaylist" v-if="$store.state.userData != null && isInPlaylist && !playlistActionLoading"><span class="mdi mdi-bookmark-minus"></span></div>
                         </div>
                         <div class="description" v-if="gameDetail.description != ''">
-                            {{ gameDetail.description }}
+                            <nl2br tag="span" :text="gameDetail.description" />
                         </div>
                         <div class="meta-info">
                             <div class="item">
