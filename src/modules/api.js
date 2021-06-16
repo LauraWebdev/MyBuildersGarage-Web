@@ -739,6 +739,32 @@ class MGGApi {
     
         return gameIDRegex.test(unfilteredGameID);
     }
+
+    static isSocialDiscordValid(unfilteredDiscord) {
+        let discordRegex = /^.{3,32}#[0-9]{4}$/g;
+    
+        if(unfilteredDiscord === "") { return true; }
+    
+        return discordRegex.test(unfilteredDiscord);
+    }
+    
+    static isSocialTwitterURLValid(unfilteredTwitter) {
+        let twitterURLRegex = /^(?:https|http)\:\/\/(?:[\w]+\.)?twitter\.com\/?([\w-]{1,})$/g;
+    
+        return twitterURLRegex.test(unfilteredTwitter);
+    }
+    
+    static isSocialTwitterAtValid(unfilteredTwitter) {
+        let twitterAtRegex = /^@([\w-]{1,})$/g;
+    
+        return twitterAtRegex.test(unfilteredTwitter);
+    }
+    
+    static isSocialYouTubeValid(unfilteredYouTube) {
+        let youtubeRegex = /^(?:https|http)\:\/\/(?:[\w]+\.)?youtube\.com\/(?:c\/|channel\/|user\/)?([\w-]{1,})$/g;
+    
+        return youtubeRegex.test(unfilteredYouTube);
+    }
 }
 
 export default MGGApi;

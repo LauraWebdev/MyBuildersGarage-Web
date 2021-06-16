@@ -34,11 +34,14 @@
                             </div>
                             <div class="item" v-if="userDetail.socialTwitter != null && userDetail.socialTwitter != ''">
                                 <div class="property">Twitter</div>
-                                <div class="content">{{ userDetail.socialTwitter }}</div>
+                                <div class="content" v-if="showTwitterAsLink"><a :href="userDetail.socialTwitter" target="_blank">{{ userDetail.username }} on Twitter</a></div>
+                                <div class="content" v-if="showTwitterAsAtLink"><a :href="`https://twitter.com/${userDetail.socialTwitter}`" target="_blank">{{ userDetail.username }} on Twitter</a></div>
+                                <div class="content" v-if="!showTwitterAsAtLink && !showTwitterAsLink">{{ userDetail.socialTwitter }}</div>
                             </div>
                             <div class="item" v-if="userDetail.socialYouTube != null && userDetail.socialYouTube != ''">
                                 <div class="property">YouTube</div>
-                                <div class="content">{{ userDetail.socialYouTube }}</div>
+                                <div class="content" v-if="showYouTubeAsLink"><a :href="userDetail.socialYouTube" target="_blank">{{ userDetail.username }} on YouTube</a></div>
+                                <div class="content" v-if="!showYouTubeAsLink">{{ userDetail.socialYouTube }}</div>
                             </div>
                         </div>
                         <div class="team-banner" v-if="['moderator', 'admin'].some(str => userDetail.roles.includes(str))">
@@ -84,6 +87,9 @@
                 apiLoading: true,
                 userDetail: null,
                 createdFormatted: "",
+                showYouTubeAsLink: false,
+                showTwitterAsLink: false,
+                showTwitterAsAtLink: false,
             }
         },
         components: {
@@ -108,6 +114,9 @@
                     document.title = `${this.$data.userDetail.username}'s profile ~ MyGarage.games`;
 
                     this.$data.createdFormatted = new Date(Date.parse(this.$data.userDetail.createdAt)).toLocaleDateString("en-US");
+                    this.$data.showYouTubeAsLink = MGGApi.isSocialYouTubeValid(this.$data.userDetail.socialYouTube);
+                    this.$data.showTwitterAsLink = MGGApi.isSocialTwitterURLValid(this.$data.userDetail.socialTwitter);
+                    this.$data.showTwitterAsAtLink = MGGApi.isSocialTwitterAtValid(this.$data.userDetail.socialTwitter);
 
                     if(this.$data.userDetail.banActive) {
                         this.$root.$emit('addSnackbar', {
@@ -205,6 +214,10 @@
                 & div:nth-child(2) {
                     word-wrap: break-word;
                     overflow: hidden;
+
+                    & a {
+                        color: #25b9ff;
+                    }
                 }
             }
         }
