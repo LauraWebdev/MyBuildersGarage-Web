@@ -158,7 +158,7 @@
             text-decoration: none;
             border: 2px solid rgba(0,0,0,0.4);
             border-radius: 5px;
-            padding: 0;
+            padding: 5px 10px;
             transition: 0.2s ease-in-out background;
             font-size: 14px;
             font-family: 'Poppins', sans-serif;
@@ -252,6 +252,9 @@
             }
             &:focus {
                 border-color: #fff;
+            }
+            & option {
+                background: #555;
             }
         }
     }
