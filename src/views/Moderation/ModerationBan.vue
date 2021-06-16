@@ -68,8 +68,6 @@
     import MGGApi from '../../modules/api';
 
     import LoadingCircle from '@/components/General/LoadingCircle';
-    import LinkButton from '@/components/General/LinkButton';
-    import GameItem from '@/components/Game/GameItem';
 
     export default {
         name: 'ModerationBan',
@@ -87,8 +85,6 @@
         },
         components: {
             LoadingCircle,
-            LinkButton,
-            GameItem,
         },
         created: function() {
             this.$data.apiRef = new MGGApi();
