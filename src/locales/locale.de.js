@@ -278,6 +278,11 @@ const messages = {
             "edit": "Bearbeiten",
             "ban": "Nutzer bannen"
         },
+        "snackbar": {
+            "notFound": "Benutzer konnte nicht gefunden werden.",
+            "serverError": "Benutzer konnte aufgrund eines Serverfehlers nicht geladen werden. Bitte versuche es später erneut.",
+            "banned": "Dieser Benutzer wurde gebannt."
+        },
         "nogames": "Dieser Nutzer hat noch keine Spiele veröffentlicht."
     },
     "userEdit": {
