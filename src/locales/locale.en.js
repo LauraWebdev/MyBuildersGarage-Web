@@ -266,6 +266,11 @@ const messages = {
             "edit": "Edit",
             "ban": "Ban User"
         },
+        "snackbar": {
+            "notFound": "User couldn't be found.",
+            "serverError": "User couldn't be loaded due to a server error. Please try again later",
+            "banned": "This user was banned."
+        },
         "nogames": "This user has not uploaded any games yet."
     },
     "userEdit": {

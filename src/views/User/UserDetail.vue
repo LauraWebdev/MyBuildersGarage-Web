@@ -113,7 +113,7 @@
                         this.$root.$emit('addSnackbar', {
                             type: "error",
                             icon: "account-circle",
-                            text: "This user was banned.",
+                            text: this.$t('userDetail.snackbar.banned'),
                             stay: true,
                         });
                         this.$data.userDetail = null;
@@ -125,7 +125,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "account-circle",
-                                text: "User couldn't be loaded due to a server error. Please try again later",
+                                text: this.$t('userDetail.snackbar.notFound'),
                                 stay: true,
                             });
                             break;
@@ -133,7 +133,7 @@
                             this.$root.$emit('addSnackbar', {
                                 type: "error",
                                 icon: "account-circle",
-                                text: "User couldn't be found.",
+                                text: this.$t('userDetail.snackbar.notFound'),
                                 stay: true,
                             });
                             break;
