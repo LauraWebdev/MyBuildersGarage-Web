@@ -65,7 +65,7 @@ const messages = {
     },
     "index": {
         "welcome": "Welcome to the MyGarage.games BETA!<br />Please report bugs and feedback in the Discord, thank you!",
-        "support": "Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! We want to keep MyGarage.games free off advertisements and any \"plus membership\" system. <i>&dash; Laura</i>",
+        "support": "Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! We want to keep MyGarage.games free of advertisements and any \"plus membership\" system. <i>&dash; Laura</i>",
         "newestHeader": "Newest Games",
         "hotThisWeekHeader": "Hot this Week",
         "randomHeader": "Random",
@@ -160,10 +160,10 @@ const messages = {
     },
     "gameDelete": {
         "header": "Deleting a game",
-        "explaination": "All actions are unreversible, so please be careful!",
+        "explaination": "All actions are irreversible, so please be careful!",
         "confirm": {
             "header": "Are you sure?",
-            "text": "You are about to remove your game <strong>{gameTitle}</strong> from MyGarage.games. All screenshots and comments will be deleted with it. This action is unreversible.",
+            "text": "You are about to remove your game <strong>{gameTitle}</strong> from MyGarage.games. All screenshots and comments will be deleted with it. This action is irreversible.",
             "nevermindButton": "Nevermind",
             "yesButton": "Yes, go ahead!"
         },
