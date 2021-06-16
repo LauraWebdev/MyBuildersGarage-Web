@@ -67,7 +67,7 @@
                             <div class="change-avatar" v-on:click="$refs.avatarFile.click()" :style="`background-image: url('${userDetail.avatarFileName}')`">
                                 <div class="icon">
                                     <span class="mdi mdi-image-edit"></span>
-                                    <div class="hint">{{ $t('gameEdit.form.fileHint') }}</div>
+                                    <div class="hint">{{ $t('gameEdit.media.form.fileHint') }}</div>
                                 </div>
                                 <input type="file" ref="avatarFile" v-on:change="processAvatarFile" accept="png,jpg" />
                             </div>
