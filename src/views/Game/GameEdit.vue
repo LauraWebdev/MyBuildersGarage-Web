@@ -43,7 +43,7 @@
                 <div class="step" v-if="currentTab == 1">
                     <div class="step-input">
                         <label>{{ $t('gameAdd.discoverability.form.displayStatus') }}</label>
-                        <select class="input" v-model="tab1DisplayStatus">
+                        <select class="input-select" v-model="tab1DisplayStatus">
                             <option value="0">{{ $t('gameAdd.discoverability.form.displayStatus0') }}</option>
                             <option value="1">{{ $t('gameAdd.discoverability.form.displayStatus1') }}</option>
                             <option value="2">{{ $t('gameAdd.discoverability.form.displayStatus2') }}</option>

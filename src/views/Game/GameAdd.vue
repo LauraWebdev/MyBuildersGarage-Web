@@ -51,7 +51,7 @@
                     <div class="step-title">{{ $t('gameAdd.discoverability.header') }}</div>
                     <div class="step-input">
                         <label>{{ $t('gameAdd.discoverability.form.displayStatus') }}</label>
-                        <select class="input" v-model="step1DisplayStatus">
+                        <select class="input-select" v-model="step1DisplayStatus">
                             <option value="0">{{ $t('gameAdd.discoverability.form.displayStatus0') }}</option>
                             <option value="1">{{ $t('gameAdd.discoverability.form.displayStatus1') }}</option>
                             <option value="2">{{ $t('gameAdd.discoverability.form.displayStatus2') }}</option>
