@@ -24,6 +24,11 @@ import Login from '../views/Auth/Login.vue';
 import OauthCallback from '../views/Auth/OauthCallback.vue';
 import Register from '../views/Auth/Register.vue';
 import Logout from '../views/Auth/Logout.vue';
+import Moderation from '../views/Moderation.vue';
+import ModerationIndex from '../views/Moderation/ModerationIndex.vue';
+import ModerationQueue from '../views/Moderation/ModerationQueue.vue';
+import ModerationUserlist from '../views/Moderation/ModerationUserlist.vue';
+import ModerationBan from '../views/Moderation/ModerationBan.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 
 Vue.use(VueRouter);
@@ -123,6 +128,32 @@ const routes = [{
     name: 'OauthCallbackDiscord',
     component: OauthCallback,
     props: { method: 'discord' },
+}, {
+    path: '/',
+    name: 'Moderation',
+    component: Moderation,
+    children: [
+        {
+            path: '/',
+            redirect: '/moderation/index',
+        }, {
+            path: '/moderation/index',
+            name: 'ModerationIndex',
+            component: ModerationIndex,
+        }, {
+            path: '/moderation/queue',
+            name: 'ModerationQueue',
+            component: ModerationQueue,
+        }, {
+            path: '/moderation/userlist',
+            name: 'ModerationUserlist',
+            component: ModerationUserlist,
+        }, {
+            path: '/moderation/ban/:id',
+            name: 'ModerationBan',
+            component: ModerationBan,
+        }
+    ]
 }, {
     path: '*',
     name: 'PageNotFound',
