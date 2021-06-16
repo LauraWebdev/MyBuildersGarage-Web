@@ -19,6 +19,7 @@
             <IconItem v-bind:route="{name: 'GameAdd'}" v-bind:icon="'plus'"></IconItem>
             <IconItem v-bind:route="{name: 'PlaylistDetail', params: {id: $store.state.userData.playlists[0].id}}" v-bind:icon="'bookmark-outline'"></IconItem>
             <IconItem v-bind:route="{name: 'UserEdit', params: { id: $store.state.userData.id }}" v-bind:icon="'cog-outline'"></IconItem>
+            <IconItem v-bind:route="{name: 'ModerationIndex'}" v-bind:icon="'security'" v-if="['moderator', 'admin'].some(str => $store.state.userRoles.includes(str))"></IconItem>
             <ThemeItem></ThemeItem>
             <IconItem v-bind:route="{name: 'Logout'}" v-bind:icon="'logout-variant'"></IconItem>
         </div>
