@@ -18,8 +18,9 @@ if(process.env.VUE_APP_API_ENV !== 'development') {
     updatefound () {
       console.log('New content is downloading.')
     },
-    updated () {
-      console.log('New content is available; please refresh.')
+    updated (registration) {
+      console.log('New content is available; please refresh.');
+      registration.update();
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')
