@@ -393,6 +393,19 @@ class MGGApi {
         }
     }
 
+    async getAllUsers() {
+        try {
+            const response = await axios.get(this.apiBase + 'users');
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+            }
+        }
+    }
+
     async getUserDetail(userID, jwtToken = undefined) {
         try {
             const response = await axios.get(this.apiBase + 'users/' + userID, {
@@ -431,6 +444,8 @@ class MGGApi {
                     throw new ex.UsernameInvalidException(error.response.data.text);
                 case "USERNAME_EMAIL_CONFLICT":
                     throw new ex.UsernameEmailConflictException(error.response.data.text);
+                case "USER_DISCORD_INVALID":
+                    throw new ex.SocialDiscordInvalidException(error.response.data.text);
                 case "AUTHENTICATION_WRONG":
                     throw new ex.AuthenticationWrongException(error.response.data.text);
                 case "AUTHENTICATION_NEEDED":
@@ -610,6 +625,98 @@ class MGGApi {
                     throw new ex.AuthenticationNeededException(error.response.data.text);
                 default:
                     throw new Error(error.response.data.text);
+            }
+        }
+    }
+
+    async getModerationQueue(jwtToken = undefined) {
+        try {
+            const response = await axios.get(this.apiBase + 'moderation/queue', {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
+            }
+        }
+    }
+
+    async deleteFromModerationQueue(gameID, jwtToken = undefined) {
+        try {
+            const response = await axios.delete(this.apiBase + 'moderation/queue/' + gameID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+                case "GAME_NOT_FOUND":
+                    throw new ex.GameNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
+            }
+        }
+    }
+
+    async banUser(userID, banReason, jwtToken = undefined) {
+        try {
+            const response = await axios.put(this.apiBase + 'moderation/ban/' + userID, {
+                reason: banReason
+            }, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+                case "USER_NOT_FOUND":
+                    throw new ex.UserNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
+            }
+        }
+    }
+
+    async unbanUser(userID, jwtToken = undefined) {
+        try {
+            const response = await axios.delete(this.apiBase + 'moderation/ban/' + userID, {
+                headers: {
+                    "x-access-token": jwtToken
+                }
+            });
+
+            return response.data;
+        } catch(error) {
+            switch(error.response.data.name) {
+                default:
+                    throw new Error(error.response.data.text);
+                case "USER_NOT_FOUND":
+                    throw new ex.UserNotFoundException(error.response.data.text);
+                case "AUTHENTICATION_WRONG":
+                    throw new ex.AuthenticationWrongException(error.response.data.text);
+                case "AUTHENTICATION_NEEDED":
+                    throw new ex.AuthenticationNeededException(error.response.data.text);
             }
         }
     }
