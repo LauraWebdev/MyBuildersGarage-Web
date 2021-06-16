@@ -310,7 +310,8 @@ const messages = {
                 "saveIngameIDInvalid": "Your profile ID is invalid (format: P-000-000-000).",
                 "saveUsernameConflict": "This username is already in use!",
                 "securityNotIdentical": "The entered passwords are not identical.",
-                "securityEmailInvalid": "Your email is invalid!"
+                "securityEmailInvalid": "Your email is invalid!",
+                "socialDiscordInvalid": "Your Discord tag is invalid. Please provide it along with your ID (example#0000)."
             }
         }
     },

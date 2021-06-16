@@ -32,7 +32,7 @@
                     </div>
                     <div class="step-input">
                         <label>{{ $t('userEdit.form.pronouns') }}</label>
-                        <select class="input" v-model="tab0Pronouns">
+                        <select class="input-select" v-model="tab0Pronouns">
                             <option value=""></option>
                             <option value="she/her">she/her</option>
                             <option value="he/him">he/him</option>
@@ -368,6 +368,14 @@
                                 type: "error",
                                 icon: "content-save-outline",
                                 text: this.$t('userEdit.snackbar.error.securityEmailInvalid'),
+                                stay: true,
+                            });
+                            return;
+                        case "SocialDiscordInvalidException":
+                            this.$root.$emit('addSnackbar', {
+                                type: "error",
+                                icon: "content-save-outline",
+                                text: this.$t('userEdit.snackbar.error.socialDiscordInvalid'),
                                 stay: true,
                             });
                             return;

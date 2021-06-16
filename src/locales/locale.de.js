@@ -322,7 +322,8 @@ const messages = {
                 "saveIngameIDInvalid": "Deine Profil-ID ist nicht im richtigen Format (Format: P-000-000-000).",
                 "saveUsernameConflict": "Dieser Benutzername ist bereits vergeben.",
                 "securityNotIdentical": "Die eingegebenen Passwörter sind nicht identisch.",
-                "securityEmailInvalid": "Deine E-Mail ist nicht gültig."
+                "securityEmailInvalid": "Deine E-Mail ist nicht gültig.",
+                "socialDiscordInvalid": "Dein Discord-Username ist nicht gültig. Bitte gebe ihn mit deiner ID an (beispiel#0000)."
             }
         }
     },

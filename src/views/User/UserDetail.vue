@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="actions" v-if="$store.state.userData ? ['moderator', 'admin'].some(str => $store.state.userRoles.includes(str)) : false">
-                            <!-- <LinkButton to="/">Ban User</LinkButton> -->
+                            <LinkButton :to="{ name: 'ModerationBan', params: { id: userDetail.id }}">Ban User</LinkButton>
                         </div>
                     </div>
                     <div class="user-games" v-if="userDetail.games.length > 0">
