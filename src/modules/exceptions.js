@@ -49,6 +49,13 @@ class EmailInvalidException extends Error {
     }
 }
 
+class SocialDiscordInvalidException extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "SocialDiscordInvalidException";
+    }
+}
+
 class GameChannelNotFoundException extends Error {
     constructor(message) {
         super(message);
@@ -127,6 +134,7 @@ export {
     UsernameEmailConflictException,
     UsernameInvalidException,
     EmailInvalidException,
+    SocialDiscordInvalidException,
     GameChannelNotFoundException,
     GameNotFoundException,
     GamePrivateException,
