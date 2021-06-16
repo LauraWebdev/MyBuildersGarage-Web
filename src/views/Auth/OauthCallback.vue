@@ -60,7 +60,7 @@
                         stay: false,
                     });
 
-                    this.$router.push({ name: 'Index' });
+                    this.$router.push({ name: 'DiscoveryIndex' });
                 } catch(error) {
                     switch(error.name) {
                         default:
