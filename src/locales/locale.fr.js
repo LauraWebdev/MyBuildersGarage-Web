@@ -7,27 +7,27 @@ const messages = {
             "talk": "Discuter"
         },
         "actions": {
-            "join": "Nous rejoindre !",
-            "login": "Se connecter"
+            "join": "S'inscrire",
+            "login": "Connexion"
         }
     },
     "login": {
-        "header": "Se connecter",
+        "header": "Connexion",
         "banned": {
-            "message": "Vous avez été banni. Si vous pensez qu'il s'agit d'une erreur, vous pouvez contester votre bannissement.",
-            "appealLinkText": "Formulaire de contestation"
+            "message": "Vous avez été banni·e. Si vous pensez qu'il s'agit d'une erreur, vous pouvez contester votre bannissement.",
+            "appealLinkText": "Contester"
         },
         "form": {
             "usernamePlaceholder": "Nom d'utilisateur",
             "passwordPlaceholder": "Mot de passe",
-            "loginButton": "Se connecter"
+            "loginButton": "Connexion"
         },
         "snackbar": {
-            "welcomeBack": "Heureux de vous revoir, {username}",
+            "welcomeBack": "Heureux de vous revoir, {username}.",
             "error": {
                 "fillOut": "Tous les champs doivent être remplis.",
                 "serverError": "Une erreur s'est produite au niveau du serveur. Veuillez réessayer ultérieurement.",
-                "userDoesntExist": "Cet utilisateur n'existe pas.",
+                "userDoesntExist": "Cet utilisateur·trice n'existe pas.",
                 "passwordWrong": "Le mot de passe est incorrect.",
                 "banned": "Votre compte à été banni. Motif : {reason}"
             }
@@ -35,13 +35,13 @@ const messages = {
     },
     "logout": {
         "header": "Au revoir",
-        "text": "Vous êtes désormais déconnecté !<br />Merci de votre visite sur myGarage.games!",
+        "text": "Vous êtes désormais déconnecté·e !<br />Merci de votre visite sur myGarage.games !",
         "snackbar": {
-            "successful": "Vous êtes désormais déconnecté."
+            "successful": "Vous êtes désormais déconnecté·e."
         }
     },
     "oauthDiscordCallback": {
-        "header": "Se connecter avec Discord",
+        "header": "Connexion avec Discord",
     },
     "register": {
         "header": "Créer un compte",
@@ -50,24 +50,28 @@ const messages = {
             "usernameRequirements": "Caractères autorisés : a-z, A-Z, 0-9, tirets et tirets bas",
             "passwordPlaceholder": "Mot de passe",
             "passwordAgainPlaceholder": "Confirmer le mot de passe",
-            "emailPlaceholder": "Email",
+            "emailPlaceholder": "Adresse e-mail",
             "registerButton": "Créer un compte"
         },
         "snackbar": {
             "success": "Votre compte a été créé avec succès.",
             "error": {
-                "emailInvalid": "Veuillez entrer une adresse email valide.",
+                "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
                 "passwordNotEqual": "Les mots de passe ne correspondent pas.",
                 "registerServerError": "Une erreur s'est produite au niveau du serveur. Veuillez réessayer ultérieurement.",
-                "inUse": "Ce nom d'utilisateur ou cette adresse email est déjà utlisée."
+                "inUse": "Ce nom d'utilisateur ou cette adresse e-mail est déjà utlisée."
             }
         }
     },
     "index": {
-        "welcome": "Bienvenue sur la bêta de MyGarage.games !<br />Merci de nous faire part de votre avis ou de signaler des bugs sur Discord !",
-        "support": "Salut, si vous souhaitez nous soutenir ou nous aider à financer nos serveurs, vous pouvez contribuer à notre cagnotte PayPal, ou acheter un de nos jeux sur itch.io ! Nous voulons tenir MyGarage.games à l'écart des publicités et des systèmes d'abonnements premium. <i>&dash; Laura</i>",
-        "newestHeader": "Nouveaux jeux",
-        "popularHeader": "Jeux populaires"
+        "welcome": "Bienvenue sur la bêta de MyGarage.games !<br />Rejoignez notre serveur Discord pour partager votre avis ou signaler des bugs !",
+        "support": "Salut ! Si vous souhaitez nous soutenir ou nous aider à financer nos serveurs, vous pouvez contribuer à notre cagnotte PayPal, ou acheter un de nos jeux sur itch.io ! Nous voulons tenir MyGarage.games à l'écart des publicités et des systèmes d'abonnements premium. <i>&dash; Laura</i>",
+        "newestHeader": "Nouveautés",
+        "hotThisWeekHeader": "Tendances de la semaine",
+        "randomHeader": "Au hasard",
+        "popularHeader": "Les plus populaires",
+        "previousPage": "Page précédente",
+        "nextPage": "Page suivante"
     },
     "find": {
         "header": "Rechercher",
@@ -77,7 +81,7 @@ const messages = {
     "talk": {
         "header": "Discuter",
         "explaination": "La communauté de l'Atelier du jeu vidéo est immense ! Voici quelques projets communautaires et lieux de discussion, où vous pourrez rencontrer des créateurs et en apprendre plus sur l'Atelier du jeu vidéo !",
-        "missing": "Il manque des projets ? Faites-le-nous savoir sur Discord !"
+        "missing": "Des projets à suggérer ? Faites-le-nous savoir sur notre serveur Discord !"
     },
     "channelOverview": {
         "header": "Liste des chaînes",
@@ -95,8 +99,8 @@ const messages = {
         "rules": {
             "header": "Règles de publication",
             "maynot": "Votre jeu <strong>ne peut</strong>",
-            "ruleHateful": "inclure du contenu haineux, inapproprié, sexiste ou queerphobe. Cela inclut le contenu visant des groupes ethniques, des identités sexuelles ou des minorités.",
-            "ruleIP": "enfreindre les droits d'auteurs et les propriétés intellectuelles d'autrui.",
+            "ruleHateful": "inclure du contenu haineux, inapproprié, sexiste ou queerphobe. Cela inclut tout contenu visant des groupes ethniques, des identités sexuelles ou des minorités.",
+            "ruleIP": "enfreindre les droits d'auteur et les propriétés intellectuelles d'autrui.",
             "ruleExplicit": "inclure du contenu pour adultes, tels que la nudité, la violence extrême, ou tout autre imagerie dérangeante. Cela s'applique au contenu du jeu, aux médias additionnels, et à la description.",
             "ruleLowEffort": "Ne soumettez pas le même jeu plusieurs fois. Ne soumettez pas de contenu créé sans effort créatif.",
             "ruleContentNotice": "Veuillez signaler si votre jeu contient des effets lumineux forts ou répétés afin de protéger les personnes qui y sont sensibles.",
@@ -109,7 +113,7 @@ const messages = {
                 "title": "Nom de votre jeu",
                 "titlePlaceholder": "Mon jeu super génial",
                 "description": "Décrivez votre jeu, à quoi le joueur doit-il s'attendre, et la façon d'y jouer",
-                "ingameID": "Entrez l'identifiant du jeu fourni après avoir partagé votre jeu",
+                "ingameID": "Entrez l'identifiant du jeu fourni après avoir l'avoir partagé",
                 "ingameIDPlaceholder": "G-000-000-000"
             }
         },
@@ -158,14 +162,14 @@ const messages = {
         "header": "Supprimer un jeu",
         "explaination": "Cette action est irréversible, faites attention !",
         "confirm": {
-            "header": "Êtes-vous sûr(e) ?",
+            "header": "Êtes-vous sûr·e ?",
             "text": "Vous êtes sur le point de supprimer <strong>{gameTitle}</strong> de MyGarage.games. Les commentaires et captures d'écran seront également supprimés. Cette action est irréversible.",
             "nevermindButton": "Annuler",
             "yesButton": "Supprimer"
         },
         "snackbar": {
             "success": "Le jeu a été supprimé.",
-            "error": "Une erreur s'est produite. Veuillez réessayer ultérieurement."
+            "error": "Impossible de supprimer le jeu. Veuillez réessayer ultérieurement."
         }
     },
     "gameDetail": {
@@ -187,7 +191,7 @@ const messages = {
             "error": {
                 "serverError": "Une erreur s'est produite au niveau du serveur. Veuillez réessayer ultérieurement.",
                 "notFound": "Aucun jeu ne correspond à ces critères.",
-                "private": "Vous n'avez pas l'autorisation de voir ce jeu."
+                "private": "Vous n'êtes pas autorisé·e à voir ce jeu."
             },
             "comments": {
                 "success": {
@@ -228,8 +232,8 @@ const messages = {
             "error": {
                 "loadServerError": "Une erreur s'est produite au niveau du serveur. Veuillez réessayer ultérieurement.",
                 "loadNotFound": "Aucun jeu ne correspond à ces critères.",
-                "loadPrivate": "Vous n'avez pas l'autorisation de voir ce jeu.",
-                "notAllowed": "Vous n'avez pas l'autorisation de modifier ce jeu.",
+                "loadPrivate": "Vous n'êtes pas autorisé·e à voir ce jeu.",
+                "notAllowed": "Vous n'êtes pas autorisé·e à  modifier ce jeu.",
                 "screenshotDeleted": "Impossible de supprimer la capture d'écran. Veuillez réessayer ultérieurement.",
                 "coverWrongFormat": "La photo de couverture n'est pas un fichier valide. Seuls les fichiers JPEG et PNG sont acceptés.",
                 "coverServerError": "Impossible de mettre à jour la photo de couverture. Veuillez réessayer ultérieurement.",
@@ -247,7 +251,7 @@ const messages = {
         "snackbar": {
             "error": {
                 "notFound": "Une erreur s'est produite au niveau du serveur. Veuillez réessayer ultérieurement.",
-                "notAllowed": "Vous n'avez pas l'autorisation de voir cette liste de jeux."
+                "notAllowed": "Vous n'êtes pas autorisé·e à voir cette liste de jeux."
             }
         }
     },
@@ -256,13 +260,18 @@ const messages = {
             "pronouns": "Pronoms",
             "ingameID": "Identifiant de créateur",
             "joinedDate": "A rejoint le",
-            "teamVerified": "Cet utilisateur est un membre de l'équipe MyGarage.games."
+            "teamVerified": "Cet utilisateur·trice est un membre de l'équipe MyGarage.games."
         },
         "action": {
             "edit": "Modifier",
-            "ban": "Bannir cet utilisateur"
+            "ban": "Bannir cet utilisateur·trice"
         },
-        "nogames": "Cet utilisateur n'a pas encore publié de jeu."
+        "snackbar": {
+            "notFound": "Impossible de trouver cet utilisateur·trice.",
+            "serverError": "Une erreur s'est produite au niveau du serveur. Veuillez réessayer ultérieurement.",
+            "banned": "Cette utilisateur·trice a été banni·e."
+        },
+        "nogames": "Cet utilisateur·trice n'a pas encore publié de jeu."
     },
     "userEdit": {
         "header": "Mettre à jour votre profil",
@@ -279,7 +288,7 @@ const messages = {
             "ingameIDPlaceholder": "P-000-000-000",
             "avatarImage": "Avatar (Fichier JPEG ou PNG au format carré)",
             "deleteAvatarButton": "Supprimer l'avatar",
-            "email": "Email",
+            "email": "Adresse e-mail",
             "password": "Mot de passe",
             "passwordAgain": "Confirmer le mot de passe"
         },
@@ -292,16 +301,17 @@ const messages = {
                 "saved": "Modifications enregistrées."
             },
             "error": {
-                "notAllowed": "Vous n'avez pas l'autorisation de modifier ce profil.",
+                "notAllowed": "Vous n'êtes pas autorisé·e à modifier ce profil.",
                 "avatarWrongFormat": "L'avatar n'est pas un fichier valide. Seuls les fichiers JPEG et PNG sont acceptés.",
                 "avatarServerError": "Impossible de modifier l'avatar. Veuillez réessayer ultérieurement.",
                 "avatarDeleteServerError": "Impossible de supprimer l'avatar. Veuillez réessayer ultérieurement.",
                 "usernameForbidden": "Ce nom d'utilisateur contient des caractères non-autorisés. Les caractères autorisés sont a-z, A-Z, 0-9, tirets et tirets bas.",
                 "saveServerError": "Une erreur s'est produite au niveau du serveur. Veuillez réessayer ultérieurement.",
                 "saveIngameIDInvalid": "Votre identifiant de créateur est invalide. Assurez-vous que le format est correct : P-000-000-000",
-                "saveUsernameConflict": "Ce nom d'utilisateur est déjà utilisé",
+                "saveUsernameConflict": "Ce nom d'utilisateur est déjà utilisé.",
                 "securityNotIdentical": "Les mots de passe de correspondent pas.",
-                "securityEmailInvalid": "Cette adresse email est déjà utilisée."
+                "securityEmailInvalid": "Cette adresse e-mail est déjà utilisée.",
+                "socialDiscordInvalid": "Votre nom d'utilisateur Discord est invalide. Assurez-vous d'inclure le tag à 4 chiffres : Exemple#0000"
             }
         }
     },
