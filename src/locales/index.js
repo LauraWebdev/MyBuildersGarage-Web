@@ -9,9 +9,9 @@ const languages = {
     "en": messagesEN,
     "de": messagesDE,
     "nl": messagesNL,
-    "fr": messagesFR,,
-    "ja": messagesJA
-    "ko": messagesKO
+    "fr": messagesFR,
+    "ja": messagesJA,
+    "ko": messagesKO,
 };
 
 export default languages;
