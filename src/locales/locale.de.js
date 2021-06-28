@@ -291,7 +291,8 @@ const messages = {
         "tabs": {
             "general": "Allgemein",
             "avatar": "Avatar",
-            "security": "Sicherheit"
+            "security": "Sicherheit",
+            "language": "Sprache"
         },
         "form": {
             "username": "Benutzername",
@@ -302,10 +303,12 @@ const messages = {
             "deleteAvatarButton": "Avatar löschen",
             "email": "E-Mail",
             "password": "Passwort",
-            "passwordAgain": "Passwort (Erneut eingeben)"
+            "passwordAgain": "Passwort (Erneut eingeben)",
+            "language": "Sprache"
         },
         "backToProfileButton": "Zurück zum Profil",
         "saveButton": "Speichern",
+        "languageNotice": "Übersetzung von taw.moe x Laura. Joine unseren Discord, wenn du uns bei der Übersetzung unterstützen möchtest.",
         "snackbar": {
             "success": {
                 "avatarUpdated": "Avatar wurde angepasst.",
