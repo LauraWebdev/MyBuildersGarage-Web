@@ -19,6 +19,7 @@
                     <div class="tab" :class="currentTab == 0 ? 'active' : ''" v-on:click="changeTab(0)">{{ $t('userEdit.tabs.general') }}</div>
                     <div class="tab" :class="currentTab == 1 ? 'active' : ''" v-on:click="changeTab(1)">{{ $t('userEdit.tabs.avatar') }}</div>
                     <div class="tab" :class="currentTab == 2 ? 'active' : ''" v-on:click="changeTab(2)">{{ $t('userEdit.tabs.security') }}</div>
+                    <div class="tab" :class="currentTab == 3 ? 'active' : ''" v-on:click="changeTab(3)">{{ $t('userEdit.tabs.language') }}</div>
                 </div>
             </div>
         </div>
@@ -92,12 +93,28 @@
                     </div>
                 </div>
 
+                <div class="step" v-if="currentTab == 3">
+                    <div class="step-input">
+                        <label>{{ $t('userEdit.form.language') }}</label>
+                        <select class="input-select" v-model="tab3Language">
+                            <option value="en">English</option>
+                            <option value="de">German</option>
+                            <option value="nl">Dutch</option>
+                            <option value="fr">French</option>
+                            <option value="ja">Japanese</option>
+                            <option value="ko">Korean</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="step-actions">
-                    <div class="footnote">{{ $t('gameAdd.requiredNotice') }}</div>
+                    <div class="footnote" v-if="currentTab != 3">{{ $t('gameAdd.requiredNotice') }}</div>
+                    <div class="footnote" v-if="currentTab == 3">{{ $t('userEdit.languageNotice') }}</div>
                     <LinkButton :to="{ name: 'UserDetail', params: { id: userDetail.id }}">{{ $t('userEdit.backToProfileButton') }}</LinkButton>
                     <div v-if="currentTab == 1"></div>
                     <button class="button button-filled" v-on:click="saveUser()" v-if="currentTab == 0">{{ $t('userEdit.saveButton') }}</button>
                     <button class="button button-filled" v-on:click="saveSecurity()" v-if="currentTab == 2">{{ $t('userEdit.saveButton') }}</button>
+                    <button class="button button-filled" v-on:click="saveLanguage()" v-if="currentTab == 3">{{ $t('userEdit.saveButton') }}</button>
                 </div>
             </div>
         </div>
@@ -131,7 +148,8 @@
                 tab1AvatarFile: "",
                 tab2Email: "",
                 tab2Password: "",
-                tab2Password2: ""
+                tab2Password2: "",
+                tab3Language: "en"
             }
         },
         components: {
@@ -174,6 +192,8 @@
                     this.$data.tab2Email = "";
                     this.$data.tab2Password = "";
                     this.$data.tab2Password2 = "";
+
+                    this.$data.tab3Language = this.$store.state.language;
 
                     this.$data.apiLoading = false;
                 } catch(error) {
@@ -381,6 +401,10 @@
                             return;
                     }
                 }
+            },
+            saveLanguage: function() {
+                this.$store.dispatch('setLanguage', this.$data.tab3Language);
+                this.$root.$i18n.locale = this.$data.tab3Language;
             }
         }
     }

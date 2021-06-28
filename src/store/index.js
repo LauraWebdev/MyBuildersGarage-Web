@@ -11,13 +11,17 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
     state: {
         uiMode: "light",
+        language: navigator.language,
         userToken: null,
         userData: null,
         userRoles: null
     },
     mutations: {
-        SET_MODE(state, uiMode) {
-            state.uiMode = uiMode;
+        SET_MODE(state, newUiMode) {
+            state.uiMode = newUiMode;
+        },
+        SET_LANG(state, newLanguage) {
+            state.language = newLanguage;
         },
         SET_USER(state, userResponse) {
             state.userToken = userResponse.token;
@@ -28,6 +32,9 @@ export default new Vuex.Store({
     actions: {
         refreshUser(context, userResponse) {
             context.commit('SET_USER', userResponse);
+        },
+        setLanguage(context, language) {
+            context.commit('SET_LANG', language);
         },
         setMode(context, uiMode) {
             context.commit('SET_MODE', uiMode);

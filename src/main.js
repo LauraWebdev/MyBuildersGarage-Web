@@ -17,7 +17,7 @@ Vue.use(VueI18n);
 Vue.component('nl2br', VueNL2BR);
 
 let i18n = new VueI18n({
-  locale: navigator.language,
+  locale: store.state.language,
   fallbackLocale: 'en',
   messages
 });

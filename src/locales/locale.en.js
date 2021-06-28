@@ -279,7 +279,8 @@ const messages = {
         "tabs": {
             "general": "General",
             "avatar": "Avatar",
-            "security": "Security"
+            "security": "Security",
+            "language": "Language"
         },
         "form": {
             "username": "Username",
@@ -290,10 +291,12 @@ const messages = {
             "deleteAvatarButton": "Delete Avatar",
             "email": "Email",
             "password": "Password",
-            "passwordAgain": "Password (again)"
+            "passwordAgain": "Password (again)",
+            "language": "Language"
         },
         "backToProfileButton": "Back to profile",
         "saveButton": "Save",
+        "languageNotice": "Translations were created by the community. Join our Discord if you are interested in helping us.",
         "snackbar": {
             "success": {
                 "avatarUpdated": "Avatar was updated.",
