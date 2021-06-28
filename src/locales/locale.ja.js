@@ -204,7 +204,7 @@ const messages = {
         }
     },
     "gameEdit": {
-        "header": "ゲームの詳細を変更すること"",
+        "header": "ゲームの詳細を変更すること",
         "explaination": "情報を調整して、スクリーンショットまたはYouTube動画を追加して、ゲームを公開する／非公開にすることができます。",
         "media": {
             "form": {
