@@ -279,7 +279,8 @@ const messages = {
         "tabs": {
             "general": "Infos générales",
             "avatar": "Avatar",
-            "security": "Securité"
+            "security": "Sécurité",
+            "language": "Langue"
         },
         "form": {
             "username": "Nom d'utilisateur",
@@ -290,10 +291,12 @@ const messages = {
             "deleteAvatarButton": "Supprimer l'avatar",
             "email": "Adresse e-mail",
             "password": "Mot de passe",
-            "passwordAgain": "Confirmer le mot de passe"
+            "passwordAgain": "Confirmer le mot de passe",
+            "language": "Langue"
         },
         "backToProfileButton": "Retour au profil",
         "saveButton": "Enregistrer",
+        "languageNotice": "Traduction française par Voxy. Rejoignez notre serveur Discord si vous souhaitez nous aider.",
         "snackbar": {
             "success": {
                 "avatarUpdated": "Avatar mis à jour.",
