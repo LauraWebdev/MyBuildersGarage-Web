@@ -279,7 +279,7 @@ const messages = {
         "tabs": {
             "general": "Infos générales",
             "avatar": "Avatar",
-            "security": "Securité",
+            "security": "Sécurité",
             "language": "Langue"
         },
         "form": {
