@@ -3,6 +3,11 @@
         <div class="page-wrapper page-loading" v-if="apiLoading">
             <LoadingCircle />
         </div>
+
+        <div class="page-wrapper page-moderation-status" v-if="!apiLoading">
+            {{ queueGames.length }} games remaining.
+        </div>
+
         <div class="page-wrapper page-moderation-list" v-if="!apiLoading">
             <div class="header">
                 <div>ID</div>
@@ -112,8 +117,13 @@
         justify-content: center;
         align-items: center;
     }
+    & .page-moderation-status {
+        margin-bottom: 25px;
+        opacity: 0.6;
+        font-size: 11px;
+    }
     & .page-moderation-list {
-        display: grid;
+        display: table;
         border-radius: 5px;
         border: 2px solid rgba(0,0,0,0.14);
 

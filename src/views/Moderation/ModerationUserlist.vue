@@ -96,7 +96,7 @@
         align-items: center;
     }
     & .page-moderation-list {
-        display: grid;
+        display: table;
         border-radius: 5px;
         border: 2px solid rgba(0,0,0,0.14);
 
