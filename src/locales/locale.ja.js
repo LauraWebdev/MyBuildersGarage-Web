@@ -275,7 +275,7 @@ const messages = {
         "tabs": {
             "general": "一般情報",
             "avatar": "アバター",
-            "security": "アカウントの安全"
+            "security": "アカウントの安全",
             "language": "言語"
         },
         "form": {
@@ -287,7 +287,7 @@ const messages = {
             "deleteAvatarButton": "アバターを削除する",
             "email": "メールアドレス",
             "password": "パスワード",
-            "passwordAgain": "パスワード (も一度)"
+            "passwordAgain": "パスワード (も一度)",
             "language": "言語"
         },
         "backToProfileButton": "プロファイルに戻る",
