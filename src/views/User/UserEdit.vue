@@ -98,6 +98,7 @@
                         <label>{{ $t('userEdit.form.language') }}</label>
                         <select class="input-select" v-model="tab3Language">
                             <option value="en">English</option>
+                            <option value="es">Spanish</option>
                             <option value="de">German</option>
                             <option value="nl">Dutch</option>
                             <option value="fr">French</option>
