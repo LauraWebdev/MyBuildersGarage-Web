@@ -5,11 +5,11 @@ class MGGApi {
     apiBase = "";
 
     constructor() {
-        if(process.env.VUE_APP_API_ENV === 'development') {
-            this.apiBase = "http://localhost:1337/v1/";
-        } else {
+        //if(process.env.VUE_APP_API_ENV === 'development') {
+        //    this.apiBase = "http://localhost:1337/v1/";
+        //} else {
             this.apiBase = "https://api.mygarage.games/v1/";
-        }
+        //}
     }
 
     async authLogin(username, password) {

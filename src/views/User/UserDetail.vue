@@ -56,6 +56,15 @@
                         <div class="actions" v-if="$store.state.userData ? ['moderator', 'admin'].some(str => $store.state.userRoles.includes(str)) : false">
                             <LinkButton :to="{ name: 'ModerationBan', params: { id: userDetail.id }}">Ban User</LinkButton>
                         </div>
+
+                        <div class="sponsor-block-square">
+                            <Adsense
+                                data-ad-client="ca-pub-3335802362531005"
+                                data-ad-slot="8645972437"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true">
+                            </Adsense>
+                        </div>
                     </div>
                     <div class="user-games" v-if="userDetail.games.length > 0">
                         <GameItem v-for="game in userDetail.games" v-bind:key="game.id" v-bind="game"></GameItem>

@@ -1,6 +1,7 @@
 <template>
     <div class="page-centered">
         <div class="page-wrapper page-index">
+
             <div class="support">
                 <span class="mdi mdi-hand-heart"></span>
                 <div class="text" v-html="$t('index.support')"></div>
@@ -9,14 +10,23 @@
                     <ExternalLinkButton href="https://indiegesindel.itch.io/">Itch.io Games</ExternalLinkButton>
                 </div>
             </div>
+            
+            <div class="sponsor-block-full">
+                <InFeedAdsense
+                    data-ad-layout-key="-fb+5w+4e-db+86"
+                    data-ad-client="ca-pub-3335802362531005"
+                    data-ad-slot="5448963456"
+                    data-ad-format="fluid">
+                </InFeedAdsense>
+            </div>
 
-            <div class="welcome">
+            <!-- <div class="welcome">
                 <span class="mdi mdi-bug"></span>
                 <div class="text" v-html="$t('index.welcome')"></div>
                 <div class="actions">
                     <ExternalLinkButton href="https://mygarage.games/discord">Indiegesindel Discord</ExternalLinkButton>
                 </div>
-            </div>
+            </div> --> 
         </div>
     </div>
 </template>

@@ -218,6 +218,22 @@
         }
     }
 
+    .sponsor-block-full {
+        min-width: 250px;
+    }
+    .sponsor-block-square {
+        min-width: 250px;
+        min-height: 250px;
+        width: 22vw;
+        height: 22vw;
+        margin-top: 50px;
+    }
+    .sponsor-block-banner {
+        min-width: 250px;
+        width: 100%;
+        max-height: 50vh;
+    }
+
     .theme-dark {
         background: #222;
         color: #fff;

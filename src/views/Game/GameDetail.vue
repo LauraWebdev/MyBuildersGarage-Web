@@ -74,6 +74,19 @@
             </div>
 
             <div class="page-centered">
+                <div class="page-wrapper">
+                    <div class="sponsor-block-banner">
+                        <Adsense
+                            data-ad-client="ca-pub-3335802362531005"
+                            data-ad-slot="9638300534"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true">
+                        </Adsense>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-centered">
                 <div class="page-wrapper page-thirdssplit page-comments">
                     <div class="comment-form comment-text" v-if="$store.state.userData == null" v-html="$t('gameDetail.comments.form.notLoggedIn')"></div>
                     <div class="comment-form" v-if="!newCommentActionLoading && $store.state.userData != null">

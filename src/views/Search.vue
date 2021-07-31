@@ -7,6 +7,19 @@
             </div>
         </div>
 
+        <div v-if="searchQuery == ''">
+            <div class="page-centered">
+                <div class="sponsor-block-square">
+                    <Adsense
+                        data-ad-client="ca-pub-3335802362531005"
+                        data-ad-slot="4431395256"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true">
+                    </Adsense>
+                </div>
+            </div>
+        </div>
+
         <div class="search-loading" v-if="apiLoading">
             <LoadingCircle />
         </div>

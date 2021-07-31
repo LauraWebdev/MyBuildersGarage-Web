@@ -10,6 +10,15 @@
             <button class="button button-filled" :disabled="page < 1" v-on:click="previousPage()">{{ $t('index.previousPage') }}</button>
             <button class="button button-filled" :disabled="hotGames.length < 11" v-on:click="nextPage()">{{ $t('index.nextPage') }}</button>
         </div>
+            
+        <div class="page-wrapper sponsor-block-full">
+            <InFeedAdsense
+                data-ad-layout-key="-fb+5w+4e-db+86"
+                data-ad-client="ca-pub-3335802362531005"
+                data-ad-slot="5448963456"
+                data-ad-format="fluid">
+            </InFeedAdsense>
+        </div>
     </div>
 </template>
 
@@ -69,7 +78,7 @@
     .actions {
         display: flex;
         justify-content: center;
-        margin-top: 50px;
+        margin: 50px 0px;
 
         & button {
             margin: 0px 7px;

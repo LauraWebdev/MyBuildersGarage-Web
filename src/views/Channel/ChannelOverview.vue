@@ -8,6 +8,15 @@
         </div>
 
         <div class="page-centered page-channelList">
+            <div class="page-wrapper sponsor-block-full">
+                <InFeedAdsense
+                    data-ad-layout-key="-gw-3+1f-3d+2z"
+                    data-ad-client="ca-pub-3335802362531005"
+                    data-ad-slot="6786095853"
+                    data-ad-format="fluid">
+                </InFeedAdsense>
+            </div>
+
             <div class="page-wrapper">
                 <ChannelList>
                     <ChannelItem v-for="channel in channels" v-bind:key="channel.id" v-bind="channel"></ChannelItem>
@@ -59,5 +68,8 @@
 <style lang="less" scoped>
     .page-channelList {
         margin: 50px 0px;
+    }
+    .sponsor-block-full {
+        margin-bottom: 50px;
     }
 </style>
