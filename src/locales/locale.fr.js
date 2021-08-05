@@ -65,7 +65,7 @@ const messages = {
     },
     "index": {
         "welcome": "Bienvenue sur la bêta de MyGarage.games !<br />Rejoignez notre serveur Discord pour partager votre avis ou signaler des bugs !",
-        "support": "Salut ! Si vous souhaitez nous soutenir ou nous aider à financer nos serveurs, vous pouvez contribuer à notre cagnotte PayPal, ou acheter un de nos jeux sur itch.io ! Nous voulons tenir MyGarage.games à l'écart des publicités et des systèmes d'abonnements premium. <i>&dash; Laura</i>",
+        "support": "Salut ! Si vous souhaitez nous soutenir ou nous aider à financer nos serveurs, vous pouvez contribuer à notre cagnotte PayPal, ou acheter un de nos jeux sur itch.io ! <i>&dash; Laura</i>",
         "newestHeader": "Nouveautés",
         "hotThisWeekHeader": "Tendances de la semaine",
         "randomHeader": "Au hasard",

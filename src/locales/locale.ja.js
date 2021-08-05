@@ -65,7 +65,7 @@ const messages = {
     },
     "index": {
         "welcome": "MyGarage.gamesのベータへようこそ！<br />Discordサーバーでバグとフィードバックを報告してください！",
-        "support": "もしあなたが私たちをサポートしたり、このサイトのサーバーに資金を提供したいのであれば、PayPalに寄付するか、itch.ioで私たちのゲームを購入することを検討してみてください。MyGarage.gamesを広告や\「プラス・メンバーシップ\」システムから解放しておきたいと考えています。<i>&dash; ローラさん</i>",
+        "support": "もしあなたが私たちをサポートしたり、このサイトのサーバーに資金を提供したいのであれば、PayPalに寄付するか、itch.ioで私たちのゲームを購入することを検討してみてください。<i>&dash; ローラさん</i>",
         "newestHeader": "新着ゲーム",
         "hotThisWeekHeader": "期待のコース",
         "randomHeader": "お任せ",

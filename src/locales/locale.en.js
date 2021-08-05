@@ -65,7 +65,7 @@ const messages = {
     },
     "index": {
         "welcome": "Welcome to the MyGarage.games BETA!<br />Please report bugs and feedback in the Discord, thank you!",
-        "support": "Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! We want to keep MyGarage.games free of advertisements and any \"plus membership\" system. <i>&dash; Laura</i>",
+        "support": "Hey there, if you'd like to support me or help us fund our servers, please consider donating to the PayPal moneypool or buy one of our games on itch.io! <i>&dash; Laura</i>",
         "newestHeader": "Newest Games",
         "hotThisWeekHeader": "Hot this Week",
         "randomHeader": "Random",

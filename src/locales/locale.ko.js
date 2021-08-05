@@ -65,7 +65,7 @@ const messages = {
     },
     "index": {
         "welcome": "MyGarage.games BETA!에 오신 것을 환영합니다!<br />버그 리포트는 디스코드에 해주세요, 감사합니다!",
-        "support": "안녕하세요, 만약 저희 서버 유지비를 지원해주고 싶다면, PayPal moneypool 이나, itch.io에서 저희 게임들을 구매해주십시오. 저희 MyGarage.games는 광고 없이 전면 무료로 유지할려해요. \"프리미엄 멤버십\" 따위도 없이요. <i>&dash; Laura</i>",
+        "support": "안녕하세요, 만약 저희 서버 유지비를 지원해주고 싶다면, PayPal moneypool 이나, itch.io에서 저희 게임들을 구매해주십시오. <i>&dash; Laura</i>",
         "newestHeader": "최신 게임",
         "hotThisWeekHeader": "이번주 인기",
         "randomHeader": "랜덤",
