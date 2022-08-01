@@ -1,15 +1,15 @@
 <template>
     <div class="page-centered page-register">
-        <div class="register-box" v-if="1==2">
+        <div class="register-box">
             <div class="box-header">{{ $t('register.header') }}</div>
             <form class="box-content" v-on:submit.prevent="register()">
-                <input class="input" type="text" v-model="userName" :placeholder="$t('register.form.usernamePlaceholder')" />
+                <!-- <input class="input" type="text" v-model="userName" :placeholder="$t('register.form.usernamePlaceholder')" />
                 <span>{{ $t('register.form.usernameRequirements') }}</span>
                 <input class="input" type="password" v-model="userPass" :placeholder="$t('register.form.passwordPlaceholder')" />
                 <input class="input" type="password" v-model="userPass2" :placeholder="$t('register.form.passwordAgainPlaceholder')" />
                 <input class="input" type="email" v-model="userMail" :placeholder="$t('register.form.emailPlaceholder')" />
 
-                <button v-on:click="register()" class="button button-filled">{{ $t('register.form.registerButton') }}</button>
+                <button v-on:click="register()" class="button button-filled">{{ $t('register.form.registerButton') }}</button> -->
                 
                 <div class="social-logins">
                     <button v-on:click="loginDiscord()" class="button">Discord</button>
