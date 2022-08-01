@@ -25,7 +25,7 @@
         </div>
         <div class="actions actions-unauthorized" v-if="$store.state.userToken === null || $store.state.userToken === undefined">
             <ThemeItem></ThemeItem>
-            <LinkButton to="/auth/register" filled>{{ $t('header.actions.join') }}</LinkButton>
+            <!-- <LinkButton to="/auth/register" filled>{{ $t('header.actions.join') }}</LinkButton> -->
             <LinkButton to="/auth/login" class="button">{{ $t('header.actions.login') }}</LinkButton>
         </div>
     </header>

@@ -1,6 +1,6 @@
 <template>
     <div class="page-centered page-register">
-        <div class="register-box">
+        <div class="register-box" v-if="1==2">
             <div class="box-header">{{ $t('register.header') }}</div>
             <form class="box-content" v-on:submit.prevent="register()">
                 <input class="input" type="text" v-model="userName" :placeholder="$t('register.form.usernamePlaceholder')" />
